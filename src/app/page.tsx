@@ -23,6 +23,7 @@ import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import CalcomReact from '@/components/calcom-react'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -325,6 +326,7 @@ export default async function Home() {
           </div>
         </div>
       </Container>
+      <CalcomReact />
     </>
   )
 }
