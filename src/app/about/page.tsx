@@ -23,6 +23,9 @@ function SocialLink({
   icon: React.ComponentType<{ className?: string }>
   children: React.ReactNode
 }) {
+  const showTemporaryContent =
+    process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
+
   return (
     <li className={clsx(className, 'flex')}>
       <Link
@@ -68,16 +71,24 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            I'm Artem Kirsanov. <br />A frontend developer and UX designer with
-            a musical past, based in Kyiv, Ukraine.
+            I'm Artem Kirsanov. <br />
+            {process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
+              ? 'A Bubble developer and UX designer with a musical past, based in Kyiv, Ukraine.'
+              : 'A frontend developer and UX designer with a musical past, based in Kyiv, Ukraine.'}
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
               My journey into the world of technology took an unexpected route.
-              Before I became immersed in code and design, I was crafting beats
-              and melodies as an electronic music producer. This creative
-              background has shaped my approach to software development in ways
-              I never anticipated.
+              Before I became immersed in{' '}
+              {process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
+                ? 'no-code solutions'
+                : 'code'}{' '}
+              and design, I was crafting beats and melodies as an electronic
+              music producer. This creative background has shaped my approach to{' '}
+              {process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
+                ? 'app development'
+                : 'software development'}{' '}
+              in ways I never anticipated.
             </p>
             <p>
               The transition from music to tech wasn't as jarring as you might

@@ -11,6 +11,7 @@ import logoQuillminds from '@/images/logos/quillminds.svg'
 import logoPollPebble from '@/images/logos/pollpebble.svg'
 import logoFeel from '@/images/logos/feel.svg'
 import logoDreampress from '@/images/logos/dreampress.svg'
+import logoTransform from '@/images/logos/transform.svg'
 const projects = [
   {
     name: 'Quillminds',
@@ -36,6 +37,16 @@ const projects = [
     description: 'A project management software for innovative teams.',
     link: { href: 'https://thefeel.io', label: 'thefeel.io' },
     logo: logoFeel,
+  },
+  {
+    name: 'Transform',
+    description:
+      'Automatic Figma to Bubble converted that allows you to build your app faster.',
+    link: {
+      href: 'https://transform.withnexa.co',
+      label: 'transform.withnexa.co',
+    },
+    logo: logoTransform,
   },
 ]
 

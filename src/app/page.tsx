@@ -16,6 +16,7 @@ import logoFeel from '@/images/logos/feel.svg'
 import logoQuillminds from '@/images/logos/quillminds.svg'
 import logoPollPebble from '@/images/logos/pollpebble.svg'
 import logoDreampress from '@/images/logos/dreampress.svg'
+import logoTransform from '@/images/logos/transform.svg'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -159,30 +160,34 @@ function Role({ role }: { role: Role }) {
   let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
 
   return (
-    <li className="flex h-[72px] gap-4">
+    <li className="flex gap-2 py-2">
       <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
         <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
       </div>
-      <dl className="flex flex-grow flex-col justify-between">
+      <dl className="flex flex-auto flex-col justify-center gap-y-1">
+        <div className="flex items-center justify-between">
+          <div>
+            <dt className="sr-only">Company</dt>
+            <dd className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              {role.company}
+            </dd>
+          </div>
+          <div>
+            <dt className="sr-only">Date</dt>
+            <dd
+              className="text-xs text-zinc-400 dark:text-zinc-500"
+              aria-label={`${startLabel} until ${endLabel}`}
+            >
+              <time dateTime={startDate}>{startLabel}</time>{' '}
+              <span aria-hidden="true">—</span>{' '}
+              <time dateTime={endDate}>{endLabel}</time>
+            </dd>
+          </div>
+        </div>
         <div>
-          <dt className="sr-only">Company</dt>
-          <dd className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-            {role.company}
-          </dd>
           <dt className="sr-only">Role</dt>
           <dd className="text-xs text-zinc-500 dark:text-zinc-400">
             {role.title}
-          </dd>
-        </div>
-        <div className="self-end">
-          <dt className="sr-only">Date</dt>
-          <dd
-            className="text-xs text-zinc-400 dark:text-zinc-500"
-            aria-label={`${startLabel} until ${endLabel}`}
-          >
-            <time dateTime={startDate}>{startLabel}</time>{' '}
-            <span aria-hidden="true">—</span>{' '}
-            <time dateTime={endDate}>{endLabel}</time>
           </dd>
         </div>
       </dl>
@@ -191,10 +196,15 @@ function Role({ role }: { role: Role }) {
 }
 
 function Resume() {
+  const showTemporaryContent =
+    process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
+
   let resume: Array<Role> = [
     {
       company: 'Quillminds',
-      title: 'Fullstack Engineer, Designer and Founder',
+      title: showTemporaryContent
+        ? 'Bubble Developer, Designer and Founder'
+        : 'Fullstack Engineer, Designer and Founder',
       logo: logoQuillminds,
       start: '2023',
       end: {
@@ -203,22 +213,35 @@ function Resume() {
       },
     },
     {
+      company: 'Transform',
+      title: 'Frontend and Backend Developer',
+      logo: logoTransform,
+      start: '2024',
+      end: '2024',
+    },
+    {
       company: 'Dreampress',
-      title: 'Lead Frontend Developer',
+      title: showTemporaryContent
+        ? 'Lead Fullstack Developer and Bubble Developer'
+        : 'Lead Fullstack Developer',
       logo: logoDreampress,
       start: '2023',
       end: '2024',
     },
     {
       company: 'PollPebble',
-      title: 'Fullstack Engineer, design engineer',
+      title: showTemporaryContent
+        ? 'Bubble Developer, UX Designer'
+        : 'Fullstack Engineer, design engineer',
       logo: logoPollPebble,
       start: '2022',
       end: '2024',
     },
     {
       company: 'Feel',
-      title: 'Lead Frontend Developer',
+      title: showTemporaryContent
+        ? 'Lead Bubble Developer'
+        : 'Lead Frontend Developer',
       logo: logoFeel,
       start: '2020',
       end: '2022',
@@ -273,20 +296,22 @@ function Photos() {
 
 export default async function Home() {
   let articles = (await getAllArticles()).slice(0, 4)
+  const showTemporaryContent =
+    process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
 
   return (
     <>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Frontend developer and UX designer.
+            {showTemporaryContent
+              ? 'Bubble developer, UX designer, and backend specialist.'
+              : 'Frontend developer and UX designer.'}
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Artem, a frontend developer and UX designer based in Kyiv,
-            Ukraine. With a passion for creating intuitive and powerful digital
-            solutions, I transform ideas into reality. As the founder of
-            Quillminds, I'm dedicated to pushing the boundaries of what's
-            possible in tech.
+            {showTemporaryContent
+              ? "Hi, I'm Artem, a tech enthusiast from Kyiv, Ukraine. I love creating apps that make people's lives easier. My passion lies in Bubble development, where I can bring ideas to life without writing complex code. But when needed, I'm not afraid to roll up my sleeves and dive into some JavaScript, Python, or Node.js. As the founder of Quillminds, I'm always looking for new ways to blend no-code solutions with traditional programming. It's all about finding that sweet spot between simplicity and power."
+              : "I'm Artem, a frontend developer and UX designer based in Kyiv, Ukraine. With a passion for creating intuitive and powerful digital solutions, I transform ideas into reality. As the founder of Quillminds, I'm dedicated to pushing the boundaries of what's possible in tech."}
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
