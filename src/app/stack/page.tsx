@@ -1,9 +1,11 @@
+'use client'
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import jslogo from '@/images/logos/js.svg'
 import pythonlogo from '@/images/logos/python.svg'
 import nodelogo from '@/images/logos/nodejs.svg'
+import { usePathname } from 'next/navigation'
 
 function ToolsSection({
   children,
@@ -37,30 +39,24 @@ function Tool({
   )
 }
 
-export const metadata = {
-  title: 'My Stack',
-  description: 'The tools and technologies I use to build awesome stuff.',
-}
-
 export default function Stack() {
-  const showTemporaryContent =
-    process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
+  const pathname = usePathname()
 
   return (
     <SimpleLayout
       title={
-        showTemporaryContent
+        pathname?.includes('nocode')
           ? 'The tools that power my no-code creations'
           : 'The tools that power my digital creations'
       }
       intro={
-        showTemporaryContent
+        pathname?.includes('nocode')
           ? "Here's an overview of the technologies I use daily for no-code development. These tools enable me to bring ideas to life efficiently without traditional coding."
           : "Here's an overview of the technologies I use daily. It's not about having the most advanced tools, but about what enables efficient and enjoyable work. These are the proven favorites that help me bring ideas to life."
       }
     >
       <div className="space-y-20">
-        {showTemporaryContent ? (
+        {pathname?.includes('nocode') ? (
           <>
             <ToolsSection title="No-Code Platform">
               <Tool

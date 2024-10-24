@@ -1,3 +1,4 @@
+'use client'
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,6 +12,7 @@ import {
   XIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
+import { usePathname } from 'next/navigation'
 
 function SocialLink({
   className,
@@ -23,9 +25,6 @@ function SocialLink({
   icon: React.ComponentType<{ className?: string }>
   children: React.ReactNode
 }) {
-  const showTemporaryContent =
-    process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
-
   return (
     <li className={clsx(className, 'flex')}>
       <Link
@@ -50,12 +49,9 @@ function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-export const metadata: Metadata = {
-  title: 'About',
-  description: 'I’m Artem Kirsanov. I live in Kyiv, Ukraine.',
-}
-
 export default function About() {
+  const pathname = usePathname()
+
   return (
     <Container className="mt-16 sm:mt-32">
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
@@ -72,7 +68,7 @@ export default function About() {
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
             I'm Artem Kirsanov. <br />
-            {process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
+            {pathname?.includes('nocode')
               ? 'A Bubble developer and UX designer with a musical past, based in Kyiv, Ukraine.'
               : 'A frontend developer and UX designer with a musical past, based in Kyiv, Ukraine.'}
           </h1>
@@ -80,12 +76,10 @@ export default function About() {
             <p>
               My journey into the world of technology took an unexpected route.
               Before I became immersed in{' '}
-              {process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
-                ? 'no-code solutions'
-                : 'code'}{' '}
-              and design, I was crafting beats and melodies as an electronic
-              music producer. This creative background has shaped my approach to{' '}
-              {process.env.NEXT_PUBLIC_SHOW_TEMP_CONTENT === 'true'
+              {pathname?.includes('nocode') ? 'no-code solutions' : 'code'} and
+              design, I was crafting beats and melodies as an electronic music
+              producer. This creative background has shaped my approach to{' '}
+              {pathname?.includes('nocode')
                 ? 'app development'
                 : 'software development'}{' '}
               in ways I never anticipated.
