@@ -80,7 +80,7 @@ const Header = () => {
                 >
                   Curriculum
                 </a>
-             
+
                 <a
                   href="#pricing"
                   className="text-sm text-gray-600 hover:text-gray-900"
@@ -133,11 +133,12 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     try {
       // Add your email service integration here
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwGz4J0N0y_AKVkDdfwnVBpfyB9bg6_ofSSCAZSgWgO4EH_uEknv_i3r8HCZyHYI3sBPw/exec'
-      
+      const GOOGLE_SCRIPT_URL =
+        'https://script.google.com/macros/s/AKfycbwGz4J0N0y_AKVkDdfwnVBpfyB9bg6_ofSSCAZSgWgO4EH_uEknv_i3r8HCZyHYI3sBPw/exec'
+
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors', // Important!
@@ -218,8 +219,8 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                 </h1>
                 <p className="mt-6 text-lg text-gray-600">
                   Master JavaScript and TypeScript to supercharge your Bubble
-                  apps. From custom workflows to plugin development, and beyond to
-                  full-stack applications.
+                  apps. From custom workflows to plugin development, and beyond
+                  to full-stack applications.
                 </p>
                 <ul className="mt-8 space-y-3 text-gray-600">
                   <li className="flex items-center space-x-2">
@@ -267,11 +268,10 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                 </ul>
                 <div className="mt-8">
                   {isWaitlist ? (
-                    <div   >
+                    <div>
                       <div className="space-y-4">
-                        
                         <form onSubmit={handleSubmit} className="mt-6">
-                          <div  className="flex space-x-2">
+                          <div className="flex space-x-2">
                             <input
                               type="email"
                               autoComplete="email"
@@ -288,9 +288,24 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                             >
                               {isSubmitting ? (
                                 <>
-                                  <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                                  <svg
+                                    className="mr-2 h-4 w-4 animate-spin"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <circle
+                                      className="opacity-25"
+                                      cx="12"
+                                      cy="12"
+                                      r="10"
+                                      stroke="currentColor"
+                                      strokeWidth="4"
+                                      fill="none"
+                                    />
+                                    <path
+                                      className="opacity-75"
+                                      fill="currentColor"
+                                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    />
                                   </svg>
                                   Joining...
                                 </>
@@ -319,32 +334,62 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                     </div>
                   )}
                 </div>
-                
+
                 <p className="mt-6 text-sm text-gray-500">
-                  {isWaitlist 
-                    ?   (
-                      <div className="flex items-center gap-x-2">
-                        <div className="flex items-center space-x-2">
-                          <svg className="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                  </svg>
-                  <span className="text-sm font-medium text-gray-500">Early access</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <svg className="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                  </svg>
-                  <span className="text-sm font-medium text-gray-500">30% discount</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <svg className="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                  </svg>
-                  <span className="text-sm font-medium text-gray-500">Private Discord community</span>
-                </div>
+                  {isWaitlist ? (
+                    <div className="flex items-center gap-x-2">
+                      <div className="flex items-center space-x-2">
+                        <svg
+                          className="h-5 w-5 text-green-600"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span className="text-sm font-medium text-gray-500">
+                          Early access
+                        </span>
                       </div>
-                    )
-                  : 'Join 1,000+ Bubble developers who&apos;ve transformed their development skills'}
+                      <div className="flex items-center space-x-2">
+                        <svg
+                          className="h-5 w-5 text-green-600"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span className="text-sm font-medium text-gray-500">
+                          30% discount
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <svg
+                          className="h-5 w-5 text-green-600"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span className="text-sm font-medium text-gray-500">
+                          Private Discord community
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    'Join 1,000+ Bubble developers who&apos;ve transformed their development skills'
+                  )}
                 </p>
               </div>
             </div>
@@ -352,7 +397,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
 
           <div className="mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen">
             <div className="relative rounded-xl bg-gradient-to-b from-indigo-50 to-white p-8 shadow-2xl ring-1 ring-gray-900/10">
-              <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]"></div>
+              <div className="bg-grid-slate-100 absolute inset-0 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]"></div>
               <div className="relative overflow-hidden rounded-xl bg-gray-900 p-4 shadow-xl">
                 <div className="absolute left-0 right-0 top-0 h-8 bg-gray-800 px-4 py-1.5">
                   <div className="flex items-center justify-between">
@@ -367,39 +412,54 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
 
                 <pre className="mt-8 overflow-x-auto font-mono text-sm leading-6">
                   <code className="relative block text-gray-50">
-                    <span className="text-violet-300">{' '}{' '}function</span>{' '}
+                    <span className="text-violet-300"> function</span>{' '}
                     <span className="text-indigo-300">enhanceBubbleApp</span>
                     <span className="text-gray-300">()</span>{' '}
                     <span className="text-gray-300">{'{'}</span>
                     {'\n'}
-                    {'  '}<span className="text-slate-500">// Your JavaScript journey starts here</span>{'\n'}
-                    {'  '}<span className="text-violet-300">const</span>{' '}
+                    {'  '}
+                    <span className="text-slate-500">
+                      // Your JavaScript journey starts here
+                    </span>
+                    {'\n'}
+                    {'  '}
+                    <span className="text-violet-300">const</span>{' '}
                     <span className="text-blue-300">value</span>{' '}
                     <span className="text-gray-300">=</span>{' '}
                     <span className="text-violet-300">properties.</span>
                     <span className="text-indigo-300">param1</span>
                     {'\n\n'}
-                
-                    <span className="text-indigo-300">{' '}{' '}bubble_fn_addCustomWorkflow</span>
+                    <span className="text-indigo-300">
+                      {' '}
+                      bubble_fn_addCustomWorkflow
+                    </span>
                     <span className="text-gray-300">({'{'}</span>
                     {'\n'}
-                    {'    '}<span className="text-sky-300">name</span>
+                    {'    '}
+                    <span className="text-sky-300">name</span>
                     <span className="text-gray-300">:</span>{' '}
                     <span className="text-emerald-300">'Advanced Search'</span>
                     <span className="text-gray-300">,</span>
                     {'\n'}
-                    {'    '}<span className="text-sky-300">type</span>
+                    {'    '}
+                    <span className="text-sky-300">type</span>
                     <span className="text-gray-300">:</span>{' '}
                     <span className="text-emerald-300">'backend'</span>
                     <span className="text-gray-300">,</span>
                     {'\n'}
-                    {'    '}<span className="text-sky-300">language</span>
+                    {'    '}
+                    <span className="text-sky-300">language</span>
                     <span className="text-gray-300">:</span>{' '}
                     <span className="text-emerald-300">'javascript'</span>
                     {'\n'}
-                    {'  '}<span className="text-gray-300">});</span>
+                    {'  '}
+                    <span className="text-gray-300">{'}'}</span>
                     {'\n\n'}
-                    {'  '}<span className="text-slate-500">// More exciting code coming soon...</span>{'\n'}
+                    {'  '}
+                    <span className="text-slate-500">
+                      // More exciting code coming soon...
+                    </span>
+                    {'\n'}
                     <span className="text-gray-300">{'}'}</span>
                   </code>
                 </pre>
@@ -556,7 +616,7 @@ const About = () => {
                 <p className="mt-6">
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center">
-                    <svg
+                      <svg
                         className="mr-2 h-4 w-4 text-indigo-600"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -568,11 +628,11 @@ const About = () => {
                         />
                       </svg>
                       <span className="text-gray-600">
-                          Plugin Architecture & Best Practices
-                        </span>
+                        Plugin Architecture & Best Practices
+                      </span>
                     </li>
                     <li className="flex items-center">
-                    <svg
+                      <svg
                         className="mr-2 h-4 w-4 text-indigo-600"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -584,8 +644,8 @@ const About = () => {
                         />
                       </svg>
                       <span className="text-gray-600">
-                          Custom Elements & Actions
-                        </span>
+                        Custom Elements & Actions
+                      </span>
                     </li>
                   </ul>
                 </p>
@@ -614,12 +674,13 @@ const About = () => {
               <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
                 <p className="flex-auto">
                   Take your skills further with modern full-stack development.
-                  Learn React, Next.js, and how to transition from NoCode to Code.
+                  Learn React, Next.js, and how to transition from NoCode to
+                  Code.
                 </p>
                 <p className="mt-6">
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center">
-                    <svg
+                      <svg
                         className="mr-2 h-4 w-4 text-indigo-600"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -631,11 +692,11 @@ const About = () => {
                         />
                       </svg>
                       <span className="text-gray-600">
-                          React & Next.js Fundamentals
-                        </span>
+                        React & Next.js Fundamentals
+                      </span>
                     </li>
                     <li className="flex items-center">
-                    <svg
+                      <svg
                         className="mr-2 h-4 w-4 text-indigo-600"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -647,8 +708,8 @@ const About = () => {
                         />
                       </svg>
                       <span className="text-gray-600">
-                          API Routes & Database Integration
-                        </span>
+                        API Routes & Database Integration
+                      </span>
                     </li>
                   </ul>
                 </p>
@@ -670,7 +731,8 @@ const CTA = () => {
             Ready to Transform Your Bubble Development Skills?
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
-            Learn partical Javascript skills to level up your Bubble development skills
+            Learn partical Javascript skills to level up your Bubble development
+            skills
           </p>
 
           <div className="mt-8 flex flex-col items-center">
@@ -738,8 +800,8 @@ const CTA = () => {
             </div>
 
             <a href="#enroll" className="inline-flex items-center">
-              <button  className="rounded-xl opacity-50 bg-gradient-to-r from-indigo-500 to-violet-500 px-12 py-4 text-base font-semibold text-white shadow-sm transition-all hover:from-indigo-600 hover:to-violet-600">
-               Coming soon
+              <button className="rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-12 py-4 text-base font-semibold text-white opacity-50 shadow-sm transition-all hover:from-indigo-600 hover:to-violet-600">
+                Coming soon
               </button>
             </a>
             <p className="mt-4 text-sm text-gray-300">
@@ -874,7 +936,8 @@ const WhatYouGet = () => {
                           />
                         </svg>
                         <span className="text-gray-600">
-                          Supercharge your workflows with JavaScript                         </span>
+                          Supercharge your workflows with JavaScript{' '}
+                        </span>
                       </li>
                       <li className="flex gap-x-3">
                         <svg
@@ -907,7 +970,9 @@ const WhatYouGet = () => {
                           <div className="h-2.5 w-2.5 rounded-full bg-yellow-500"></div>
                           <div className="h-2.5 w-2.5 rounded-full bg-green-500"></div>
                         </div>
-                        <div className="text-xs text-gray-400">fundamentals.js</div>
+                        <div className="text-xs text-gray-400">
+                          fundamentals.js
+                        </div>
                       </div>
                     </div>
 
@@ -916,91 +981,135 @@ const WhatYouGet = () => {
                       <pre className="overflow-x-auto font-mono text-sm leading-6">
                         <code className="relative block text-gray-50">
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">1</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              1
+                            </span>
                             <span className="flex-1">
                               <span className="text-violet-300">function</span>{' '}
-                              <span className="text-indigo-300">createSearchComponent</span>
+                              <span className="text-indigo-300">
+                                createSearchComponent
+                              </span>
                               <span className="text-gray-300">()</span>{' '}
                               <span className="text-gray-300">{'{'}</span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">2</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              2
+                            </span>
                             <span className="flex-1">
-                              <span className="text-slate-500">{'  '}// Initialize search configuration</span>
+                              <span className="text-slate-500">
+                                {'  '}// Initialize search configuration
+                              </span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">3</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              3
+                            </span>
                             <span className="flex-1">
-                              <span className="text-slate-500">{'  '}// with Bubble-specific settings</span>
+                              <span className="text-slate-500">
+                                {'  '}// with Bubble-specific settings
+                              </span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">4</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              4
+                            </span>
                             <span className="flex-1">
-                              <span className="text-violet-300">{'  '}const</span>{' '}
+                              <span className="text-violet-300">
+                                {'  '}const
+                              </span>{' '}
                               <span className="text-blue-300">config</span>{' '}
                               <span className="text-gray-300">=</span>{' '}
                               <span className="text-gray-300">{'{'}</span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">5</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              5
+                            </span>
                             <span className="flex-1">
-                              <span className="text-sky-300">{'    '}fuzzyMatch</span>
+                              <span className="text-sky-300">
+                                {'    '}fuzzyMatch
+                              </span>
                               <span className="text-gray-300">:</span>{' '}
                               <span className="text-indigo-300">true</span>
                               <span className="text-gray-300">,</span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">6</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              6
+                            </span>
                             <span className="flex-1">
-                              <span className="text-sky-300">{'    '}fields</span>
+                              <span className="text-sky-300">
+                                {'    '}fields
+                              </span>
                               <span className="text-gray-300">:</span>{' '}
                               <span className="text-gray-300">[</span>
                               <span className="text-emerald-300">'name'</span>
                               <span className="text-gray-300">,</span>{' '}
-                              <span className="text-emerald-300">'description'</span>
+                              <span className="text-emerald-300">
+                                'description'
+                              </span>
                               <span className="text-gray-300">],</span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">7</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              7
+                            </span>
                             <span className="flex-1">
-                              <span className="text-sky-300">{'    '}debounceMs</span>
+                              <span className="text-sky-300">
+                                {'    '}debounceMs
+                              </span>
                               <span className="text-gray-300">:</span>{' '}
                               <span className="text-indigo-300">300</span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">8</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              8
+                            </span>
                             <span className="flex-1">
                               <span className="text-gray-300">{'  }'};</span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">9</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              9
+                            </span>
                             <span className="flex-1"></span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">10</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              10
+                            </span>
                             <span className="flex-1">
-                              <span className="text-slate-500">{'  '}// Initialize the component</span>
+                              <span className="text-slate-500">
+                                {'  '}// Initialize the component
+                              </span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">11</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              11
+                            </span>
                             <span className="flex-1">
-                              <span className="text-indigo-300">initializeSearch</span>
+                              <span className="text-indigo-300">
+                                initializeSearch
+                              </span>
                               <span className="text-gray-300">(</span>
                               <span className="text-blue-300">config</span>
                               <span className="text-gray-300">);</span>
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">12</span>
+                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                              12
+                            </span>
                             <span className="flex-1">
                               <span className="text-gray-300">{'}'}</span>
                             </span>
@@ -1253,7 +1362,8 @@ const WhatYouGet = () => {
                       Milestone Project
                     </h4>
                     <p className="mt-2 text-gray-600">
-                      Build a Full-Stack App with Next.js and Supabase. Deploy a production-ready application
+                      Build a Full-Stack App with Next.js and Supabase. Deploy a
+                      production-ready application
                     </p>
                   </div>
                 </div>
@@ -1285,7 +1395,6 @@ const Footer = () => {
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-   
         {/* Bottom section */}
         <div className=" border-gray-900/10 pt-8 ">
           <div className="flex flex-col items-center justify-between gap-y-4 md:flex-row">
