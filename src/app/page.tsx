@@ -279,8 +279,6 @@ function Photos() {
   )
 }
 export default async function Home() {
-  redirect('/js-for-bubblers')
-
   const pathname = usePathname()
 
   return (
