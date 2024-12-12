@@ -27,7 +27,6 @@ import CalcomReact from '@/components/calcom-react'
 import { redirect, usePathname } from 'next/navigation'
 import { Hero } from '@/components/hero'
 
-redirect('/js-for-bubblers')
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
@@ -279,8 +278,9 @@ function Photos() {
     </div>
   )
 }
-
 export default async function Home() {
+  redirect('/js-for-bubblers')
+
   const pathname = usePathname()
 
   return (
