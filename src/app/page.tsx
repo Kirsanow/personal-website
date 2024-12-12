@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-export default function JsForBubblers() {
+function JsForBubblers() {
   const isWaitlist = true
   return (
     <div className="mx-auto h-screen w-full flex-auto ">
@@ -1455,3 +1455,5 @@ const Footer = () => {
     </footer>
   )
 }
+
+export default JsForBubblers
