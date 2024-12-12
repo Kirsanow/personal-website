@@ -24,8 +24,10 @@ import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import CalcomReact from '@/components/calcom-react'
-import { usePathname } from 'next/navigation'
+import { redirect, usePathname } from 'next/navigation'
+import { Hero } from '@/components/hero'
 
+redirect('/js-for-bubblers')
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
@@ -283,6 +285,7 @@ export default async function Home() {
 
   return (
     <>
+      <Hero />
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
