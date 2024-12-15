@@ -5,10 +5,10 @@ import Link from 'next/link'
 
 export function Hero() {
   return (
-    <Container className="mt-24 sm:mt-32 md:mt-32">
+    <Container className="mt-12 sm:mt-24 md:mt-32">
       <div className="relative flex flex-col items-center text-center">
-        <div className="max-w-3xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-6xl dark:text-zinc-100">
+        <div className="max-w-3xl px-4 sm:px-0">
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-800 sm:text-5xl md:text-6xl dark:text-zinc-100">
             Turn Your No-Code App Into a{' '}
             <span className="text-teal-500 dark:text-teal-400">
               Powerful Solution

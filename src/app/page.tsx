@@ -3,7 +3,101 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
+const MobileMenu = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean
+  onClose: () => void
+}) => {
+  return (
+    <div
+      className={`fixed inset-0 z-[100] transform transition-opacity duration-300 ${
+        isOpen ? 'pointer-events-auto' : 'pointer-events-none'
+      }`}
+    >
+      {/* Backdrop */}
+      <div
+        className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity ${
+          isOpen ? 'opacity-100' : 'opacity-0'
+        }`}
+        onClick={onClose}
+      />
+
+      {/* Menu panel */}
+      <div
+        className={`fixed inset-y-0 right-0 z-[100] w-full bg-white px-6 py-6 transition-transform duration-300 sm:hidden ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex flex-col space-y-4">
+          <div className="mb-4 flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Image
+                src="/images/avatar.png"
+                alt="Artem Kirsanov"
+                className="h-10 w-10 rounded-full"
+                width={40}
+                height={40}
+              />
+              <span className="font-semibold text-gray-900">
+                Artem Kirsanov
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center justify-center rounded-full bg-white p-2 text-gray-900 shadow-sm ring-1 ring-gray-900/5 transition-all hover:bg-gray-50"
+            >
+              <span className="sr-only">Close menu</span>
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="flex flex-col space-y-4">
+            <a
+              href="#curriculum"
+              onClick={onClose}
+              className="text-base font-medium text-gray-900 hover:text-indigo-600"
+            >
+              Curriculum
+            </a>
+            <a
+              href="#pricing"
+              onClick={onClose}
+              className="text-base font-medium text-gray-900 hover:text-indigo-600"
+            >
+              Pricing
+            </a>
+            <div className="pt-4">
+              <a
+                href="#enroll"
+                onClick={onClose}
+                className="inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-4 py-2.5 text-base font-medium text-white hover:bg-indigo-500"
+              >
+                Enroll Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function JsForBubblers() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const isWaitlist = true
   return (
     <div className="mx-auto h-screen w-full flex-auto ">
@@ -14,7 +108,11 @@ function JsForBubblers() {
           }`}
         </style>
       </script>
-      <Header />
+      <Header onMobileMenuOpen={() => setIsMobileMenuOpen(true)} />
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
       <main className="flex-auto">
         <Hero isWaitlist={isWaitlist} />
         <About />
@@ -26,7 +124,7 @@ function JsForBubblers() {
   )
 }
 
-const Header = () => {
+const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -95,24 +193,24 @@ const Header = () => {
                 </a>
               </div>
 
-              <div className="ml-4 flex lg:hidden">
+              <div className="ml-4 flex sm:hidden">
                 <button
                   type="button"
-                  className="inline-flex items-center rounded-full border border-gray-900 p-2.5 text-gray-900 hover:bg-gray-900 hover:text-white"
+                  onClick={onMobileMenuOpen}
+                  className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-gray-900 shadow-sm ring-1 ring-gray-900/5 transition-all hover:bg-gray-50"
                 >
                   <span className="sr-only">Open menu</span>
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
+                    strokeWidth="1.5"
                     stroke="currentColor"
-                    className="h-6 w-6"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      d="M4 6h16M4 12h16M4 18h16"
+                      d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
                     />
                   </svg>
                 </button>
@@ -135,21 +233,20 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
     setIsSubmitting(true)
 
     try {
-      // Add your email service integration here
       const GOOGLE_SCRIPT_URL =
         'https://script.google.com/macros/s/AKfycbwGz4J0N0y_AKVkDdfwnVBpfyB9bg6_ofSSCAZSgWgO4EH_uEknv_i3r8HCZyHYI3sBPw/exec'
 
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Important!
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
       })
       setShowToast(true)
-      setEmail('') // Clear the input
-      setTimeout(() => setShowToast(false), 3000) // Hide toast after 3s
+      setEmail('')
+      setTimeout(() => setShowToast(false), 3000)
     } catch (error) {
       console.error('Submission error:', error)
     } finally {
@@ -159,12 +256,11 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
 
   return (
     <>
-      {/* Toast Notification - Moved outside and above main container */}
       <div
         className={`fixed bottom-4 right-4 transform transition-all duration-300 ${
           showToast ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
         }`}
-        style={{ zIndex: 99999 }} // Highest z-index to ensure it's always on top
+        style={{ zIndex: 99999 }}
       >
         <div className="rounded-lg bg-white px-6 py-4 shadow-xl ring-1 ring-gray-900/5">
           <div className="flex items-center gap-x-3">
@@ -186,46 +282,39 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
         </div>
       </div>
 
-      {/* Main Hero Content */}
-      <div className="relative isolate overflow-hidden">
+      <div className="relative isolate overflow-x-hidden">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/30 via-white/60 to-white"></div>
           <div
             className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 transform-gpu blur-2xl"
             aria-hidden="true"
           >
-            <div className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5]/25 to-[#9089fc]/25 opacity-[0.1]"></div>
-          </div>
-          <div
-            className="absolute left-[calc(50%-30rem)] top-0 -z-10 transform-gpu blur-2xl sm:left-[calc(50%-40rem)]"
-            aria-hidden="true"
-          >
-            <div className="aspect-[1155/678] w-[72.1875rem] rotate-[30deg] bg-gradient-to-tr from-[#ff80b5]/20 to-[#9089fc]/20 opacity-[0.1]"></div>
+            <div className="aspect-[1155/678] w-full max-w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5]/25 to-[#9089fc]/25 opacity-[0.1]"></div>
           </div>
         </div>
 
-        <div className="animate-fade-in mx-auto max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-24">
-          <div className="px-6 lg:px-0 lg:pt-4">
+        <div className="animate-fade-in mx-auto w-full max-w-7xl pb-16 pt-10 sm:pb-24 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-24">
+          <div className="px-4 sm:px-6 lg:px-0 lg:pt-4">
             <div id="enroll" className="mx-auto max-w-2xl">
               <div className="max-w-lg">
-                <div className="mb-8 inline-flex rounded-full bg-indigo-500/10 px-4 py-1 text-sm font-medium text-indigo-600 ring-1 ring-inset ring-indigo-500/20">
+                <div className="mb-6 inline-flex rounded-full bg-indigo-500/10 px-4 py-1 text-sm font-medium text-indigo-600 ring-1 ring-inset ring-indigo-500/20 sm:mb-8">
                   Coming Soon
                 </div>
-                <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-6xl">
                   The JavaScript Blueprint for{' '}
                   <span className="bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">
                     Bubble Developers
                   </span>
                 </h1>
-                <p className="mt-6 text-lg text-gray-600">
+                <p className="mt-4 text-base text-gray-600 sm:mt-6 sm:text-lg">
                   Master JavaScript and TypeScript to supercharge your Bubble
                   apps. From custom workflows to plugin development, and beyond
                   to full-stack applications.
                 </p>
-                <ul className="mt-8 space-y-3 text-gray-600">
-                  <li className="flex items-center space-x-2">
+                <ul className="mt-6 space-y-3 text-gray-600 sm:mt-8">
+                  <li className="flex items-start space-x-2 sm:items-center">
                     <svg
-                      className="h-5 w-5 text-indigo-600"
+                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-600 sm:mt-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -235,11 +324,13 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Build powerful custom workflows with JavaScript</span>
+                    <span className="flex-1">
+                      Build powerful custom workflows with JavaScript
+                    </span>
                   </li>
-                  <li className="flex items-center space-x-2">
+                  <li className="flex items-start space-x-2 sm:items-center">
                     <svg
-                      className="h-5 w-5 text-indigo-600"
+                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-600 sm:mt-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -249,11 +340,13 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Create and monetize your own Bubble plugins</span>
+                    <span className="flex-1">
+                      Create and monetize your own Bubble plugins
+                    </span>
                   </li>
-                  <li className="flex items-center space-x-2">
+                  <li className="flex items-start space-x-2 sm:items-center">
                     <svg
-                      className="h-5 w-5 text-indigo-600"
+                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-600 sm:mt-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -263,7 +356,9 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>Build full-stack apps with Next.js and React</span>
+                    <span className="flex-1">
+                      Build full-stack apps with Next.js and React
+                    </span>
                   </li>
                 </ul>
                 <div className="mt-8">
@@ -271,7 +366,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                     <div>
                       <div className="space-y-4">
                         <form onSubmit={handleSubmit} className="mt-6">
-                          <div className="flex space-x-2">
+                          <div className="flex flex-col gap-3 sm:flex-row sm:space-x-2">
                             <input
                               type="email"
                               autoComplete="email"
@@ -284,7 +379,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className="flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 to-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:from-indigo-500 hover:to-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-75"
+                              className="flex items-center justify-center whitespace-nowrap rounded-lg bg-gradient-to-r from-indigo-600 to-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:from-indigo-500 hover:to-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-75"
                             >
                               {isSubmitting ? (
                                 <>
@@ -318,10 +413,10 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-x-6">
+                    <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-x-6">
                       <a
                         href="/enroll"
-                        className="rounded-xl bg-gradient-to-r from-indigo-600 to-violet-500 px-8 py-4 text-base font-medium text-white transition-all hover:from-indigo-500 hover:to-violet-400"
+                        className="w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-500 px-8 py-4 text-center text-base font-medium text-white transition-all hover:from-indigo-500 hover:to-violet-400 sm:w-auto"
                       >
                         Enroll Now - $99
                       </a>
@@ -337,7 +432,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
 
                 <p className="mt-6 text-sm text-gray-500">
                   {isWaitlist ? (
-                    <div className="flex items-center gap-x-2">
+                    <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-x-2">
                       <div className="flex items-center space-x-2">
                         <svg
                           className="h-5 w-5 text-green-600"
@@ -395,8 +490,8 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
             </div>
           </div>
 
-          <div className="mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen">
-            <div className="relative rounded-xl bg-gradient-to-b from-indigo-50 to-white p-8 shadow-2xl ring-1 ring-gray-900/10">
+          <div className="mt-16 px-4 sm:mt-24 sm:px-6 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-full lg:px-0">
+            <div className="relative rounded-xl bg-gradient-to-b from-indigo-50 to-white p-4 shadow-2xl ring-1 ring-gray-900/10 sm:p-8">
               <div className="bg-grid-slate-100 absolute inset-0 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]"></div>
               <div className="relative overflow-hidden rounded-xl bg-gray-900 p-4 shadow-xl">
                 <div className="absolute left-0 right-0 top-0 h-8 bg-gray-800 px-4 py-1.5">
@@ -484,37 +579,37 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
 
 const About = () => {
   return (
-    <div className="relative w-full bg-white py-24">
+    <div className="relative w-full overflow-x-hidden bg-white py-16 sm:py-24">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
+        <div className="absolute inset-y-0 right-1/2 -z-10 mr-8 w-[150%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-16 lg:mr-0 xl:mr-16 xl:origin-center"></div>
         <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl">
-          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-10"></div>
+          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-full max-w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-10"></div>
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <div className="flex items-center gap-x-3">
             <div className="h-px flex-auto bg-gray-100"></div>
-            <div className="text-sm font-semibold leading-6 text-indigo-600">
+            <div className="whitespace-nowrap text-sm font-semibold leading-6 text-indigo-600">
               How it works
             </div>
             <div className="h-px flex-auto bg-gray-100"></div>
           </div>
 
-          <h2 className="mt-8 text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 sm:mt-8 sm:text-4xl">
             Three Steps to JavaScript Mastery for Bubble Developers
           </h2>
-          <p className="mt-6 text-center text-lg leading-8 text-gray-600">
+          <p className="mt-4 text-center text-base leading-7 text-gray-600 sm:mt-6 sm:text-lg">
             A structured approach to learning JavaScript that's specifically
             designed for Bubble developers. Start with the basics and progress
             to advanced concepts.
           </p>
         </div>
 
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            <div className="flex flex-col">
+        <div className="mx-auto mt-12 w-full max-w-2xl sm:mt-16 lg:mt-20 lg:max-w-none">
+          <dl className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-x-8">
+            <div className="flex flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 sm:p-8">
               <dt className="text-base font-semibold leading-7 text-gray-900">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                   <svg
@@ -539,56 +634,56 @@ const About = () => {
                   how to integrate JavaScript into your workflows and understand
                   Bubble's JavaScript API.
                 </p>
-                <p className="mt-6">
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center">
-                      <svg
-                        className="mr-2 h-4 w-4 text-indigo-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                <ul className="mt-6 space-y-2 text-sm">
+                  <li className="flex items-start">
+                    <svg
+                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="flex-1">
                       Variables, Functions & Objects
-                    </li>
-                    <li className="flex items-center">
-                      <svg
-                        className="mr-2 h-4 w-4 text-indigo-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Async Programming & APIs
-                    </li>
-                    <li className="flex items-center">
-                      <svg
-                        className="mr-2 h-4 w-4 text-indigo-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      DOM Manipulation
-                    </li>
-                  </ul>
-                </p>
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="flex-1">Async Programming & APIs</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="flex-1">DOM Manipulation</span>
+                  </li>
+                </ul>
               </dd>
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 sm:p-8">
               <dt className="text-base font-semibold leading-7 text-gray-900">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                   <svg
@@ -613,46 +708,44 @@ const About = () => {
                   Understand the plugin architecture and monetization
                   strategies.
                 </p>
-                <p className="mt-6">
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center">
-                      <svg
-                        className="mr-2 h-4 w-4 text-indigo-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-gray-600">
-                        Plugin Architecture & Best Practices
-                      </span>
-                    </li>
-                    <li className="flex items-center">
-                      <svg
-                        className="mr-2 h-4 w-4 text-indigo-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-gray-600">
-                        Custom Elements & Actions
-                      </span>
-                    </li>
-                  </ul>
-                </p>
+                <ul className="mt-6 space-y-2 text-sm">
+                  <li className="flex items-start">
+                    <svg
+                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="text-gray-600">
+                      Plugin Architecture & Best Practices
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="text-gray-600">
+                      Custom Elements & Actions
+                    </span>
+                  </li>
+                </ul>
               </dd>
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 sm:p-8">
               <dt className="text-base font-semibold leading-7 text-gray-900">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                   <svg
@@ -677,42 +770,38 @@ const About = () => {
                   Learn React, Next.js, and how to transition from NoCode to
                   Code.
                 </p>
-                <p className="mt-6">
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-center">
-                      <svg
-                        className="mr-2 h-4 w-4 text-indigo-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-gray-600">
-                        React & Next.js Fundamentals
-                      </span>
-                    </li>
-                    <li className="flex items-center">
-                      <svg
-                        className="mr-2 h-4 w-4 text-indigo-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-gray-600">
-                        API Routes & Database Integration
-                      </span>
-                    </li>
-                  </ul>
-                </p>
+                <ul className="mt-6 space-y-2 text-sm">
+                  <li className="flex items-start">
+                    <svg
+                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="flex-1">React & Next.js Fundamentals</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="flex-1">
+                      API Routes & Database Integration
+                    </span>
+                  </li>
+                </ul>
               </dd>
             </div>
           </dl>
@@ -725,25 +814,25 @@ const About = () => {
 const CTA = () => {
   return (
     <div id="pricing" className="relative isolate overflow-hidden bg-gray-900">
-      <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
+      <div className="px-4 py-16 sm:px-6 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-4xl">
             Ready to Transform Your Bubble Development Skills?
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
-            Learn partical Javascript skills to level up your Bubble development
-            skills
+          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-gray-300 sm:mt-6 sm:text-lg">
+            Learn practical Javascript skills to level up your Bubble
+            development skills
           </p>
 
           <div className="mt-8 flex flex-col items-center">
-            <div className="mb-8 rounded-2xl bg-white/10 p-8 backdrop-blur">
-              <div className="flex items-center justify-center gap-x-8">
-                <div>
-                  <div className="text-lg font-medium text-gray-300">
+            <div className="mb-6 w-full rounded-2xl bg-white/10 p-6 backdrop-blur sm:mb-8 sm:p-8">
+              <div className="flex flex-col items-center gap-y-6 sm:flex-row sm:items-center sm:justify-center sm:gap-x-8">
+                <div className="text-center sm:text-left">
+                  <div className="text-base font-medium text-gray-300 sm:text-lg">
                     Early Bird Price
                   </div>
-                  <div className="mt-1 flex items-baseline gap-x-2">
-                    <span className="text-4xl font-bold tracking-tight text-white">
+                  <div className="mt-1 flex items-baseline justify-center gap-x-2 sm:justify-start">
+                    <span className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                       $99
                     </span>
                     <span className="text-sm text-gray-300">
@@ -751,11 +840,11 @@ const CTA = () => {
                     </span>
                   </div>
                 </div>
-                <div className="h-16 w-px bg-white/10"></div>
-                <ul className="space-y-3 text-sm text-gray-300">
-                  <li className="flex gap-x-3">
+                <div className="hidden h-16 w-px bg-white/10 sm:block"></div>
+                <ul className="space-y-2 text-sm text-gray-300 sm:space-y-3">
+                  <li className="flex items-center gap-x-3">
                     <svg
-                      className="h-6 w-5 flex-none text-indigo-400"
+                      className="h-5 w-5 flex-none text-indigo-400"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -767,9 +856,9 @@ const CTA = () => {
                     </svg>
                     Complete course access
                   </li>
-                  <li className="flex gap-x-3">
+                  <li className="flex items-center gap-x-3">
                     <svg
-                      className="h-6 w-5 flex-none text-indigo-400"
+                      className="h-5 w-5 flex-none text-indigo-400"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -781,9 +870,9 @@ const CTA = () => {
                     </svg>
                     Private Discord community
                   </li>
-                  <li className="flex gap-x-3">
+                  <li className="flex items-center gap-x-3">
                     <svg
-                      className="h-6 w-5 flex-none text-indigo-400"
+                      className="h-5 w-5 flex-none text-indigo-400"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -799,12 +888,12 @@ const CTA = () => {
               </div>
             </div>
 
-            <a href="#enroll" className="inline-flex items-center">
-              <button className="rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-12 py-4 text-base font-semibold text-white opacity-50 shadow-sm transition-all hover:from-indigo-600 hover:to-violet-600">
+            <a href="#enroll">
+              <button className="w-full rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-8 py-3 text-base font-semibold text-white opacity-50 shadow-sm transition-all hover:from-indigo-600 hover:to-violet-600 sm:px-12 sm:py-4">
                 Coming soon
               </button>
             </a>
-            <p className="mt-4 text-sm text-gray-300">
+            <p className="mt-3 text-sm text-gray-300 sm:mt-4">
               30-day money-back guarantee
             </p>
           </div>
