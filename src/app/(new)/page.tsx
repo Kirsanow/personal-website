@@ -827,6 +827,12 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
 
               <div className="hidden sm:ml-auto sm:flex sm:items-center sm:space-x-6">
                 <a
+                  href="#services"
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
+                  Services
+                </a>
+                <a
                   target="_blank"
                   href="https://www.youtube.com/@kirsnv?sub_confirmation=1"
                   className="text-sm text-gray-600 hover:text-gray-900"
@@ -840,6 +846,13 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
                   className="text-sm text-gray-600 hover:text-gray-900"
                 >
                   Community
+                </a>
+                <a
+                  target="_blank"
+                  href="/courses"
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
+                  Courses
                 </a>
                 <a
                   target="_blank"

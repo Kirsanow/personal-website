@@ -4,13 +4,16 @@ import Link from 'next/link'
 function FooterLink({
   href,
   children,
+  target,
 }: {
   href: string
   children: React.ReactNode
+  target?: string
 }) {
   return (
     <Link
       href={href}
+      target={target}
       className="text-sm text-zinc-600 transition hover:text-indigo-600"
     >
       {children}
@@ -38,13 +41,15 @@ function CTASection() {
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Link
-                href="/book-call"
+                target="_blank"
+                href="https://cal.com/kirsanov/30min"
                 className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-8 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-indigo-700"
               >
                 Book Development Call
               </Link>
               <Link
-                href="/join-community"
+                target="_blank"
+                href="https://www.skool.com/metamakers-3765/about"
                 className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-indigo-600 shadow-sm ring-1 ring-inset ring-indigo-200 transition hover:bg-zinc-50 hover:ring-indigo-300"
               >
                 Join Community
@@ -66,17 +71,22 @@ export default function Footer() {
         <Container>
           <div className="flex flex-col items-center gap-8">
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-              <FooterLink href="/about">About</FooterLink>
-              <FooterLink href="/blog">Blog</FooterLink>
-              <FooterLink href="/case-studies">Case Studies</FooterLink>
-              <FooterLink href="/community">Community</FooterLink>
-              <FooterLink href="/services">Services</FooterLink>
-              <FooterLink href="/contact">Contact</FooterLink>
+              <FooterLink
+                target="_blank"
+                href="https://www.skool.com/metamakers-3765/about"
+              >
+                Community
+              </FooterLink>
+              <FooterLink href="#services">Services</FooterLink>
+              <FooterLink target="_blank" href="https://cal.com/kirsanov/30min">
+                Contact
+              </FooterLink>
             </div>
 
             <div className="flex items-center gap-4">
               <Link
-                href="https://twitter.com/yourusername"
+                target="_blank"
+                href="https://x.com/kirsnvartem"
                 className="text-zinc-400 transition hover:text-zinc-600"
               >
                 <span className="sr-only">Twitter</span>
@@ -89,7 +99,8 @@ export default function Footer() {
                 </svg>
               </Link>
               <Link
-                href="https://github.com/yourusername"
+                target="_blank"
+                href="https://github.com/Kirsanow"
                 className="text-zinc-400 transition hover:text-zinc-600"
               >
                 <span className="sr-only">GitHub</span>
@@ -105,23 +116,10 @@ export default function Footer() {
                   />
                 </svg>
               </Link>
-              <Link
-                href="https://linkedin.com/in/yourusername"
-                className="text-zinc-400 transition hover:text-zinc-600"
-              >
-                <span className="sr-only">LinkedIn</span>
-                <svg
-                  className="h-6 w-6"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
-              </Link>
             </div>
 
             <p className="text-sm text-zinc-500">
-              &copy; {new Date().getFullYear()} Your Company. All rights
+              &copy; {new Date().getFullYear()} Kirsanov.co. All rights
               reserved.
             </p>
           </div>

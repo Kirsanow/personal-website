@@ -16,6 +16,8 @@ interface CaseStudy {
     label: string
     value: string
   }[]
+  techStack: string[]
+  timeline: string
   image: string
   href: string
 }
@@ -37,25 +39,25 @@ const tools: Tool[] = [
   {
     name: 'GPT-4',
     description: 'AI model for rapid prototyping and technical analysis',
-    icon: '/tools/gpt4.svg',
+    icon: '/tools/GPT-4.png',
     category: 'ai',
   },
   {
     name: 'Figma',
     description: 'Collaborative design and prototyping platform',
-    icon: '/tools/figma.svg',
+    icon: '/tools/figma.png',
     category: 'design',
   },
   {
-    name: 'Next.js 14',
+    name: 'Next.js 15',
     description: 'Production-grade React framework for scalable applications',
-    icon: '/tools/nextjs.svg',
+    icon: '/tools/next-js.svg',
     category: 'development',
   },
   {
-    name: 'Bubble',
+    name: 'Bubble.io',
     description: 'No-code platform for rapid application development',
-    icon: '/tools/bubble.svg',
+    icon: '/tools/bubble-logo.png',
     category: 'nocode',
   },
 ]
@@ -85,28 +87,56 @@ const process: ProcessStep[] = [
 
 const caseStudies: CaseStudy[] = [
   {
-    title: 'AI-Powered SaaS Platform',
+    title: 'Dreampress.ai',
     description:
-      'How we helped a startup launch their MVP in 3 weeks using our AI-first approach.',
+      'AI-powered story writing platform built with Bubble.io. From concept to launch in record time.',
     metrics: [
-      { label: 'Development Time', value: '3 weeks' },
-      { label: 'Cost Savings', value: '60%' },
-      { label: 'User Growth', value: '10x' },
+      { label: 'Stories Generated', value: '50k+' },
+      { label: 'User Growth', value: '8x' },
     ],
-    image: '/case-studies/1.jpg',
-    href: '/case-studies/ai-saas',
+    techStack: ['Bubble.io', 'OpenAI', 'Make.com', 'Stripe'],
+    timeline: '3 weeks',
+    image: '/case-studies/dreampress.jpg',
+    href: '/case-studies/dreampress',
   },
   {
-    title: 'No-Code to Full-Stack Evolution',
+    title: 'Homeezy.io',
     description:
-      'A journey from MVP to a scalable application while maintaining business momentum.',
+      'Marketplace connecting homeowners with contractors, built with Bubble.io for rapid market validation.',
     metrics: [
-      { label: 'Initial Launch', value: '1 week' },
-      { label: 'Monthly Users', value: '50k+' },
-      { label: 'Revenue Growth', value: '300%' },
+      { label: 'Contractors', value: '500+' },
+      { label: 'Projects', value: '1.2k+' },
     ],
-    image: '/case-studies/2.jpg',
-    href: '/case-studies/nocode-fullstack',
+    techStack: ['Bubble.io', 'Stripe Connect', 'Twilio'],
+    timeline: '4 weeks',
+    image: '/case-studies/homeezy.jpg',
+    href: '/case-studies/homeezy',
+  },
+  {
+    title: 'Qullminds.com',
+    description:
+      'AI research paper and essay writing platform built with Next.js and AI integration.',
+    metrics: [
+      { label: 'Papers Written', value: '10k+' },
+      { label: 'User Rating', value: '4.8/5' },
+    ],
+    techStack: ['Next.js', 'OpenAI', 'MongoDB', 'Vercel'],
+    timeline: '6 weeks',
+    image: '/case-studies/qullminds.jpg',
+    href: '/case-studies/qullminds',
+  },
+  {
+    title: 'PollPebble',
+    description:
+      'Embeddable survey platform for small businesses, built with Next.js for optimal performance.',
+    metrics: [
+      { label: 'Active Surveys', value: '2k+' },
+      { label: 'Responses', value: '100k+' },
+    ],
+    techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'AWS'],
+    timeline: '8 weeks',
+    image: '/case-studies/pollpebble.jpg',
+    href: '/case-studies/pollpebble',
   },
 ]
 
@@ -189,7 +219,12 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
           className="object-cover transition duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 flex items-end p-8 sm:p-10">
-          <div>
+          <div className="w-full">
+            <div className="mb-4 flex items-center gap-2">
+              <div className="rounded-full bg-indigo-500/20 px-3 py-1 text-sm font-medium text-white backdrop-blur-sm">
+                {study.timeline}
+              </div>
+            </div>
             <h3 className="font-display text-2xl font-medium text-white">
               {study.title}
             </h3>
@@ -198,8 +233,8 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-8 p-8 sm:p-10">
-        <div className="grid grid-cols-3 gap-8 border-b border-zinc-100 pb-8">
+      <div className="flex flex-col gap-6 p-8 sm:p-10">
+        <div className="grid grid-cols-2 gap-8">
           {study.metrics.map((metric) => (
             <div key={metric.label}>
               <div className="font-display text-3xl font-medium text-indigo-600">
@@ -208,6 +243,19 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
               <div className="mt-1 text-sm text-zinc-600">{metric.label}</div>
             </div>
           ))}
+        </div>
+
+        <div className="border-t border-zinc-100 pt-6">
+          <div className="flex flex-wrap gap-2">
+            {study.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-800"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="flex items-center justify-between">
@@ -266,7 +314,7 @@ export default function Process() {
             ))}
           </div>
 
-          <div className="relative mx-auto mt-32 max-w-2xl lg:text-center">
+          {/* <div className="relative mx-auto mt-32 max-w-2xl lg:text-center">
             <div className="inline-flex items-center rounded-full bg-indigo-500/10 px-3 py-1 text-sm text-indigo-600 ring-1 ring-inset ring-indigo-600/20">
               Case Studies
             </div>
@@ -279,11 +327,12 @@ export default function Process() {
             </p>
           </div>
 
+
           <div className="mx-auto mt-16 grid max-w-xl gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-2">
             {caseStudies.map((study) => (
               <CaseStudyCard key={study.title} study={study} />
             ))}
-          </div>
+          </div> */}
         </div>
       </Container>
     </div>

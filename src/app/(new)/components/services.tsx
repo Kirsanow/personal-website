@@ -229,32 +229,32 @@ const services: Service[] = [
 const testimonials: Testimonial[] = [
   {
     content:
-      'Working with Artem was a game-changer. His AI-first approach helped us launch our MVP in just 3 weeks, and the quality was exceptional.',
+      "I cannot recommend him highly enough. After seeing his performance on this job, I am going to be hiring him again in January. The best freelancer I've ever worked with, period.",
     author: {
-      name: 'Alex Rivera',
+      name: 'Anuj Nayyar',
       role: 'Founder',
-      company: 'DataSync',
-      image: '/testimonials/1.jpg',
+      company: 'Dreampress.ai',
+      image: '/images/harish-avatar.png',
     },
   },
   {
     content:
-      'The combination of technical expertise and business understanding is rare. Artem helped us not just build, but build the right thing.',
+      'Working with Artem on our Homeezy MVP was an exceptional experience. His "yes to everything" attitude coupled with his relentless work ethic made obstacles vanish.',
     author: {
-      name: 'Sarah Chen',
+      name: 'Gabriel Aguila',
       role: 'CEO',
-      company: 'TechFlow',
-      image: '/testimonials/2.jpg',
+      company: 'Homeezy.io',
+      image: '/images/tip-avatar.png',
     },
   },
   {
     content:
-      'Joining the community was the best decision. The resources and support helped us level up our development game significantly.',
+      'Collaborating with Artem on our MVP was incredibly rewarding. His proactive approach and tireless dedication transformed challenges into opportunities',
     author: {
-      name: 'Michael Park',
+      name: 'Ted Sims',
       role: 'Co-founder',
       company: 'BuildFast',
-      image: '/testimonials/3.jpg',
+      image: '/images/tip2-avatar.png',
     },
   },
 ]
