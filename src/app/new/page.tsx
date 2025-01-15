@@ -28,6 +28,12 @@ import { usePathname } from 'next/navigation'
 import portraitImage from '@/images/portrait.jpg'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import Hero from './components/hero'
+import Problem from './components/problem'
+import Solution from './components/solution'
+import Services from './components/services'
+import Process from './components/process'
+import Footer from './components/footer'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -908,78 +914,78 @@ function CTASection() {
   )
 }
 
-function Footer() {
-  return (
-    <footer className="mt-32 border-t border-zinc-100 dark:border-zinc-700/40">
-      <Container>
-        <div className="flex flex-col items-center justify-between gap-6 py-16 sm:flex-row">
-          <div className="flex flex-col items-center gap-2 sm:items-start">
-            <div className="flex items-center space-x-4">
-              <Image
-                src="/images/avatar.png"
-                alt="Artem Kirsanov"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <div>
-                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                  Artem Kirsanov
-                </p>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                  AI Expert & Software Developer
-                </p>
-              </div>
-            </div>
-            <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
-              Helping founders build better SaaS products
-            </p>
-          </div>
+// function Footer() {
+//   return (
+//     <footer className="mt-32 border-t border-zinc-100 dark:border-zinc-700/40">
+//       <Container>
+//         <div className="flex flex-col items-center justify-between gap-6 py-16 sm:flex-row">
+//           <div className="flex flex-col items-center gap-2 sm:items-start">
+//             <div className="flex items-center space-x-4">
+//               <Image
+//                 src="/images/avatar.png"
+//                 alt="Artem Kirsanov"
+//                 width={40}
+//                 height={40}
+//                 className="rounded-full"
+//               />
+//               <div>
+//                 <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+//                   Artem Kirsanov
+//                 </p>
+//                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
+//                   AI Expert & Software Developer
+//                 </p>
+//               </div>
+//             </div>
+//             <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
+//               Helping founders build better SaaS products
+//             </p>
+//           </div>
 
-          <div className="flex flex-col items-center gap-6 sm:flex-row sm:gap-8">
-            <div className="flex gap-6">
-              <SocialLink
-                href="https://x.com/kirsnvartem"
-                aria-label="Follow on X"
-                icon={XIcon}
-              />
-              <SocialLink
-                href="https://www.youtube.com/@kirsnv?sub_confirmation=1"
-                aria-label="Follow on Youtube"
-                icon={YoutubeIcon}
-              />
-              <SocialLink
-                href="https://github.com/Kirsanow"
-                aria-label="Follow on GitHub"
-                icon={GitHubIcon}
-              />
-              <SocialLink
-                href="https://www.linkedin.com/in/kirsnv/"
-                aria-label="Follow on LinkedIn"
-                icon={LinkedInIcon}
-              />
-            </div>
-            <div className="h-6 w-px bg-zinc-200 dark:bg-zinc-700/40" />
-            <div className="flex gap-6">
-              <Link
-                href="/privacy"
-                className="text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-              >
-                Privacy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-              >
-                Terms
-              </Link>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </footer>
-  )
-}
+//           <div className="flex flex-col items-center gap-6 sm:flex-row sm:gap-8">
+//             <div className="flex gap-6">
+//               <SocialLink
+//                 href="https://x.com/kirsnvartem"
+//                 aria-label="Follow on X"
+//                 icon={XIcon}
+//               />
+//               <SocialLink
+//                 href="https://www.youtube.com/@kirsnv?sub_confirmation=1"
+//                 aria-label="Follow on Youtube"
+//                 icon={YoutubeIcon}
+//               />
+//               <SocialLink
+//                 href="https://github.com/Kirsanow"
+//                 aria-label="Follow on GitHub"
+//                 icon={GitHubIcon}
+//               />
+//               <SocialLink
+//                 href="https://www.linkedin.com/in/kirsnv/"
+//                 aria-label="Follow on LinkedIn"
+//                 icon={LinkedInIcon}
+//               />
+//             </div>
+//             <div className="h-6 w-px bg-zinc-200 dark:bg-zinc-700/40" />
+//             <div className="flex gap-6">
+//               <Link
+//                 href="/privacy"
+//                 className="text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+//               >
+//                 Privacy
+//               </Link>
+//               <Link
+//                 href="/terms"
+//                 className="text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+//               >
+//                 Terms
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </Container>
+//     </footer>
+//   )
+// }
 
 export default async function Home() {
   const pathname = usePathname()
@@ -1211,202 +1217,16 @@ export default async function Home() {
     <>
       <Header onMobileMenuOpen={() => {}} />
 
-      {/* Hero Section */}
-      <Container className="mt-16">
-        <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-          <div className="lg:pl-20">
-            <div className="max-w-xs px-2.5 lg:max-w-none">
-              <Image
-                src={portraitImage}
-                alt=""
-                sizes="(min-width: 1024px) 32rem, 20rem"
-                className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
-              />
-            </div>
-          </div>
-          <div className="lg:order-first lg:row-span-2">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl dark:text-zinc-100">
-              I help aspiring founders build SaaS products using AI-powered
-              development
-            </h1>
-            <p className="mt-6 text-base text-zinc-600 sm:text-lg dark:text-zinc-400">
-              I offer a comprehensive approach to modern software development,
-              combining custom-tailored courses, a supportive community, and
-              done-for-you services. Whether you're starting from scratch or
-              scaling up, I'll guide you through leveraging AI tools and best
-              practices to build robust SaaS solutions efficiently. My goal is
-              to empower founders with both the knowledge and practical support
-              they need to bring their vision to life.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4 sm:gap-6">
-              <SocialLink
-                href="https://x.com/kirsnvartem"
-                aria-label="Follow on X"
-                icon={XIcon}
-              />
-              <SocialLink
-                href="https://www.youtube.com/@kirsnv?sub_confirmation=1"
-                aria-label="Follow on Youtube"
-                icon={YoutubeIcon}
-              />
-              <SocialLink
-                href="https://github.com/Kirsanow"
-                aria-label="Follow on GitHub"
-                icon={GitHubIcon}
-              />
-              <SocialLink
-                href="https://www.linkedin.com/in/kirsnv/"
-                aria-label="Follow on LinkedIn"
-                icon={LinkedInIcon}
-              />
-            </div>
-          </div>
-        </div>
-      </Container>
+      <Hero />
 
-      {/* Problem Section */}
-      <Container className="mt-24 sm:mt-32 lg:mt-40">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">
-            The Challenge
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
-            Does This Sound Familiar?
-          </p>
-          <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            {pathname?.includes('nocode')
-              ? "Many founders struggle with these common no-code development challenges. You're not alone."
-              : "Many founders face these development challenges when building their SaaS. You're not alone."}
-          </p>
-        </div>
+      <Problem />
 
-        <div className="mx-auto mt-16 grid max-w-xl gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-2">
-          {painPoints.map((point, index) => (
-            <PainPoint key={index} {...point} />
-          ))}
-        </div>
-      </Container>
+      <Solution />
 
-      {/* Solution/Benefits Section */}
-      <Container className="relative mt-24 sm:mt-32">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">
-            The Solution
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
-            Build Your SaaS the Smart Way
-          </p>
-          <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            {pathname?.includes('nocode')
-              ? 'Stop struggling with technical decisions and start building with confidence using our proven no-code approach.'
-              : 'Stop wasting time on infrastructure and start building features that matter to your users.'}
-          </p>
-        </div>
+      <Services />
 
-        <div className="mx-auto mt-16 grid max-w-xl gap-8 lg:max-w-none lg:grid-cols-3">
-          {benefits.map((benefit, index) => (
-            <BenefitCard key={index} {...benefit} />
-          ))}
-        </div>
-      </Container>
+      <Process />
 
-      {/* Services Section */}
-      <Container className="relative mt-24 sm:mt-32">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">
-            Our Services
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
-            Everything You Need to Succeed
-          </p>
-          <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Comprehensive solutions to help you build and scale your software
-            business.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 grid max-w-xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
-          {services.map((service, index) => (
-            <ServiceSection key={index} service={service} />
-          ))}
-        </div>
-      </Container>
-
-      {/* Process Section */}
-      <Container className="relative mt-24 sm:mt-32">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">
-            Our Process
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
-            How We Work Together
-          </p>
-          <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            {pathname?.includes('nocode')
-              ? 'A structured approach to building your no-code MVP, from idea to launch.'
-              : 'A systematic approach to building your custom MVP, from concept to deployment.'}
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 max-w-2xl">
-          <div className="space-y-16">
-            {developmentSteps.map((step, index) => (
-              <ProcessStep key={index} step={step} />
-            ))}
-          </div>
-        </div>
-      </Container>
-
-      {/* Social Proof - Case Studies */}
-      <Container className="relative mt-24 sm:mt-32 lg:mt-40">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">
-            Success Stories
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
-            See What We've Built
-          </p>
-          <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            {pathname?.includes('nocode')
-              ? 'Real-world examples of successful no-code MVPs built and scaled with our expertise.'
-              : "See how we've helped startups build and scale their products with modern tech stacks."}
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 grid max-w-lg gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-2 xl:grid-cols-3">
-          {caseStudies.map((study, index) => (
-            <CaseStudy key={index} {...study} />
-          ))}
-        </div>
-      </Container>
-
-      {/* Trust Signals - Tools */}
-      <Container className="relative mt-24 sm:mt-32 lg:mt-40">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">
-            Our Expertise
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
-            Tools We Master
-          </p>
-          <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            {pathname?.includes('nocode')
-              ? 'Mastering both no-code and traditional development tools to deliver the best solution for your needs.'
-              : 'Combining modern development tools with AI to build scalable and efficient applications.'}
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 grid max-w-xl gap-6 sm:mt-20 sm:gap-8 lg:max-w-none lg:grid-cols-2 xl:grid-cols-4">
-          {tools.map((tool, index) => (
-            <ToolCard key={index} {...tool} />
-          ))}
-        </div>
-      </Container>
-
-      {/* New CTA Section */}
-      <CTASection />
-
-      {/* New Footer */}
       <Footer />
     </>
   )
