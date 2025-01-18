@@ -314,7 +314,7 @@ export default function Process() {
             ))}
           </div>
 
-          {/* <div className="relative mx-auto mt-32 max-w-2xl lg:text-center">
+          <div className="relative mx-auto mt-32 max-w-2xl lg:text-center">
             <div className="inline-flex items-center rounded-full bg-indigo-500/10 px-3 py-1 text-sm text-indigo-600 ring-1 ring-inset ring-indigo-600/20">
               Case Studies
             </div>
@@ -327,12 +327,11 @@ export default function Process() {
             </p>
           </div>
 
-
           <div className="mx-auto mt-16 grid max-w-xl gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-2">
             {caseStudies.map((study) => (
               <CaseStudyCard key={study.title} study={study} />
             ))}
-          </div> */}
+          </div>
         </div>
       </Container>
     </div>
