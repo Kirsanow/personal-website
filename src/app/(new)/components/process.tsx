@@ -89,14 +89,14 @@ const caseStudies: CaseStudy[] = [
   {
     title: 'Dreampress.ai',
     description:
-      'AI-powered story writing platform built with Bubble.io. From concept to launch in record time.',
+      'AI-powered story writing platform built with Bubble.io. Joined mid-project to help with design and development to bring it to completion.',
     metrics: [
       { label: 'Stories Generated', value: '50k+' },
       { label: 'User Growth', value: '8x' },
     ],
     techStack: ['Bubble.io', 'OpenAI', 'Make.com', 'Stripe'],
     timeline: '3 weeks',
-    image: '/case-studies/dreampress.jpg',
+    image: '/images/dream-for-site.png',
     href: '/case-studies/dreampress',
   },
   {
@@ -109,7 +109,7 @@ const caseStudies: CaseStudy[] = [
     ],
     techStack: ['Bubble.io', 'Stripe Connect', 'Twilio'],
     timeline: '4 weeks',
-    image: '/case-studies/homeezy.jpg',
+    image: '/images/homeezy-for-site.png',
     href: '/case-studies/homeezy',
   },
   {
@@ -122,7 +122,7 @@ const caseStudies: CaseStudy[] = [
     ],
     techStack: ['Next.js', 'OpenAI', 'MongoDB', 'Vercel'],
     timeline: '6 weeks',
-    image: '/case-studies/qullminds.jpg',
+    image: '/images/quillminds-for-site.png',
     href: '/case-studies/qullminds',
   },
   {
@@ -135,7 +135,7 @@ const caseStudies: CaseStudy[] = [
     ],
     techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'AWS'],
     timeline: '8 weeks',
-    image: '/case-studies/pollpebble.jpg',
+    image: '/images/pollpebble-for-site.png',
     href: '/case-studies/pollpebble',
   },
 ]
@@ -210,30 +210,32 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
       href={study.href}
       className="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-zinc-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-zinc-200"
     >
-      <div className="relative h-64 overflow-hidden sm:h-80">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/0 transition-opacity duration-300 group-hover:opacity-60" />
-        <Image
-          src={study.image}
-          alt={study.title}
-          fill
-          className="object-cover transition duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 flex items-end p-8 sm:p-10">
-          <div className="w-full">
-            <div className="mb-4 flex items-center gap-2">
-              <div className="rounded-full bg-indigo-500/20 px-3 py-1 text-sm font-medium text-white backdrop-blur-sm">
-                {study.timeline}
-              </div>
-            </div>
-            <h3 className="font-display text-2xl font-medium text-white">
-              {study.title}
-            </h3>
-            <p className="mt-2 text-base text-zinc-200">{study.description}</p>
-          </div>
+      {/* Logo Section */}
+      <div className="relative h-64 w-full overflow-hidden bg-gradient-to-br from-indigo-50/80 to-white sm:h-72">
+        <div className="absolute inset-0 flex items-center justify-center p-12 sm:p-16">
+          <Image
+            src={study.image}
+            alt={study.title}
+            fill
+            className="object-contain p-8"
+          />
         </div>
       </div>
 
-      <div className="flex flex-col gap-6 p-8 sm:p-10">
+      {/* Content Section */}
+      <div className="flex flex-1 flex-col gap-6 border-t border-zinc-100 bg-white p-8 sm:p-10">
+        <div>
+          <div className="flex items-center gap-2">
+            <div className="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-medium text-indigo-600 ring-1 ring-inset ring-indigo-600/20">
+              {study.timeline}
+            </div>
+          </div>
+          <h3 className="font-display mt-4 text-2xl font-medium text-zinc-900">
+            {study.title}
+          </h3>
+          <p className="mt-2 text-base text-zinc-600">{study.description}</p>
+        </div>
+
         <div className="grid grid-cols-2 gap-8">
           {study.metrics.map((metric) => (
             <div key={metric.label}>
@@ -258,7 +260,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="mt-auto flex items-center justify-between">
           <span className="text-sm font-medium text-zinc-900">
             View Case Study
           </span>

@@ -26,7 +26,7 @@ import image5 from '@/images/photos/image-5.jpg'
 import CalcomReact from '@/components/calcom-react'
 import { usePathname } from 'next/navigation'
 import portraitImage from '@/images/portrait.jpg'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useEffect } from 'react'
 import Hero from './components/hero'
 import Problem from './components/problem'
@@ -1000,7 +1000,7 @@ function CTASection() {
 //   )
 // }
 
-export default async function Home() {
+export default function Home() {
   const pathname = usePathname()
 
   const services: ServiceCard[] = [
