@@ -211,7 +211,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
       className="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-zinc-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-zinc-200"
     >
       {/* Logo Section */}
-      <div className="relative h-64 w-full overflow-hidden bg-gradient-to-br from-indigo-50/80 to-white sm:h-72">
+      <div className="relative h-64 w-full overflow-hidden sm:h-72">
         <div className="absolute inset-0 flex items-center justify-center p-12 sm:p-16">
           <Image
             src={study.image}

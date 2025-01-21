@@ -239,13 +239,14 @@ export default function CaseStudy({ params }: { params: { slug: string } }) {
 
           <div className="mx-auto max-w-5xl">
             {/* Cover Image Section */}
-            <div className="relative mb-12 h-[400px] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-50 to-white shadow-lg ring-1 ring-indigo-100/50 sm:h-[500px]">
+            <div className="relative mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-lg">
               <Image
                 src={study.image}
                 alt={study.title}
                 fill
-                className="object-contain p-4"
+                className="object-cover"
                 priority
+                sizes="(max-width: 1280px) 100vw, 1280px"
               />
             </div>
 
