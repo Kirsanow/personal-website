@@ -34,6 +34,7 @@ import Solution from './components/solution'
 import Services from './components/services'
 import Process from './components/process'
 import Footer from './components/footer'
+import { MobileMenu } from '@/components/MobileMenu'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -778,7 +779,11 @@ function SparklesIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
+export const Header = ({
+  onMobileMenuOpen,
+}: {
+  onMobileMenuOpen: () => void
+}) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -816,10 +821,10 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
                   height={40}
                 />
                 <div className="flex flex-col">
-                  <span className="font-semibold text-gray-900">
+                  <span className="font-semibold text-gray-900 dark:text-zinc-100">
                     Artem Kirsanov
                   </span>
-                  <span className="text-sm text-gray-600">
+                  <span className="text-sm text-gray-600 dark:text-zinc-400">
                     AI Expert & Software Developer
                   </span>
                 </div>
@@ -828,14 +833,14 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
               <div className="hidden sm:ml-auto sm:flex sm:items-center sm:space-x-6">
                 <a
                   href="#services"
-                  className="text-sm text-gray-600 hover:text-gray-900"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
                 >
                   Services
                 </a>
                 <a
                   target="_blank"
                   href="https://www.youtube.com/@kirsnv?sub_confirmation=1"
-                  className="text-sm text-gray-600 hover:text-gray-900"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
                 >
                   YouTube
                 </a>
@@ -843,14 +848,20 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
                 <a
                   target="_blank"
                   href="https://www.skool.com/metamakers-3765/about"
-                  className="text-sm text-gray-600 hover:text-gray-900"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
                 >
                   Community
                 </a>
+                <Link
+                  href="/blog"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
+                >
+                  Blog
+                </Link>
                 <a
                   target="_blank"
                   href="/courses"
-                  className="text-sm text-gray-600 hover:text-gray-900"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
                 >
                   Courses
                 </a>
@@ -867,7 +878,7 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
                 <button
                   type="button"
                   onClick={onMobileMenuOpen}
-                  className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-gray-900 shadow-sm ring-1 ring-gray-900/5 transition-all hover:bg-gray-50"
+                  className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-gray-900 shadow-sm ring-1 ring-gray-900/5 transition-all hover:bg-gray-50 dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
                 >
                   <span className="sr-only">Open menu</span>
                   <svg
@@ -1001,245 +1012,20 @@ function CTASection() {
 // }
 
 export default function Home() {
-  const pathname = usePathname()
-
-  const services: ServiceCard[] = [
-    {
-      title: 'MVP Development',
-      description: pathname?.includes('nocode')
-        ? 'Fast and efficient MVP development using Bubble.io and other no-code tools, perfect for validating your ideas quickly.'
-        : 'Full-stack MVP development using modern technologies like React, Next.js, and Node.js.',
-      icon: CodeIcon,
-    },
-    {
-      title: 'Learning Resources',
-      description: pathname?.includes('nocode')
-        ? 'Comprehensive tutorials and guides on Bubble.io development, helping you master no-code development.'
-        : 'In-depth tutorials on modern web development, from frontend to backend technologies.',
-      icon: LearnIcon,
-    },
-    {
-      title: 'Community',
-      description:
-        'Join our growing community of developers and entrepreneurs, share experiences, and grow together.',
-      icon: CommunityIcon,
-    },
-  ]
-
-  const developmentSteps = [
-    {
-      title: 'Discovery Call',
-      description:
-        'We start with a detailed discussion of your project idea, target audience, and business goals. This helps us understand your vision and choose the right approach.',
-      number: 1,
-    },
-    {
-      title: pathname?.includes('nocode')
-        ? 'No-Code Assessment'
-        : 'Technical Assessment',
-      description: pathname?.includes('nocode')
-        ? 'We evaluate if Bubble.io or other no-code tools are the best fit for your MVP, considering factors like scalability, features, and time-to-market.'
-        : 'We analyze technical requirements and choose the most suitable tech stack for your MVP, balancing factors like scalability, performance, and development speed.',
-      number: 2,
-    },
-    {
-      title: 'Planning & Design',
-      description:
-        'Together we create a detailed roadmap, define core features, and design user interfaces that align with your brand and user expectations.',
-      number: 3,
-    },
-    {
-      title: pathname?.includes('nocode')
-        ? 'No-Code Development'
-        : 'Development',
-      description: pathname?.includes('nocode')
-        ? 'Using Bubble.io and other no-code tools, we build your MVP with a focus on rapid deployment while maintaining flexibility for future updates.'
-        : 'We develop your MVP using modern technologies like React and Node.js, following best practices and maintaining clean, scalable code.',
-      number: 4,
-    },
-    {
-      title: 'Testing & Refinement',
-      description:
-        'We thoroughly test all features, gather feedback, and make necessary adjustments to ensure your MVP is ready for launch.',
-      number: 5,
-    },
-    {
-      title: 'Launch & Support',
-      description:
-        'We help you launch your MVP and provide ongoing support to ensure smooth operation and implement user feedback.',
-      number: 6,
-    },
-  ]
-
-  const caseStudies = [
-    {
-      title: 'Quillminds',
-      description:
-        'AI-powered platform helping teachers and students enhance their learning experience through intelligent content creation and personalized feedback.',
-      metrics: [
-        { label: 'Development Time', value: '3 mo' },
-        { label: 'Active Users', value: '2k+' },
-        { label: 'AI Integrations', value: '5' },
-      ],
-      image: image1,
-      link: 'https://quillminds.com',
-    },
-    {
-      title: 'PollPebble',
-      description:
-        'Modern survey platform enabling businesses to create engaging polls and gather valuable feedback through an intuitive interface.',
-      metrics: [
-        { label: 'Surveys Created', value: '10k+' },
-        { label: 'Response Rate', value: '85%' },
-        { label: 'Time Saved', value: '60%' },
-      ],
-      image: image2,
-      link: 'https://pollpebble.com',
-    },
-    {
-      title: 'Dreampress',
-      description:
-        'AI-powered writing platform that helps authors and content creators generate, refine, and publish their stories with advanced language models.',
-      metrics: [
-        { label: 'Stories Created', value: '5k+' },
-        { label: 'Words Generated', value: '1M+' },
-        { label: 'Publishing Time', value: '-40%' },
-      ],
-      image: image3,
-      link: 'https://dreampress.ai',
-    },
-  ]
-
-  const tools = [
-    {
-      name: 'Bubble.io',
-      description:
-        "Expert in building complex applications with Bubble's visual programming platform",
-      proficiency: 95,
-      icon: '/images/tools/bubble.png',
-      category: 'nocode' as const,
-    },
-    {
-      name: 'Next.js',
-      description:
-        'Advanced full-stack development with React and Next.js framework.',
-      proficiency: 90,
-      icon: '/images/tools/nextjs.png',
-      category: 'code' as const,
-    },
-    {
-      name: 'TypeScript',
-      description: 'Strong typing and modern JavaScript development practices.',
-      proficiency: 85,
-      icon: '/images/tools/typescript.png',
-      category: 'code' as const,
-    },
-    {
-      name: 'Figma',
-      description: 'UI/UX design and prototyping for web applications.',
-      proficiency: 80,
-      icon: '/images/tools/figma.png',
-      category: 'design' as const,
-    },
-    {
-      name: 'ChatGPT',
-      description:
-        'AI integration and prompt engineering for development workflows.',
-      proficiency: 90,
-      icon: '/images/tools/chatgpt.png',
-      category: 'ai' as const,
-    },
-    {
-      name: 'Webflow',
-      description: 'Creating responsive and dynamic websites without code.',
-      proficiency: 85,
-      icon: '/images/tools/webflow.png',
-      category: 'nocode' as const,
-    },
-    {
-      name: 'Node.js',
-      description: 'Backend development and API integration.',
-      proficiency: 85,
-      icon: '/images/tools/nodejs.png',
-      category: 'code' as const,
-    },
-    {
-      name: 'Midjourney',
-      description: 'AI-powered image generation and design assets creation.',
-      proficiency: 85,
-      icon: '/images/tools/midjourney.png',
-      category: 'ai' as const,
-    },
-  ]
-
-  const painPoints = [
-    {
-      title: 'Wasting Time on Technical Decisions',
-      description: pathname?.includes('nocode')
-        ? 'Struggling to choose between dozens of no-code tools and platforms, unsure which one will actually work for your specific needs.'
-        : 'Spending weeks researching tech stacks and architecture decisions instead of focusing on your core business problems.',
-      icon: ClockIcon,
-    },
-    {
-      title: 'Burning Money on Wrong Solutions',
-      description: pathname?.includes('nocode')
-        ? "Paying for expensive no-code tools that end up being too limited, or hiring developers who don't understand your business needs."
-        : 'Investing in complex solutions that are overkill for your MVP, or working with developers who deliver over-engineered code.',
-      icon: MoneyIcon,
-    },
-    {
-      title: 'Overwhelmed by Complexity',
-      description: pathname?.includes('nocode')
-        ? 'Feeling stuck between no-code limitations and the complexity of traditional development, unsure how to bridge the gap.'
-        : 'Drowning in technical complexity and jargon, unable to make progress while your competition moves forward.',
-      icon: ComplexityIcon,
-    },
-    {
-      title: 'Compromising on Quality',
-      description: pathname?.includes('nocode')
-        ? "Settling for basic templates and limited functionality because you can't find the right balance between speed and customization."
-        : "Rushing to market with a subpar product because you can't find the right balance between speed and quality.",
-      icon: QualityIcon,
-    },
-  ]
-
-  const benefits = [
-    {
-      title: 'Rapid Development',
-      description: pathname?.includes('nocode')
-        ? 'Launch your MVP in weeks, not months, using the power of no-code tools and proven development patterns.'
-        : 'Get your product to market faster with modern development practices and efficient coding patterns.',
-      icon: RocketIcon,
-    },
-    {
-      title: 'Scalable Architecture',
-      description: pathname?.includes('nocode')
-        ? 'Build on a foundation that can grow with your business, using enterprise-grade no-code solutions.'
-        : "Start with a clean, maintainable codebase that's ready to scale as your user base grows.",
-      icon: ShieldIcon,
-    },
-    {
-      title: 'AI-Enhanced Development',
-      description:
-        "Leverage cutting-edge AI tools to automate repetitive tasks and enhance your product's capabilities.",
-      icon: SparklesIcon,
-    },
-  ]
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
     <>
-      <Header onMobileMenuOpen={() => {}} />
-
+      <Header onMobileMenuOpen={() => setIsMobileMenuOpen(true)} />
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
       <Hero />
-
       <Problem />
-
       <Solution />
-
       <Services />
-
       <Process />
-
       <Footer />
     </>
   )
