@@ -4,7 +4,7 @@ import { Container } from '@/components/Container'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { Header } from '../../(new)/page'
+import { Header } from '@/components/Header'
 import { useEffect, useState } from 'react'
 import { MobileMenu } from '@/components/MobileMenu'
 

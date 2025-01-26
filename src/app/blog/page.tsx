@@ -3,7 +3,7 @@
 import { Container } from '@/components/Container'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Header } from '../(new)/page'
+import { Header } from '@/components/Header'
 import { useState } from 'react'
 import { MobileMenu } from '@/components/MobileMenu'
 

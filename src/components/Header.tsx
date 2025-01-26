@@ -282,27 +282,123 @@ function Avatar({
   )
 }
 
-export function Header() {
+export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 bg-white/80 backdrop-blur dark:bg-zinc-900/80">
-      <Container className="py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex-none">
-            <AvatarContainer>
-              <Avatar />
-            </AvatarContainer>
-          </div>
+    <header
+      className={`sticky top-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-white/80 shadow-sm backdrop-blur-lg'
+          : 'border-b border-transparent bg-transparent'
+      }`}
+    >
+      <div className="relative">
+        <div
+          className={`absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent transition-opacity duration-500 ${
+            isScrolled ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
 
-          <div className="flex flex-1 justify-center">
-            <MobileNavigation className="pointer-events-auto md:hidden" />
-            <DesktopNavigation className="pointer-events-auto hidden md:block" />
-          </div>
+        <div className="py-4 sm:py-6">
+          <div className="mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <Image
+                  src="/images/avatar.png"
+                  alt="Artem Kirsanov"
+                  className="h-10 w-10 rounded-full"
+                  width={40}
+                  height={40}
+                />
+                <div className="flex flex-col">
+                  <span className="font-semibold text-gray-900 dark:text-zinc-100">
+                    Artem Kirsanov
+                  </span>
+                  <span className="text-sm text-gray-600 dark:text-zinc-400">
+                    AI Expert & Software Developer
+                  </span>
+                </div>
+              </div>
 
-          <div className="flex-none">
-            <CTAButton />
+              <div className="hidden sm:ml-auto sm:flex sm:items-center sm:space-x-6">
+                <a
+                  href="#services"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
+                >
+                  Services
+                </a>
+                <a
+                  target="_blank"
+                  href="https://www.youtube.com/@kirsnv?sub_confirmation=1"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
+                >
+                  YouTube
+                </a>
+
+                <a
+                  target="_blank"
+                  href="https://www.skool.com/metamakers-3765/about"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
+                >
+                  Community
+                </a>
+                <Link
+                  href="/blog"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
+                >
+                  Blog
+                </Link>
+                <a
+                  target="_blank"
+                  href="/courses"
+                  className="text-sm text-gray-600 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-zinc-300"
+                >
+                  Courses
+                </a>
+                <a
+                  target="_blank"
+                  href="https://cal.com/kirsanov/30min"
+                  className="rounded-full bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500"
+                >
+                  Book a call
+                </a>
+              </div>
+
+              <div className="ml-4 flex sm:hidden">
+                <button
+                  type="button"
+                  onClick={onMobileMenuOpen}
+                  className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-gray-900 shadow-sm ring-1 ring-gray-900/5 transition-all hover:bg-gray-50 dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
+                >
+                  <span className="sr-only">Open menu</span>
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </Container>
+      </div>
     </header>
   )
 }
