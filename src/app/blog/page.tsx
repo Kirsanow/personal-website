@@ -38,7 +38,7 @@ function BlogCard({ post }: { post: BlogPost }) {
       className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-zinc-50 transition-all duration-300 hover:bg-white hover:shadow-xl dark:bg-zinc-800/50 dark:hover:bg-zinc-700/50"
     >
       <div className="relative h-48 overflow-hidden sm:h-52">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/5 dark:from-indigo-400/10 dark:to-purple-400/5" />
+        <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 to-purple-500/5 dark:from-indigo-400/10 dark:to-purple-400/5" />
         <Image
           src={post.image}
           alt={post.title}

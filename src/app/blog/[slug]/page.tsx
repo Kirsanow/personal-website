@@ -37,7 +37,7 @@ function ScrollToTopButton() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg transition-all duration-300 hover:bg-indigo-500 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-indigo-500 dark:hover:bg-indigo-400 ${
+      className={`fixed bottom-8 right-8 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg transition-all duration-300 hover:bg-indigo-500 hover:shadow-xl focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-indigo-500 dark:hover:bg-indigo-400 ${
         isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'
       }`}
       aria-label="Scroll to top"
@@ -207,13 +207,13 @@ export default function BlogPostPage() {
             </Link>
 
             <div className="relative mb-8 overflow-hidden rounded-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/5 dark:from-indigo-400/10 dark:to-purple-400/5" />
+              <div className="absolute inset-0 bg-linear-to-br from-indigo-500/10 to-purple-500/5 dark:from-indigo-400/10 dark:to-purple-400/5" />
               <Image
                 src={blogPost.image}
                 alt={blogPost.title}
                 width={1200}
                 height={600}
-                className="aspect-[2/1] w-full object-cover"
+                className="aspect-2/1 w-full object-cover"
               />
             </div>
 

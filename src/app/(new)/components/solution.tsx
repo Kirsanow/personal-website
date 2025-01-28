@@ -68,10 +68,10 @@ function AIIcon({ className }: { className?: string }) {
 function BenefitCard({ title, description, cta, icon: Icon }: Benefit) {
   return (
     <div className="group relative h-full transform transition duration-300 hover:-translate-y-1">
-      <div className="relative h-full overflow-hidden rounded-3xl bg-gradient-to-b from-white to-zinc-50/80 px-8 pb-12 pt-10 shadow-sm ring-1 ring-zinc-100 transition duration-300 hover:shadow-md hover:ring-zinc-200">
+      <div className="relative h-full overflow-hidden rounded-3xl bg-linear-to-b from-white to-zinc-50/80 px-8 pb-12 pt-10 shadow-xs ring-1 ring-zinc-100 transition duration-300 hover:shadow-md hover:ring-zinc-200">
         {/* Playful gradient blob in the background */}
         <div className="pointer-events-none absolute -right-20 -top-20 h-[400px] w-[400px] opacity-20 mix-blend-multiply">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-100 to-indigo-50 blur-3xl" />
+          <div className="absolute inset-0 rounded-full bg-linear-to-br from-indigo-100 to-indigo-50 blur-3xl" />
         </div>
 
         <div className="relative z-10 flex h-full flex-col">
@@ -83,7 +83,7 @@ function BenefitCard({ title, description, cta, icon: Icon }: Benefit) {
               {title}
             </h3>
           </div>
-          <p className="mt-4 flex-grow text-sm text-zinc-600">{description}</p>
+          <p className="mt-4 grow text-sm text-zinc-600">{description}</p>
           <div className="mt-8">
             <Link
               href={cta.href}
@@ -152,7 +152,7 @@ export default function Solution() {
         <div className="absolute -top-24 left-1/2 -z-10 h-[800px] w-[800px] -translate-x-1/2 transform">
           <div className="absolute inset-0 blur-3xl" aria-hidden="true">
             <div
-              className="absolute inset-0 -z-10 transform-gpu bg-gradient-to-r from-indigo-50/40 via-indigo-100/40 to-zinc-50/40 opacity-50"
+              className="absolute inset-0 -z-10 transform-gpu bg-linear-to-r from-indigo-50/40 via-indigo-100/40 to-zinc-50/40 opacity-50"
               style={{
                 clipPath:
                   'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',

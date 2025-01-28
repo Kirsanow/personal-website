@@ -33,7 +33,7 @@ export default function Hero() {
 
               <h1 className="font-display mt-8 text-5xl font-medium tracking-tight text-zinc-900 [text-wrap:balance] sm:text-7xl">
                 I help founders build{' '}
-                <span className="bg-gradient-to-r from-indigo-600 to-indigo-600 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-indigo-600 to-indigo-600 bg-clip-text text-transparent">
                   SaaS products
                 </span>{' '}
                 using AI-powered development

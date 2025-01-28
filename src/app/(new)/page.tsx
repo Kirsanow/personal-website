@@ -129,7 +129,7 @@ function Newsletter() {
           placeholder="Email address"
           aria-label="Email address"
           required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(--spacing(2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-hidden focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
         />
         <Button type="submit" className="ml-4 flex-none">
           Join
@@ -273,7 +273,7 @@ function Photos() {
           <div
             key={image.src}
             className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
+              'relative aspect-9/10 w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
               rotations[imageIndex % rotations.length],
             )}
           >
@@ -356,7 +356,7 @@ function CommunityIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 function ServiceSection({ service }: { service: ServiceCard }) {
   return (
     <div className="group relative flex flex-col items-start rounded-3xl bg-zinc-50 p-8 transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-xl dark:bg-zinc-800/50 dark:hover:bg-zinc-700/50">
-      <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-3xl bg-gradient-to-r from-indigo-500/5 via-sky-500/5 to-emerald-500/5 opacity-0 transition duration-300 group-hover:opacity-100 sm:block dark:from-indigo-500/10 dark:via-sky-500/10 dark:to-emerald-500/10" />
+      <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-3xl bg-linear-to-r from-indigo-500/5 via-sky-500/5 to-emerald-500/5 opacity-0 transition duration-300 group-hover:opacity-100 sm:block dark:from-indigo-500/10 dark:via-sky-500/10 dark:to-emerald-500/10" />
 
       <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition-colors duration-300 group-hover:bg-indigo-50 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:group-hover:border-indigo-500/50 dark:group-hover:bg-zinc-700">
         <service.icon className="h-8 w-8 transition-colors duration-300 group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-400" />
@@ -543,7 +543,7 @@ function ToolCard({
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-xl dark:bg-zinc-800">
       <div
-        className={`absolute inset-0 bg-gradient-to-br opacity-50 ${categoryColors[category]}`}
+        className={`absolute inset-0 bg-linear-to-br opacity-50 ${categoryColors[category]}`}
       />
 
       <div className="relative">
@@ -611,7 +611,7 @@ function PainPoint({
 }) {
   return (
     <div className="relative rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-indigo-50 to-zinc-50 opacity-0 transition-all duration-300 group-hover:opacity-100 dark:from-zinc-900 dark:to-zinc-800" />
+      <div className="absolute -inset-px rounded-2xl bg-linear-to-r from-indigo-50 to-zinc-50 opacity-0 transition-all duration-300 group-hover:opacity-100 dark:from-zinc-900 dark:to-zinc-800" />
 
       <div className="relative flex items-start">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-600">

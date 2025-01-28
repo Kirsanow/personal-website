@@ -3,8 +3,7 @@ import { type Metadata } from 'next'
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
 import { Analytics } from '@vercel/analytics/react'
-
-import '@/styles/tailwind.css'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: {

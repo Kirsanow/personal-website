@@ -142,11 +142,11 @@ const caseStudies: CaseStudy[] = [
 
 function ToolCard({ tool }: { tool: Tool }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-white p-4 shadow-sm ring-1 ring-zinc-100 transition duration-300 hover:-translate-y-1 hover:shadow-md hover:ring-zinc-200">
-      <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-indigo-500/10 to-indigo-400/5 opacity-0 blur-2xl transition duration-500 group-hover:opacity-100" />
+    <div className="group relative overflow-hidden rounded-2xl bg-white p-4 shadow-xs ring-1 ring-zinc-100 transition duration-300 hover:-translate-y-1 hover:shadow-md hover:ring-zinc-200">
+      <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-linear-to-br from-indigo-500/10 to-indigo-400/5 opacity-0 blur-2xl transition duration-500 group-hover:opacity-100" />
 
       <div className="relative flex items-center gap-4">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-50 to-white shadow-sm ring-1 ring-indigo-100/50">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-indigo-50 to-white shadow-xs ring-1 ring-indigo-100/50">
           <Image
             src={tool.icon}
             alt={tool.name}
@@ -177,12 +177,12 @@ function ProcessStepCard({
     <div className="relative">
       {/* Vertical line connecting steps */}
       {index !== process.length - 1 && (
-        <div className="absolute left-[2.5rem] top-[7.5rem] h-24 w-px bg-gradient-to-b from-indigo-500/60 to-indigo-500/10 lg:left-[3.5rem]" />
+        <div className="absolute left-[2.5rem] top-[7.5rem] h-24 w-px bg-linear-to-b from-indigo-500/60 to-indigo-500/10 lg:left-[3.5rem]" />
       )}
 
-      <div className="relative flex flex-col gap-8 rounded-3xl bg-white/50 p-8 ring-1 ring-zinc-100 backdrop-blur-sm transition duration-300 hover:bg-white/80 hover:shadow-lg hover:ring-zinc-200 lg:p-10">
+      <div className="relative flex flex-col gap-8 rounded-3xl bg-white/50 p-8 ring-1 ring-zinc-100 backdrop-blur-xs transition duration-300 hover:bg-white/80 hover:shadow-lg hover:ring-zinc-200 lg:p-10">
         <div className="flex flex-col gap-6 sm:flex-row">
-          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-indigo-500 text-2xl font-semibold text-white shadow-md lg:h-28 lg:w-28 lg:text-3xl">
+          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-indigo-600 to-indigo-500 text-2xl font-semibold text-white shadow-md lg:h-28 lg:w-28 lg:text-3xl">
             {index + 1}
           </div>
           <div className="flex-1">
@@ -208,7 +208,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
   return (
     <Link
       href={study.href}
-      className="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-zinc-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-zinc-200"
+      className="group relative flex flex-col overflow-hidden rounded-3xl bg-white shadow-xs ring-1 ring-zinc-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-zinc-200"
     >
       {/* Logo Section */}
       <div className="relative h-64 w-full overflow-hidden sm:h-72">
@@ -287,11 +287,11 @@ export default function Process() {
   return (
     <div className="relative mt-24 overflow-hidden py-24 sm:mt-32 sm:py-32 lg:mt-40">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-y-0 h-full w-full bg-gradient-to-b from-zinc-50 via-white to-white" />
+        <div className="absolute inset-y-0 h-full w-full bg-linear-to-b from-zinc-50 via-white to-white" />
         <div className="absolute inset-0">
           <div className="bg-grid-zinc-900/[0.04] absolute inset-0 bg-[size:32px] [mask-image:linear-gradient(to_bottom,white,transparent,white)]" />
         </div>
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[60rem] w-[90rem] translate-y-1/4 rounded-full bg-gradient-to-r from-indigo-100/80 via-indigo-300/30 to-zinc-100/50 opacity-20 blur-3xl" />
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[60rem] w-[90rem] translate-y-1/4 rounded-full bg-linear-to-r from-indigo-100/80 via-indigo-300/30 to-zinc-100/50 opacity-20 blur-3xl" />
       </div>
 
       <Container>

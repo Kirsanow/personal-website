@@ -28,7 +28,7 @@ function CTASection() {
         <div className="relative mx-auto max-w-2xl py-24 sm:py-32 lg:max-w-4xl lg:px-12">
           {/* Decorative elements */}
           <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[800px] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]">
-            <div className="absolute inset-0 h-full w-full bg-gradient-to-tr from-indigo-500/20 via-indigo-300/10 to-zinc-100/20 opacity-20" />
+            <div className="absolute inset-0 h-full w-full bg-linear-to-tr from-indigo-500/20 via-indigo-300/10 to-zinc-100/20 opacity-20" />
           </div>
 
           <div className="flex flex-col items-center text-center">
@@ -43,14 +43,14 @@ function CTASection() {
               <Link
                 target="_blank"
                 href="https://cal.com/kirsanov/30min"
-                className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-8 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-indigo-700"
+                className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-8 py-3 text-sm font-medium text-white shadow-xs transition hover:bg-indigo-700"
               >
                 Book Development Call
               </Link>
               <Link
                 target="_blank"
                 href="https://www.skool.com/metamakers-3765/about"
-                className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-indigo-600 shadow-sm ring-1 ring-inset ring-indigo-200 transition hover:bg-zinc-50 hover:ring-indigo-300"
+                className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-indigo-600 shadow-xs ring-1 ring-inset ring-indigo-200 transition hover:bg-zinc-50 hover:ring-indigo-300"
               >
                 Join Community
               </Link>

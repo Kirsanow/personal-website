@@ -11,13 +11,13 @@ interface MobileMenuProps {
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   return (
     <div
-      className={`fixed inset-0 z-[100] transform transition-opacity duration-300 ${
+      className={`fixed inset-0 z-100 transform transition-opacity duration-300 ${
         isOpen ? 'pointer-events-auto' : 'pointer-events-none'
       }`}
     >
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity ${
+        className={`fixed inset-0 bg-black/20 backdrop-blur-xs transition-opacity ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}
         onClick={onClose}
@@ -25,7 +25,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
       {/* Menu panel */}
       <div
-        className={`fixed inset-y-0 right-0 z-[100] w-full max-w-sm bg-white px-6 py-6 shadow-xl transition-transform duration-300 dark:bg-zinc-900 ${
+        className={`fixed inset-y-0 right-0 z-100 w-full max-w-sm bg-white px-6 py-6 shadow-xl transition-transform duration-300 dark:bg-zinc-900 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -51,7 +51,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-zinc-900 shadow-sm ring-1 ring-zinc-900/5 transition-all hover:bg-zinc-50 dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
+              className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-zinc-900 shadow-xs ring-1 ring-zinc-900/5 transition-all hover:bg-zinc-50 dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
             >
               <span className="sr-only">Close menu</span>
               <svg

@@ -82,7 +82,7 @@ function PainPoint({ title, description, icon: Icon }: PainPoint) {
   return (
     <div className="group relative">
       <div className="relative overflow-hidden rounded-3xl bg-zinc-50 px-8 pb-12 pt-10 transition duration-500 hover:bg-white hover:shadow-md hover:ring-1 hover:ring-zinc-200/50">
-        <div className="absolute -right-12 -top-12 z-0 h-[200px] w-[200px] rotate-12 transform-gpu rounded-full bg-gradient-to-br from-indigo-50 to-indigo-100/50 opacity-0 blur-2xl transition duration-500 group-hover:opacity-60" />
+        <div className="absolute -right-12 -top-12 z-0 h-[200px] w-[200px] rotate-12 transform-gpu rounded-full bg-linear-to-br from-indigo-50 to-indigo-100/50 opacity-0 blur-2xl transition duration-500 group-hover:opacity-60" />
 
         <div className="relative z-10">
           <div className="flex items-center gap-4">
@@ -135,7 +135,7 @@ export default function Problem() {
         <div className="absolute -top-24 left-1/2 -z-10 h-[800px] w-[800px] -translate-x-1/2 transform">
           <div className="absolute inset-0 blur-3xl" aria-hidden="true">
             <div
-              className="absolute inset-0 -z-10 transform-gpu bg-gradient-to-r from-indigo-50/40 via-indigo-100/40 to-zinc-50/40 opacity-50"
+              className="absolute inset-0 -z-10 transform-gpu bg-linear-to-r from-indigo-50/40 via-indigo-100/40 to-zinc-50/40 opacity-50"
               style={{
                 clipPath:
                   'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',

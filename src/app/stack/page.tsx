@@ -64,7 +64,7 @@ export default function Stack() {
                   <div className="flex items-center">
                     <img
                       src="https://cdn.brandfetch.io/id6z4_raly/w/400/h/400/theme/dark/icon.jpeg?k=bfHSJFAPEG"
-                      className="mr-2 h-4 w-4 rounded-sm"
+                      className="mr-2 h-4 w-4 rounded-xs"
                     />
                     <span>Bubble</span>
                   </div>
@@ -102,7 +102,7 @@ export default function Stack() {
                   <div className="flex items-center">
                     <img
                       src="https://cdn.brandfetch.io/idVHU5hl7_/w/400/h/400/theme/dark/icon.jpeg?k=bfHSJFAPEG"
-                      className="mr-2 h-4 w-4 rounded-sm"
+                      className="mr-2 h-4 w-4 rounded-xs"
                     />
                     <span>Make (Integromat)</span>
                   </div>
@@ -119,7 +119,7 @@ export default function Stack() {
               <Tool
                 title={
                   <div className="flex items-center">
-                    <img src={jslogo.src} className="mr-2 h-4 w-4 rounded-sm" />
+                    <img src={jslogo.src} className="mr-2 h-4 w-4 rounded-xs" />
                     <span>JavaScript</span>
                   </div>
                 }
@@ -135,7 +135,7 @@ export default function Stack() {
                   <div className="flex items-center">
                     <img
                       src={pythonlogo.src}
-                      className="mr-2 h-4 w-4 rounded-sm"
+                      className="mr-2 h-4 w-4 rounded-xs"
                     />
                     <span>Python</span>
                   </div>
@@ -151,7 +151,7 @@ export default function Stack() {
                   <div className="flex items-center">
                     <img
                       src={nodelogo.src}
-                      className="mr-2 h-4 w-4 rounded-sm"
+                      className="mr-2 h-4 w-4 rounded-xs"
                     />
                     <span>Node.js</span>
                   </div>

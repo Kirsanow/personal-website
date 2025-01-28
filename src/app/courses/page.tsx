@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const MobileMenu = ({
@@ -12,13 +13,13 @@ const MobileMenu = ({
 }) => {
   return (
     <div
-      className={`fixed inset-0 z-[100] transform transition-opacity duration-300 ${
+      className={`z-100 fixed inset-0 transform transition-opacity duration-300 ${
         isOpen ? 'pointer-events-auto' : 'pointer-events-none'
       }`}
     >
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity ${
+        className={`backdrop-blur-xs fixed inset-0 bg-black/20 transition-opacity ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}
         onClick={onClose}
@@ -26,7 +27,7 @@ const MobileMenu = ({
 
       {/* Menu panel */}
       <div
-        className={`fixed inset-y-0 right-0 z-[100] w-full bg-white px-6 py-6 transition-transform duration-300 sm:hidden ${
+        className={`z-100 fixed inset-y-0 right-0 w-full bg-white px-6 py-6 transition-transform duration-300 sm:hidden ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -47,7 +48,7 @@ const MobileMenu = ({
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex items-center justify-center rounded-full bg-white p-2 text-gray-900 shadow-sm ring-1 ring-gray-900/5 transition-all hover:bg-gray-50"
+              className="shadow-xs inline-flex items-center justify-center rounded-full bg-white p-2 text-gray-900 ring-1 ring-gray-900/5 transition-all hover:bg-gray-50"
             >
               <span className="sr-only">Close menu</span>
               <svg
@@ -100,14 +101,8 @@ function JsForBubblers() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const isWaitlist = true
   return (
-    <div className="mx-auto h-screen w-full flex-auto ">
-      <script>
-        <style>
-          {`html {
-            scroll-behavior: smooth;
-          }`}
-        </style>
-      </script>
+    <div className="mx-auto h-screen w-full flex-auto">
+      {/* Remove the script and style tags and add the CSS to globals.css instead */}
       <Header onMobileMenuOpen={() => setIsMobileMenuOpen(true)} />
       <MobileMenu
         isOpen={isMobileMenuOpen}
@@ -139,13 +134,13 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
     <header
       className={`sticky top-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/80 shadow-sm backdrop-blur-lg'
+          ? 'shadow-xs bg-white/80 backdrop-blur-lg'
           : 'border-b border-transparent bg-transparent'
       }`}
     >
       <div className="relative">
         <div
-          className={`absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent transition-opacity duration-500 ${
+          className={`bg-linear-to-r absolute bottom-0 left-0 h-px w-full from-transparent via-indigo-500/20 to-transparent transition-opacity duration-500 ${
             isScrolled ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -191,13 +186,23 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
                 >
                   Enroll Now
                 </a>
+                <Link href="/account">
+                  <button className="btn btn-primary rounded-full">
+                    <div className="avatar avatar-placeholder">
+                      <div className="bg-base-100 text-base-content w-6 rounded-full">
+                        <span className="text-xs">UI</span>
+                      </div>
+                    </div>
+                    Account
+                  </button>
+                </Link>
               </div>
 
               <div className="ml-4 flex sm:hidden">
                 <button
                   type="button"
                   onClick={onMobileMenuOpen}
-                  className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-gray-900 shadow-sm ring-1 ring-gray-900/5 transition-all hover:bg-gray-50"
+                  className="shadow-xs inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-gray-900 ring-1 ring-gray-900/5 transition-all hover:bg-gray-50"
                 >
                   <span className="sr-only">Open menu</span>
                   <svg
@@ -284,12 +289,12 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
 
       <div className="relative isolate overflow-x-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/30 via-white/60 to-white"></div>
+          <div className="bg-linear-to-b absolute inset-0 from-indigo-50/30 via-white/60 to-white"></div>
           <div
             className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 transform-gpu blur-2xl"
             aria-hidden="true"
           >
-            <div className="aspect-[1155/678] w-full max-w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5]/25 to-[#9089fc]/25 opacity-[0.1]"></div>
+            <div className="aspect-1155/678 bg-linear-to-tr w-full max-w-[72.1875rem] from-[#ff80b5]/25 to-[#9089fc]/25 opacity-[0.1]"></div>
           </div>
         </div>
 
@@ -302,7 +307,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                 </div>
                 <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-6xl">
                   The JavaScript Blueprint for{' '}
-                  <span className="bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">
+                  <span className="bg-linear-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">
                     Bubble Developers
                   </span>
                 </h1>
@@ -314,7 +319,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                 <ul className="mt-6 space-y-3 text-gray-600 sm:mt-8">
                   <li className="flex items-start space-x-2 sm:items-center">
                     <svg
-                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-600 sm:mt-0"
+                      className="mt-0.5 h-5 w-5 shrink-0 text-indigo-600 sm:mt-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -330,7 +335,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                   </li>
                   <li className="flex items-start space-x-2 sm:items-center">
                     <svg
-                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-600 sm:mt-0"
+                      className="mt-0.5 h-5 w-5 shrink-0 text-indigo-600 sm:mt-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -346,7 +351,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                   </li>
                   <li className="flex items-start space-x-2 sm:items-center">
                     <svg
-                      className="mt-0.5 h-5 w-5 flex-shrink-0 text-indigo-600 sm:mt-0"
+                      className="mt-0.5 h-5 w-5 shrink-0 text-indigo-600 sm:mt-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -379,7 +384,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className="flex items-center justify-center whitespace-nowrap rounded-lg bg-gradient-to-r from-indigo-600 to-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:from-indigo-500 hover:to-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-75"
+                              className="bg-linear-to-r shadow-xs flex items-center justify-center whitespace-nowrap rounded-lg from-indigo-600 to-violet-500 px-6 py-3 text-sm font-semibold text-white hover:from-indigo-500 hover:to-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-75"
                             >
                               {isSubmitting ? (
                                 <>
@@ -416,7 +421,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                     <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-x-6">
                       <a
                         href="/enroll"
-                        className="w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-500 px-8 py-4 text-center text-base font-medium text-white transition-all hover:from-indigo-500 hover:to-violet-400 sm:w-auto"
+                        className="bg-linear-to-r w-full rounded-xl from-indigo-600 to-violet-500 px-8 py-4 text-center text-base font-medium text-white transition-all hover:from-indigo-500 hover:to-violet-400 sm:w-auto"
                       >
                         Enroll Now - $99
                       </a>
@@ -430,7 +435,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                   )}
                 </div>
 
-                <p className="mt-6 text-sm text-gray-500">
+                <div className="mt-6 text-sm text-gray-500">
                   {isWaitlist ? (
                     <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-x-2">
                       <div className="flex items-center space-x-2">
@@ -485,13 +490,13 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                   ) : (
                     'Join 1,000+ Bubble developers who&apos;ve transformed their development skills'
                   )}
-                </p>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="mt-16 px-4 sm:mt-24 sm:px-6 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-full lg:px-0">
-            <div className="relative rounded-xl bg-gradient-to-b from-indigo-50 to-white p-4 shadow-2xl ring-1 ring-gray-900/10 sm:p-8">
+            <div className="bg-linear-to-b relative rounded-xl from-indigo-50 to-white p-4 shadow-2xl ring-1 ring-gray-900/10 sm:p-8">
               <div className="bg-grid-slate-100 absolute inset-0 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]"></div>
               <div className="relative overflow-hidden rounded-xl bg-gray-900 p-4 shadow-xl">
                 <div className="absolute left-0 right-0 top-0 h-8 bg-gray-800 px-4 py-1.5">
@@ -571,7 +576,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-b from-white/0 via-white/50 to-white"></div>
+        <div className="bg-linear-to-b absolute inset-x-0 bottom-0 -z-10 h-24 from-white/0 via-white/50 to-white"></div>
       </div>
     </>
   )
@@ -583,7 +588,7 @@ const About = () => {
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-y-0 right-1/2 -z-10 mr-8 w-[150%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-16 lg:mr-0 xl:mr-16 xl:origin-center"></div>
         <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl">
-          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-full max-w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-10"></div>
+          <div className="aspect-1155/678 bg-linear-to-tr relative left-[calc(50%-11rem)] w-full max-w-[36.125rem] -translate-x-1/2 rotate-[30deg] from-[#ff80b5] to-[#9089fc] opacity-10"></div>
         </div>
       </div>
 
@@ -609,7 +614,7 @@ const About = () => {
 
         <div className="mx-auto mt-12 w-full max-w-2xl sm:mt-16 lg:mt-20 lg:max-w-none">
           <dl className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-x-8">
-            <div className="flex flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 sm:p-8">
+            <div className="shadow-xs flex flex-col rounded-2xl bg-white p-6 ring-1 ring-gray-900/5 sm:p-8">
               <dt className="text-base font-semibold leading-7 text-gray-900">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                   <svg
@@ -637,7 +642,7 @@ const About = () => {
                 <ul className="mt-6 space-y-2 text-sm">
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -653,7 +658,7 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -667,7 +672,7 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -683,7 +688,7 @@ const About = () => {
               </dd>
             </div>
 
-            <div className="flex flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 sm:p-8">
+            <div className="shadow-xs flex flex-col rounded-2xl bg-white p-6 ring-1 ring-gray-900/5 sm:p-8">
               <dt className="text-base font-semibold leading-7 text-gray-900">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                   <svg
@@ -711,7 +716,7 @@ const About = () => {
                 <ul className="mt-6 space-y-2 text-sm">
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -727,7 +732,7 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -745,7 +750,7 @@ const About = () => {
               </dd>
             </div>
 
-            <div className="flex flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 sm:p-8">
+            <div className="shadow-xs flex flex-col rounded-2xl bg-white p-6 ring-1 ring-gray-900/5 sm:p-8">
               <dt className="text-base font-semibold leading-7 text-gray-900">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                   <svg
@@ -773,7 +778,7 @@ const About = () => {
                 <ul className="mt-6 space-y-2 text-sm">
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -787,7 +792,7 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 flex-shrink-0 text-indigo-600"
+                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -825,7 +830,7 @@ const CTA = () => {
           </p>
 
           <div className="mt-8 flex flex-col items-center">
-            <div className="mb-6 w-full rounded-2xl bg-white/10 p-6 backdrop-blur sm:mb-8 sm:p-8">
+            <div className="mb-6 w-full rounded-2xl bg-white/10 p-6 backdrop-blur-sm sm:mb-8 sm:p-8">
               <div className="flex flex-col items-center gap-y-6 sm:flex-row sm:items-center sm:justify-center sm:gap-x-8">
                 <div className="text-center sm:text-left">
                   <div className="text-base font-medium text-gray-300 sm:text-lg">
@@ -889,7 +894,7 @@ const CTA = () => {
             </div>
 
             <a href="#enroll">
-              <button className="w-full rounded-xl bg-gradient-to-r from-indigo-500 to-violet-500 px-8 py-3 text-base font-semibold text-white opacity-50 shadow-sm transition-all hover:from-indigo-600 hover:to-violet-600 sm:px-12 sm:py-4">
+              <button className="bg-linear-to-r shadow-xs w-full rounded-xl from-indigo-500 to-violet-500 px-8 py-3 text-base font-semibold text-white opacity-50 transition-all hover:from-indigo-600 hover:to-violet-600 sm:px-12 sm:py-4">
                 Coming soon
               </button>
             </a>
@@ -911,7 +916,7 @@ const WhatYouGet = () => {
         className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
         aria-hidden="true"
       >
-        <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+        <div className="aspect-1155/678 bg-linear-to-tr relative left-[calc(50%-11rem)] w-[36.125rem] -translate-x-1/2 rotate-[30deg] from-[#ff80b5] to-[#9089fc] opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -1446,7 +1451,7 @@ const WhatYouGet = () => {
 
                 {/* Final Project Preview */}
                 <div className="mt-8">
-                  <div className="rounded-xl bg-gradient-to-r from-indigo-500/5 via-purple-500/5 to-pink-500/5 p-6">
+                  <div className="bg-linear-to-r rounded-xl from-indigo-500/5 via-purple-500/5 to-pink-500/5 p-6">
                     <h4 className="text-sm font-semibold leading-6 text-indigo-600">
                       Milestone Project
                     </h4>
@@ -1464,7 +1469,7 @@ const WhatYouGet = () => {
           <div className="mt-16 flex justify-center">
             <a
               href="#enroll"
-              className="rounded-full bg-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="shadow-xs rounded-full bg-indigo-600 px-8 py-4 text-base font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Start Your Journey Today
             </a>

@@ -159,7 +159,7 @@ const caseStudies = [
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col items-center gap-2 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-zinc-100">
+    <div className="flex flex-col items-center gap-2 rounded-2xl bg-white p-6 shadow-xs ring-1 ring-zinc-100">
       <div className="font-display text-3xl font-medium text-indigo-600">
         {value}
       </div>
@@ -170,7 +170,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function Section({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-zinc-100">
+    <div className="rounded-2xl bg-white p-8 shadow-xs ring-1 ring-zinc-100">
       <h3 className="font-display text-xl font-medium text-zinc-900">
         {title}
       </h3>
@@ -208,11 +208,11 @@ export default function CaseStudy({ params }: { params: { slug: string } }) {
   return (
     <div className="relative overflow-hidden py-16 sm:py-20">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-y-0 h-full w-full bg-gradient-to-b from-zinc-50 via-white to-white" />
+        <div className="absolute inset-y-0 h-full w-full bg-linear-to-b from-zinc-50 via-white to-white" />
         <div className="absolute inset-0">
           <div className="bg-grid-zinc-900/[0.04] absolute inset-0 bg-[size:32px] [mask-image:linear-gradient(to_bottom,white,transparent,white)]" />
         </div>
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[60rem] w-[90rem] translate-y-1/4 rounded-full bg-gradient-to-r from-indigo-100/80 via-indigo-300/30 to-zinc-100/50 opacity-20 blur-3xl" />
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[60rem] w-[90rem] translate-y-1/4 rounded-full bg-linear-to-r from-indigo-100/80 via-indigo-300/30 to-zinc-100/50 opacity-20 blur-3xl" />
       </div>
 
       <Container>
@@ -239,7 +239,7 @@ export default function CaseStudy({ params }: { params: { slug: string } }) {
 
           <div className="mx-auto max-w-5xl">
             {/* Cover Image Section */}
-            <div className="relative mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-lg">
+            <div className="relative mb-12 aspect-16/9 w-full overflow-hidden rounded-2xl shadow-lg">
               <Image
                 src={study.image}
                 alt={study.title}
@@ -262,7 +262,7 @@ export default function CaseStudy({ params }: { params: { slug: string } }) {
             </div>
 
             {/* Main Content Card */}
-            <div className="rounded-3xl bg-white shadow-sm ring-1 ring-zinc-100">
+            <div className="rounded-3xl bg-white shadow-xs ring-1 ring-zinc-100">
               {/* Tech Stack */}
               <div className="border-b border-zinc-100 px-8 py-6 lg:px-12">
                 <h2 className="font-display text-sm font-medium text-zinc-900">

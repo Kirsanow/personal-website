@@ -80,12 +80,12 @@ function DesignIcon({ className }: { className?: string }) {
 function ServiceCard({ service }: { service: Service }) {
   return (
     <div className="group relative h-full">
-      <div className="relative flex h-full flex-col overflow-hidden rounded-3xl bg-white/80 px-8 pb-12 pt-10 backdrop-blur-sm transition duration-300 hover:bg-white hover:shadow-xl hover:ring-1 hover:ring-zinc-200/50">
-        <div className="absolute -right-12 -top-12 z-0 h-[300px] w-[300px] rotate-12 transform-gpu rounded-full bg-gradient-to-br from-indigo-500/10 to-indigo-400/5 opacity-0 blur-3xl transition duration-500 group-hover:opacity-100" />
+      <div className="relative flex h-full flex-col overflow-hidden rounded-3xl bg-white/80 px-8 pb-12 pt-10 backdrop-blur-xs transition duration-300 hover:bg-white hover:shadow-xl hover:ring-1 hover:ring-zinc-200/50">
+        <div className="absolute -right-12 -top-12 z-0 h-[300px] w-[300px] rotate-12 transform-gpu rounded-full bg-linear-to-br from-indigo-500/10 to-indigo-400/5 opacity-0 blur-3xl transition duration-500 group-hover:opacity-100" />
 
-        <div className="relative z-10 flex flex-grow flex-col">
+        <div className="relative z-10 flex grow flex-col">
           <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500/10 to-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-indigo-500/10 to-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5">
               <service.icon className="h-8 w-8 text-indigo-600" />
             </div>
             <h3 className="font-display text-2xl font-medium text-zinc-900">
@@ -95,7 +95,7 @@ function ServiceCard({ service }: { service: Service }) {
 
           <p className="mt-4 text-base text-zinc-600">{service.description}</p>
 
-          <ul className="mt-8 flex-grow space-y-4">
+          <ul className="mt-8 grow space-y-4">
             {service.features.map((feature, index) => (
               <li key={index} className="flex items-center gap-3">
                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-100">
@@ -263,12 +263,12 @@ export default function Services() {
   return (
     <div className="relative mt-24 overflow-hidden pb-32 sm:mt-32 lg:mt-40">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-y-0 h-full w-full bg-gradient-to-b from-zinc-50 via-zinc-100/70 to-white" />
+        <div className="absolute inset-y-0 h-full w-full bg-linear-to-b from-zinc-50 via-zinc-100/70 to-white" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="h-[1000px] w-[1000px] rotate-[30deg]">
             <div className="absolute inset-0 blur-3xl" aria-hidden="true">
               <div
-                className="absolute inset-0 -z-10 transform-gpu bg-gradient-to-r from-indigo-100/70 via-indigo-300/30 to-zinc-100/50 opacity-30"
+                className="absolute inset-0 -z-10 transform-gpu bg-linear-to-r from-indigo-100/70 via-indigo-300/30 to-zinc-100/50 opacity-30"
                 style={{
                   clipPath:
                     'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',

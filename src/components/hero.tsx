@@ -27,7 +27,7 @@ export function Hero() {
             </Link>
             <Link
               href="/projects"
-              className="inline-flex items-center rounded-full bg-white/90 px-6 py-3 text-sm font-semibold text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition hover:bg-zinc-50 dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
+              className="inline-flex items-center rounded-full bg-white/90 px-6 py-3 text-sm font-semibold text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-sm transition hover:bg-zinc-50 dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
             >
               See My Work
             </Link>
@@ -46,7 +46,7 @@ function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <div {...props}>
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative aspect-[16/9] w-full max-w-[800px] rounded-2xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:from-white/5 dark:to-white/0">
+        <div className="relative aspect-16/9 w-full max-w-[800px] rounded-2xl border border-white/20 bg-linear-to-b from-white/10 to-white/5 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:from-white/5 dark:to-white/0">
           <div className="absolute inset-0 overflow-hidden rounded-2xl">
             {/* Background grid */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000,transparent)]" />
@@ -87,7 +87,7 @@ function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
                   height="280"
                   rx="16"
                   className="fill-white/10 backdrop-blur-3xl"
-                  filter="url(#shadow)"
+                  filter="url(#shadow-sm)"
                 />
 
                 {/* Browser-like header */}
@@ -205,11 +205,11 @@ function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
                   <stop offset="100%" stopColor="#14B8A6" stopOpacity="0" />
                 </linearGradient>
                 <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="8" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  <feGaussianBlur stdDeviation="8" result="blur-sm" />
+                  <feComposite in="SourceGraphic" in2="blur-sm" operator="over" />
                 </filter>
                 <filter
-                  id="shadow"
+                  id="shadow-sm"
                   x="-10%"
                   y="-10%"
                   width="120%"
