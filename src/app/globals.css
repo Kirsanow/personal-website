@@ -22,8 +22,9 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+    border-color: var(--color-base-200, currentColor);
   }
+
   html {
     scroll-behavior: smooth;
   }
