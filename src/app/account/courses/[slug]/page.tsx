@@ -8,7 +8,7 @@ import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import CompletionButton from '../_components/completion-button'
 import SettingsModal from '../../_components/settings-modal'
-
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 const Header = ({
   course,
   currentChapter,
@@ -222,9 +222,10 @@ const Resources = ({
               href={resource.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary btn-sm"
+              className="btn btn-primary btn-sm flex items-center gap-2"
             >
-              Download
+              <ArrowTopRightOnSquareIcon className="size-4" />
+              Open
             </Link>
           </div>
         ))}

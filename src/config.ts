@@ -23,33 +23,45 @@ export const courses = {
     chapters: [
       {
         title: 'Introduction',
-        description: 'Learn JavaScript for Bubble developers',
-        video: 'jNQXAC9IVRw',
+        description: 'Introduction to the course',
+        video: 'KlodYPk5lRg',
         number: 1,
         resources: [
           {
-            title: 'Important links and resources',
+            title: 'Resources mentioned in the chapter',
             url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
           },
         ],
       },
       {
-        title: 'Variables',
-        description: 'Learn JavaScript for Bubble developers',
-        video: 'HXV3zeQKqGY',
+        title: 'Tools we need',
+        description: 'Tools we need to succeed',
+        video: 'w4iCxXJ-_zU',
         number: 2,
         resources: [
           {
-            title: 'Variables',
+            title: 'Resources mentioned in the chapter',
             url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
           },
         ],
       },
       {
-        title: 'Functions',
-        description: 'Learn JavaScript for Bubble developers',
+        title: 'JavaScript in Bubble basics',
+        description: 'Get familiar with JavaScript in Bubble',
         video: 'W6NZfCO5SIk',
         number: 3,
+        resources: [
+          {
+            title: 'Resources mentioned in the chapter',
+            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          },
+        ],
+      },
+      {
+        title: 'JavaScript in Bubble part 2',
+        description: 'More advanced JavaScript in Bubble',
+        video: 'W6NZfCO5SIk',
+        number: 4,
         resources: [
           {
             title: 'Functions',
