@@ -32,7 +32,7 @@ export default async function AccountPage() {
   return (
     <div className="min-h-screen p-4 md:p-8">
       {/* Hero section with user info */}
-      <div className="card border-base-300 shadow-xs mb-8 border bg-white">
+      <div className="card border-base-300 mb-8 border bg-white shadow-xs">
         <div className="card-body">
           <div className="flex items-center justify-between">
             <div className="flex flex-col items-center gap-6 md:flex-row">
@@ -80,85 +80,109 @@ export default async function AccountPage() {
           <h2 className="card-title mb-6 text-2xl">Your Courses</h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {Object.values(courses).map((course) => {
-              const hasAccess =
-                userData?.courses_access?.includes(course.slug) || false
-              return (
-                <div
-                  key={course.slug}
-                  className="card bg-base-100 border-base-300 border shadow-sm transition-shadow hover:shadow-md"
-                >
-                  <figure className="border-base-300 border-b px-4 pt-4">
-                    <div className="relative h-48 w-full overflow-hidden rounded-xl">
-                      <Image
-                        src={course.thumbnail}
-                        alt={course.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </figure>
-                  <div className="card-body">
-                    <h3 className="card-title">{course.title}</h3>
-                    <p>{course.description}</p>
-                    {hasAccess && (
-                      <div className="flex flex-col gap-2">
-                        <progress
-                          className="progress progress-primary w-full"
-                          value={course.progress}
-                          max="100"
-                        ></progress>
-                        <div className="text-base-content/70 flex justify-between text-sm">
-                          <span>{course.progress}% Complete</span>
-                          <span>Last accessed: {course.lastAccessed}</span>
-                        </div>
+            {await Promise.all(
+              Object.values(courses).map(async (course) => {
+                const hasAccess =
+                  userData?.courses_access?.includes(course.slug) || false
+
+                // Get chapter progress for this course
+                const { data: chapterProgress } = await supabase
+                  .from('chapter_progress')
+                  .select('chapter_number, completed')
+                  .eq('user_id', user?.id)
+                  .eq('course_slug', course.slug)
+
+                // Count only completed chapters
+                const completedCount = (chapterProgress || []).filter(
+                  (chapter) => chapter.completed,
+                ).length
+
+                const totalChapters = course.chapters.length
+                const progressPercentage = Math.round(
+                  (completedCount / totalChapters) * 100,
+                )
+
+                return (
+                  <div
+                    key={course.slug}
+                    className="card bg-base-100 border-base-300 border shadow-sm transition-shadow hover:shadow-md"
+                  >
+                    <figure className="border-base-300 border-b px-4 pt-4">
+                      <div className="relative h-48 w-full overflow-hidden rounded-xl">
+                        <Image
+                          src={course.thumbnail}
+                          alt={course.title}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
-                    )}
-                    <div className="card-actions mt-4 justify-end">
-                      {hasAccess ? (
-                        <Link href={`/account/courses/${course.slug}`}>
-                          <button className="btn btn-primary">
-                            Continue Learning
-                          </button>
-                        </Link>
-                      ) : (
-                        <div className="flex gap-2">
-                          <Link href={`/courses`}>
-                            <button className="btn btn-ghost">
-                              Learn More
-                            </button>
-                          </Link>
-                          <form
-                            action={async (formData: FormData) => {
-                              'use server'
-                              await purchaseCourse(formData)
-                            }}
-                          >
-                            <input
-                              type="hidden"
-                              name="slug"
-                              value={course.slug}
-                            />
-                            <input
-                              type="hidden"
-                              name="priceId"
-                              value={
-                                process.env.NODE_ENV === 'production'
-                                  ? course.priceId
-                                  : course.priceId_test
-                              }
-                            />
-                            <button className="btn btn-primary">
-                              Purchase Course
-                            </button>
-                          </form>
+                    </figure>
+                    <div className="card-body">
+                      <h3 className="card-title">{course.title}</h3>
+                      <p>{course.description}</p>
+                      {hasAccess && (
+                        <div className="flex flex-col gap-2">
+                          <progress
+                            className="progress progress-primary w-full"
+                            value={progressPercentage}
+                            max="100"
+                          ></progress>
+                          <div className="text-base-content/70 flex justify-between text-sm">
+                            <span>{progressPercentage}% Complete</span>
+                            <span>
+                              {completedCount} of {totalChapters} chapters
+                            </span>
+                          </div>
                         </div>
                       )}
+                      <div className="card-actions mt-4 justify-end">
+                        {hasAccess ? (
+                          <Link href={`/account/courses/${course.slug}`}>
+                            <button className="btn btn-primary">
+                              {progressPercentage === 100
+                                ? 'Review Course'
+                                : 'Continue Learning'}
+                            </button>
+                          </Link>
+                        ) : (
+                          <div className="flex gap-2">
+                            <Link href={`/courses`}>
+                              <button className="btn btn-ghost">
+                                Learn More
+                              </button>
+                            </Link>
+                            <form
+                              action={async (formData: FormData) => {
+                                'use server'
+                                await purchaseCourse(formData)
+                              }}
+                            >
+                              <input
+                                type="hidden"
+                                name="slug"
+                                value={course.slug}
+                              />
+                              <input
+                                type="hidden"
+                                name="priceId"
+                                value={
+                                  process.env.NODE_ENV === 'production'
+                                    ? course.priceId
+                                    : course.priceId_test
+                                }
+                              />
+                              <button className="btn btn-primary">
+                                Purchase Course
+                              </button>
+                            </form>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              }),
+            )}
           </div>
 
           {Object.keys(courses).length === 0 && (

@@ -2,6 +2,8 @@
 import Link from 'next/link'
 import { useActionState, useState } from 'react'
 import { signInWithEmail, signUpNewUser } from '../_actions'
+import { createClient } from '@/lib/supabase/client'
+import config from '@/config'
 
 export default function LoginCard() {
   const [isLogin, setIsLogin] = useState(true)
@@ -22,11 +24,21 @@ export default function LoginCard() {
     { error: '' },
   )
 
+  const handleGoogleLogin = async () => {
+    const supabase = createClient()
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${config.domainName}/api/auth/callback`,
+      },
+    })
+  }
+
   return (
     <div className="w-full max-w-md">
       {/* Logo and Title */}
       <div className="mb-8 text-center">
-        <h1 className="mb-2 mt-8 text-2xl font-bold">
+        <h1 className="mt-8 mb-2 text-2xl font-bold">
           {isLogin ? 'Welcome back' : 'Create an account'}
         </h1>
         <p className="text-base-content/60">
@@ -41,6 +53,7 @@ export default function LoginCard() {
         <div className="card-body">
           {/* Social Login */}
           <button
+            onClick={handleGoogleLogin}
             className="btn btn-outline btn-primary mb-4 gap-2"
             disabled={isPending}
           >

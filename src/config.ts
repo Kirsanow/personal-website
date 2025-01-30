@@ -1,5 +1,8 @@
 const config = {
-  domainName: 'kirsanov.com',
+  domainName:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : 'https://kirsanov.co',
   appName: 'Artem Kirsanov',
   appDescription:
     'Artem Kirsanov is a software engineer based in Kyiv, Ukraine.',
@@ -21,20 +24,38 @@ export const courses = {
       {
         title: 'Introduction',
         description: 'Learn JavaScript for Bubble developers',
-        video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        video: 'jNQXAC9IVRw',
         number: 1,
+        resources: [
+          {
+            title: 'Important links and resources',
+            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          },
+        ],
       },
       {
         title: 'Variables',
         description: 'Learn JavaScript for Bubble developers',
-        video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        video: 'HXV3zeQKqGY',
         number: 2,
+        resources: [
+          {
+            title: 'Variables',
+            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          },
+        ],
       },
       {
         title: 'Functions',
         description: 'Learn JavaScript for Bubble developers',
-        video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        video: 'W6NZfCO5SIk',
         number: 3,
+        resources: [
+          {
+            title: 'Functions',
+            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          },
+        ],
       },
     ],
   },

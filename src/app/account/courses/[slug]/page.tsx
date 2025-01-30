@@ -3,13 +3,20 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
+import VideoPlayer from '../_components/video-player'
+import { createClient } from '@/lib/supabase/server'
+import { revalidatePath } from 'next/cache'
+import CompletionButton from '../_components/completion-button'
+import SettingsModal from '../../_components/settings-modal'
 
 const Header = ({
   course,
   currentChapter,
+  progress,
 }: {
   course: any
   currentChapter: any
+  progress: number
 }) => {
   return (
     <div className="border-base-300 bg-base-100/80 sticky top-0 z-50 border-b backdrop-blur-xl">
@@ -46,9 +53,9 @@ const Header = ({
             <div className="flex items-center gap-2">
               <div
                 className="radial-progress text-primary"
-                style={{ '--value': '65', '--size': '2rem' } as any}
+                style={{ '--value': progress, '--size': '2rem' } as any}
               >
-                <span className="text-xs">65%</span>
+                <span className="text-xs">{progress}%</span>
               </div>
               <span className="text-base-content/70 text-sm">
                 Course Progress
@@ -56,6 +63,8 @@ const Header = ({
             </div>
             <div className="bg-base-content/10 h-4 w-[1px]"></div>
           </div>
+
+          <SettingsModal />
 
           <div className="dropdown dropdown-end">
             <div
@@ -74,28 +83,13 @@ const Header = ({
             </div>
             <ul
               tabIndex={0}
-              className="menu dropdown-content menu-sm rounded-box bg-base-200 z-50  w-52 p-2 shadow-lg"
+              className="menu dropdown-content menu-sm rounded-box bg-base-200 z-50 w-52 p-2 shadow-lg"
             >
               <li className="menu-title text-base-content/60 text-xs font-medium">
                 Account
               </li>
               <li>
-                <Link href="/account">Dashboard</Link>
-              </li>
-              <li>
-                <Link href="/account/settings">Settings</Link>
-              </li>
-              <li className="menu-title text-base-content/60 text-xs font-medium">
-                Course
-              </li>
-              <li>
-                <a>Course Overview</a>
-              </li>
-              <li>
-                <a>Resources</a>
-              </li>
-              <li>
-                <a>Discussion</a>
+                <Link href="/account/courses">Dashboard</Link>
               </li>
             </ul>
           </div>
@@ -109,6 +103,7 @@ const ChapterList = ({
   chapters,
   chapterNumber,
   slug,
+  progress,
 }: {
   chapters: {
     title: string
@@ -118,9 +113,10 @@ const ChapterList = ({
   }[]
   chapterNumber: number
   slug: string
+  progress: { [key: number]: boolean }
 }) => {
   return (
-    <div className="bg-base-100 rounded-box shadow-xs border-base-300 border">
+    <div className="bg-base-100 rounded-box border-base-300 border shadow-xs">
       <div className="p-4 pb-2 text-xs font-semibold tracking-wide opacity-60">
         Course Chapters
       </div>
@@ -136,8 +132,32 @@ const ChapterList = ({
             )}
           >
             <div className="flex-shrink-0">
-              <div className="bg-primary/10 text-primary flex size-8 items-center justify-center rounded-lg font-semibold">
-                {chapter.number}
+              <div
+                className={cn(
+                  'flex size-8 items-center justify-center rounded-lg font-semibold',
+                  progress[chapter.number]
+                    ? 'bg-success/10 text-success'
+                    : 'bg-primary/10 text-primary',
+                )}
+              >
+                {progress[chapter.number] ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="size-5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M20 6L9 17l-5-5"
+                    />
+                  </svg>
+                ) : (
+                  chapter.number
+                )}
               </div>
             </div>
             <div className="flex-grow">
@@ -147,12 +167,41 @@ const ChapterList = ({
               <div className="text-base-content/60 flex items-center gap-2 text-xs">
                 <span>20 min</span>
                 <span className="bg-base-content/20 size-1 rounded-full"></span>
-                <span className="text-success">Completed</span>
+                <span
+                  className={
+                    progress[chapter.number]
+                      ? 'text-success'
+                      : 'text-base-content/60'
+                  }
+                >
+                  {progress[chapter.number] ? 'Completed' : 'Not completed'}
+                </span>
               </div>
             </div>
-            <button className="btn btn-square btn-ghost btn-sm">
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const Resources = ({
+  resources,
+}: {
+  resources: { title: string; url: string }[]
+}) => {
+  return (
+    <div className="bg-base-100 rounded-box p-6 shadow-md">
+      <h3 className="mb-4 text-lg font-semibold">Resources</h3>
+      <div className="space-y-3">
+        {resources.map((resource) => (
+          <div
+            key={resource.title}
+            className="bg-base-200 flex items-center justify-between rounded-lg p-3"
+          >
+            <div className="flex items-center gap-3">
               <svg
-                className="size-[1.2em]"
+                className="text-primary size-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
@@ -163,77 +212,22 @@ const ChapterList = ({
                   fill="none"
                   stroke="currentColor"
                 >
-                  <path d="M6 3L20 12 6 21 6 3z"></path>
+                  <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                  <polyline points="13 2 13 9 20 9"></polyline>
                 </g>
               </svg>
-            </button>
-          </Link>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-const VideoPlayer = () => {
-  return (
-    <div className="bg-base-300 rounded-box relative aspect-video w-full overflow-hidden">
-      <div className="absolute inset-0 flex items-center justify-center">
-        <button className="btn btn-circle btn-lg btn-primary">
-          <svg
-            className="size-8"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <g
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              strokeWidth="2"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path d="M6 3L20 12 6 21 6 3z"></path>
-            </g>
-          </svg>
-        </button>
-      </div>
-    </div>
-  )
-}
-
-const Resources = () => {
-  return (
-    <div className="bg-base-100 rounded-box p-6 shadow-md">
-      <h3 className="mb-4 text-lg font-semibold">Resources</h3>
-      <div className="space-y-3">
-        {['Course Slides', 'Exercise Files', 'Additional Reading'].map(
-          (resource) => (
-            <div
-              key={resource}
-              className="bg-base-200 flex items-center justify-between rounded-lg p-3"
-            >
-              <div className="flex items-center gap-3">
-                <svg
-                  className="text-primary size-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                    <polyline points="13 2 13 9 20 9"></polyline>
-                  </g>
-                </svg>
-                <span>{resource}</span>
-              </div>
-              <button className="btn btn-primary btn-sm">Download</button>
+              <span>{resource.title}</span>
             </div>
-          ),
-        )}
+            <Link
+              href={resource.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary btn-sm"
+            >
+              Download
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -255,7 +249,39 @@ export default async function CoursePage({
     redirect(`/account/courses/${slug}?chapter=1`)
   }
 
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/login')
+  }
+
+  // Get chapter completion data
+  const { data: chapterProgress } = await supabase
+    .from('chapter_progress')
+    .select('chapter_number, completed')
+    .eq('user_id', user.id)
+    .eq('course_slug', slug)
+
+  // Create a map of chapter numbers to completion status
+  const progress = (chapterProgress || []).reduce(
+    (acc, curr) => {
+      if (curr.completed) {
+        acc[curr.chapter_number] = true
+      }
+      return acc
+    },
+    {} as { [key: number]: boolean },
+  )
   const course = Object.values(courses).find((course) => course.slug === slug)
+
+  // Calculate overall progress
+  const completedCount = Object.values(progress).filter(Boolean).length
+  const totalChapters = course?.chapters.length || 0
+  const progressPercentage = Math.round((completedCount / totalChapters) * 100)
+
   const currentChapter = course?.chapters.find(
     (c) => c.number === Number(chapter),
   )
@@ -266,7 +292,11 @@ export default async function CoursePage({
 
   return (
     <>
-      <Header course={course} currentChapter={currentChapter} />
+      <Header
+        course={course}
+        currentChapter={currentChapter}
+        progress={progressPercentage}
+      />
       <div className="bg-base-200 min-h-screen p-4 lg:p-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Sidebar */}
@@ -275,16 +305,24 @@ export default async function CoursePage({
               chapters={course.chapters}
               chapterNumber={Number(chapter)}
               slug={slug}
+              progress={progress}
             />
           </div>
 
           {/* Main Content */}
           <div className="space-y-8 lg:col-span-9">
             {/* Course Header */}
-            <div className="bg-base-100 rounded-box shadow-xs border-base-300 border p-6">
-              <h1 className="mb-2 text-2xl font-bold">
-                {currentChapter?.title}
-              </h1>
+            <div className="bg-base-100 rounded-box border-base-300 border p-6 shadow-xs">
+              <div className="flex items-center justify-between">
+                <h1 className="mb-2 text-2xl font-bold">
+                  {currentChapter?.title}
+                </h1>
+                <CompletionButton
+                  courseSlug={slug}
+                  chapterNumber={Number(chapter)}
+                  initialCompleted={progress[Number(chapter)] || false}
+                />
+              </div>
               <div className="text-base-content/70 flex items-center gap-4 text-sm">
                 <span className="flex items-center gap-1">
                   <svg
@@ -341,14 +379,14 @@ export default async function CoursePage({
                       <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
                     </g>
                   </svg>
-                  {course.progress}% Complete
+                  {progressPercentage}% Complete
                 </span>
               </div>
             </div>
 
             {/* Video Player */}
-            <div className="bg-base-100 rounded-box p-6 shadow-md">
-              <VideoPlayer />
+            <div className="rounded-box bg-base-100 p-6 shadow-md">
+              <VideoPlayer videoId={currentChapter?.video || ''} />
               <div className="mt-4">
                 <h2 className="mb-2 text-xl font-semibold">
                   {currentChapter?.title}
@@ -360,7 +398,7 @@ export default async function CoursePage({
             </div>
 
             {/* Resources */}
-            <Resources />
+            <Resources resources={currentChapter?.resources || []} />
           </div>
         </div>
       </div>
