@@ -37,7 +37,7 @@ export default async function AccountPage() {
           <div className="flex items-center justify-between">
             <div className="flex flex-col items-center gap-6 md:flex-row">
               <div className="avatar">
-                <div className="ring-neutral/50 ring-offset-base-100 w-18 rounded-full ring ring-offset-2">
+                <div className="ring-neutral/20 ring-offset-base-100 w-18 rounded-full ring ring-offset-2">
                   <img
                     src={mockUserData.avatar}
                     alt="User avatar"

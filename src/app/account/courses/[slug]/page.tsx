@@ -9,6 +9,7 @@ import { revalidatePath } from 'next/cache'
 import CompletionButton from '../_components/completion-button'
 import SettingsModal from '../../_components/settings-modal'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+import { hasCourseAccess } from '@/actions/user'
 const Header = ({
   course,
   currentChapter,
@@ -257,6 +258,12 @@ export default async function CoursePage({
 
   if (!user) {
     redirect('/login')
+  }
+
+  const hasAccess = await hasCourseAccess(user.id, slug)
+
+  if (!hasAccess) {
+    redirect('/account')
   }
 
   // Get chapter completion data

@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import AccountButton from './account-button'
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -51,7 +52,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-zinc-900 shadow-xs ring-1 ring-zinc-900/5 transition-all hover:bg-zinc-50 dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
+              className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-zinc-900 ring-1 shadow-xs ring-zinc-900/5 transition-all hover:bg-zinc-50 dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
             >
               <span className="sr-only">Close menu</span>
               <svg
@@ -101,14 +102,15 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               Courses
             </Link>
             <div className="pt-4">
-              <Link
+              {/* <Link
                 href="https://cal.com/kirsanov/30min"
                 onClick={onClose}
                 target="_blank"
                 className="inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-4 py-2.5 text-base font-medium text-white transition hover:bg-indigo-500"
               >
                 Book a Call
-              </Link>
+              </Link> */}
+              <AccountButton className="w-full" />
             </div>
           </div>
         </div>

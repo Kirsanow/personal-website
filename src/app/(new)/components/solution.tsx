@@ -68,18 +68,18 @@ function AIIcon({ className }: { className?: string }) {
 function BenefitCard({ title, description, cta, icon: Icon }: Benefit) {
   return (
     <div className="group relative h-full transform transition duration-300 hover:-translate-y-1">
-      <div className="relative h-full overflow-hidden rounded-3xl bg-linear-to-b from-white to-zinc-50/80 px-8 pb-12 pt-10 shadow-xs ring-1 ring-zinc-100 transition duration-300 hover:shadow-md hover:ring-zinc-200">
+      <div className="relative h-full overflow-hidden rounded-3xl bg-linear-to-b from-white to-zinc-50/80 px-6 pt-10 pb-12 ring-1 shadow-xs ring-zinc-100 transition duration-300 hover:shadow-md hover:ring-zinc-200 sm:px-8">
         {/* Playful gradient blob in the background */}
-        <div className="pointer-events-none absolute -right-20 -top-20 h-[400px] w-[400px] opacity-20 mix-blend-multiply">
+        <div className="pointer-events-none absolute -top-20 -right-20 h-[400px] w-[400px] opacity-20 mix-blend-multiply">
           <div className="absolute inset-0 rounded-full bg-linear-to-br from-indigo-100 to-indigo-50 blur-3xl" />
         </div>
 
         <div className="relative z-10 flex h-full flex-col">
           <div className="flex items-center gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5">
               <Icon className="h-7 w-7 text-indigo-600" />
             </div>
-            <h3 className="font-display text-xl font-medium text-zinc-900 [text-wrap:balance]">
+            <h3 className="font-display text-xl font-medium [text-wrap:balance] text-zinc-900">
               {title}
             </h3>
           </div>
@@ -149,7 +149,7 @@ export default function Solution() {
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <div className="relative">
         {/* Enhanced gradient decoration */}
-        <div className="absolute -top-24 left-1/2 -z-10 h-[800px] w-[800px] -translate-x-1/2 transform">
+        <div className="absolute -top-24 left-1/2 -z-10 h-[800px] w-full max-w-[800px] -translate-x-1/2 transform overflow-hidden">
           <div className="absolute inset-0 blur-3xl" aria-hidden="true">
             <div
               className="absolute inset-0 -z-10 transform-gpu bg-linear-to-r from-indigo-50/40 via-indigo-100/40 to-zinc-50/40 opacity-50"
@@ -161,11 +161,11 @@ export default function Solution() {
           </div>
         </div>
 
-        <div className="relative mx-auto max-w-2xl lg:text-center">
-          <div className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-sm text-indigo-600 ring-1 ring-inset ring-indigo-600/20">
+        <div className="relative mx-auto max-w-2xl px-4 sm:px-6 lg:text-center">
+          <div className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-sm text-indigo-600 ring-1 ring-indigo-600/20 ring-inset">
             The Solution
           </div>
-          <h2 className="font-display mt-8 text-4xl font-medium tracking-tight text-zinc-900 [text-wrap:balance] sm:text-5xl">
+          <h2 className="font-display mt-8 text-4xl font-medium tracking-tight [text-wrap:balance] text-zinc-900 sm:text-5xl">
             Build Your SaaS the Smart Way
           </h2>
           <p className="mt-6 text-lg text-zinc-600">
@@ -174,7 +174,7 @@ export default function Solution() {
           </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-xl gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto mt-16 grid max-w-xl gap-8 px-4 sm:mt-20 sm:px-6 lg:max-w-none lg:grid-cols-3">
           {benefits.map((benefit, index) => (
             <BenefitCard key={index} {...benefit} />
           ))}

@@ -129,7 +129,7 @@ function Newsletter() {
           placeholder="Email address"
           aria-label="Email address"
           required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(--spacing(2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-hidden focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(--spacing(2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 focus:outline-hidden sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
         />
         <Button type="submit" className="ml-4 flex-none">
           Join
@@ -158,7 +158,7 @@ function Role({ role }: { role: Role }) {
 
   return (
     <li className="flex gap-2 py-2">
-      <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+      <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
         <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
       </div>
       <dl className="flex flex-auto flex-col justify-center gap-y-1">
@@ -358,7 +358,7 @@ function ServiceSection({ service }: { service: ServiceCard }) {
     <div className="group relative flex flex-col items-start rounded-3xl bg-zinc-50 p-8 transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-xl dark:bg-zinc-800/50 dark:hover:bg-zinc-700/50">
       <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-3xl bg-linear-to-r from-indigo-500/5 via-sky-500/5 to-emerald-500/5 opacity-0 transition duration-300 group-hover:opacity-100 sm:block dark:from-indigo-500/10 dark:via-sky-500/10 dark:to-emerald-500/10" />
 
-      <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition-colors duration-300 group-hover:bg-indigo-50 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:group-hover:border-indigo-500/50 dark:group-hover:bg-zinc-700">
+      <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-white ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 transition-colors duration-300 group-hover:bg-indigo-50 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:group-hover:border-indigo-500/50 dark:group-hover:bg-zinc-700">
         <service.icon className="h-8 w-8 transition-colors duration-300 group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-400" />
       </div>
 
@@ -434,7 +434,7 @@ function ProcessStep({
 }) {
   return (
     <div className="relative flex flex-col items-start pl-16">
-      <div className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600 text-xl font-bold text-white">
+      <div className="absolute top-0 left-0 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600 text-xl font-bold text-white">
         {step.number}
       </div>
       <h3 className="mt-2 text-xl font-semibold text-zinc-800 dark:text-zinc-100">
