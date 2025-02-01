@@ -1,5 +1,6 @@
 'use client'
 
+import AccountButton from '@/components/account-button'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -13,13 +14,13 @@ const MobileMenu = ({
 }) => {
   return (
     <div
-      className={`z-100 fixed inset-0 transform transition-opacity duration-300 ${
+      className={`fixed inset-0 z-100 transform transition-opacity duration-300 ${
         isOpen ? 'pointer-events-auto' : 'pointer-events-none'
       }`}
     >
       {/* Backdrop */}
       <div
-        className={`backdrop-blur-xs fixed inset-0 bg-black/20 transition-opacity ${
+        className={`fixed inset-0 bg-black/20 backdrop-blur-xs transition-opacity ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}
         onClick={onClose}
@@ -27,7 +28,7 @@ const MobileMenu = ({
 
       {/* Menu panel */}
       <div
-        className={`z-100 fixed inset-y-0 right-0 w-full bg-white px-6 py-6 transition-transform duration-300 sm:hidden ${
+        className={`fixed inset-y-0 right-0 z-100 w-full bg-white px-6 py-6 transition-transform duration-300 sm:hidden ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -48,7 +49,7 @@ const MobileMenu = ({
             <button
               type="button"
               onClick={onClose}
-              className="shadow-xs inline-flex items-center justify-center rounded-full bg-white p-2 text-gray-900 ring-1 ring-gray-900/5 transition-all hover:bg-gray-50"
+              className="inline-flex items-center justify-center rounded-full bg-white p-2 text-gray-900 ring-1 shadow-xs ring-gray-900/5 transition-all hover:bg-gray-50"
             >
               <span className="sr-only">Close menu</span>
               <svg
@@ -82,13 +83,14 @@ const MobileMenu = ({
               Pricing
             </a>
             <div className="pt-4">
-              <a
+              {/* <a
                 href="#enroll"
                 onClick={onClose}
                 className="inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-4 py-2.5 text-base font-medium text-white hover:bg-indigo-500"
               >
                 Enroll Now
-              </a>
+              </a> */}
+              <AccountButton className="w-full" />
             </div>
           </div>
         </div>
@@ -134,13 +136,13 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
     <header
       className={`sticky top-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'shadow-xs bg-white/80 backdrop-blur-lg'
+          ? 'bg-white/80 shadow-xs backdrop-blur-lg'
           : 'border-b border-transparent bg-transparent'
       }`}
     >
       <div className="relative">
         <div
-          className={`bg-linear-to-r absolute bottom-0 left-0 h-px w-full from-transparent via-indigo-500/20 to-transparent transition-opacity duration-500 ${
+          className={`absolute bottom-0 left-0 h-px w-full bg-linear-to-r from-transparent via-indigo-500/20 to-transparent transition-opacity duration-500 ${
             isScrolled ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -180,29 +182,20 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
                 >
                   Pricing
                 </a>
-                <a
+                {/* <a
                   href="#enroll"
                   className="rounded-full bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500"
                 >
                   Enroll Now
-                </a>
-                <Link href="/account">
-                  <button className="btn btn-primary rounded-full">
-                    <div className="avatar avatar-placeholder">
-                      <div className="bg-base-100 text-base-content w-6 rounded-full">
-                        <span className="text-xs">UI</span>
-                      </div>
-                    </div>
-                    Account
-                  </button>
-                </Link>
+                </a> */}
+                <AccountButton />
               </div>
 
               <div className="ml-4 flex sm:hidden">
                 <button
                   type="button"
                   onClick={onMobileMenuOpen}
-                  className="shadow-xs inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-gray-900 ring-1 ring-gray-900/5 transition-all hover:bg-gray-50"
+                  className="inline-flex items-center justify-center rounded-full bg-white/80 p-2 text-gray-900 ring-1 shadow-xs ring-gray-900/5 transition-all hover:bg-gray-50"
                 >
                   <span className="sr-only">Open menu</span>
                   <svg
@@ -262,12 +255,12 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
   return (
     <>
       <div
-        className={`fixed bottom-4 right-4 transform transition-all duration-300 ${
+        className={`fixed right-4 bottom-4 transform transition-all duration-300 ${
           showToast ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
         }`}
         style={{ zIndex: 99999 }}
       >
-        <div className="rounded-lg bg-white px-6 py-4 shadow-xl ring-1 ring-gray-900/5">
+        <div className="rounded-lg bg-white px-6 py-4 ring-1 shadow-xl ring-gray-900/5">
           <div className="flex items-center gap-x-3">
             <svg
               className="h-5 w-5 text-green-600"
@@ -289,20 +282,20 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
 
       <div className="relative isolate overflow-x-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="bg-linear-to-b absolute inset-0 from-indigo-50/30 via-white/60 to-white"></div>
+          <div className="absolute inset-0 bg-linear-to-b from-indigo-50/30 via-white/60 to-white"></div>
           <div
-            className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 transform-gpu blur-2xl"
+            className="absolute top-0 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-2xl"
             aria-hidden="true"
           >
-            <div className="aspect-1155/678 bg-linear-to-tr w-full max-w-[72.1875rem] from-[#ff80b5]/25 to-[#9089fc]/25 opacity-[0.1]"></div>
+            <div className="aspect-1155/678 w-full max-w-[72.1875rem] bg-linear-to-tr from-[#ff80b5]/25 to-[#9089fc]/25 opacity-[0.1]"></div>
           </div>
         </div>
 
-        <div className="animate-fade-in mx-auto w-full max-w-7xl pb-16 pt-10 sm:pb-24 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-24">
+        <div className="animate-fade-in mx-auto w-full max-w-7xl pt-10 pb-16 sm:pb-24 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-24">
           <div className="px-4 sm:px-6 lg:px-0 lg:pt-4">
             <div id="enroll" className="mx-auto max-w-2xl">
               <div className="max-w-lg">
-                <div className="mb-6 inline-flex rounded-full bg-indigo-500/10 px-4 py-1 text-sm font-medium text-indigo-600 ring-1 ring-inset ring-indigo-500/20 sm:mb-8">
+                <div className="mb-6 inline-flex rounded-full bg-indigo-500/10 px-4 py-1 text-sm font-medium text-indigo-600 ring-1 ring-indigo-500/20 ring-inset sm:mb-8">
                   Coming Soon
                 </div>
                 <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-6xl">
@@ -378,13 +371,13 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                               placeholder="Enter your email"
-                              className="flex-1 rounded-lg border-0 px-4 py-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+                              className="flex-1 rounded-lg border-0 px-4 py-3 text-gray-900 ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset"
                               required
                             />
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className="bg-linear-to-r shadow-xs flex items-center justify-center whitespace-nowrap rounded-lg from-indigo-600 to-violet-500 px-6 py-3 text-sm font-semibold text-white hover:from-indigo-500 hover:to-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-75"
+                              className="flex items-center justify-center rounded-lg bg-linear-to-r from-indigo-600 to-violet-500 px-6 py-3 text-sm font-semibold whitespace-nowrap text-white shadow-xs hover:from-indigo-500 hover:to-violet-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-75"
                             >
                               {isSubmitting ? (
                                 <>
@@ -421,13 +414,13 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                     <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-x-6">
                       <a
                         href="/enroll"
-                        className="bg-linear-to-r w-full rounded-xl from-indigo-600 to-violet-500 px-8 py-4 text-center text-base font-medium text-white transition-all hover:from-indigo-500 hover:to-violet-400 sm:w-auto"
+                        className="w-full rounded-xl bg-linear-to-r from-indigo-600 to-violet-500 px-8 py-4 text-center text-base font-medium text-white transition-all hover:from-indigo-500 hover:to-violet-400 sm:w-auto"
                       >
                         Enroll Now - $99
                       </a>
                       <a
                         href="#curriculum"
-                        className="text-base font-semibold leading-7 text-gray-900 hover:text-indigo-600"
+                        className="text-base leading-7 font-semibold text-gray-900 hover:text-indigo-600"
                       >
                         View Curriculum <span aria-hidden="true">→</span>
                       </a>
@@ -496,10 +489,10 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
           </div>
 
           <div className="mt-16 px-4 sm:mt-24 sm:px-6 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-full lg:px-0">
-            <div className="bg-linear-to-b relative rounded-xl from-indigo-50 to-white p-4 shadow-2xl ring-1 ring-gray-900/10 sm:p-8">
+            <div className="relative rounded-xl bg-linear-to-b from-indigo-50 to-white p-4 ring-1 shadow-2xl ring-gray-900/10 sm:p-8">
               <div className="bg-grid-slate-100 absolute inset-0 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))]"></div>
               <div className="relative overflow-hidden rounded-xl bg-gray-900 p-4 shadow-xl">
-                <div className="absolute left-0 right-0 top-0 h-8 bg-gray-800 px-4 py-1.5">
+                <div className="absolute top-0 right-0 left-0 h-8 bg-gray-800 px-4 py-1.5">
                   <div className="flex items-center justify-between">
                     <div className="flex space-x-1.5">
                       <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
@@ -564,7 +557,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                   </code>
                 </pre>
 
-                <div className="absolute left-4 top-8 select-none text-right text-xs leading-6">
+                <div className="absolute top-8 left-4 text-right text-xs leading-6 select-none">
                   {Array.from({ length: 11 }).map((_, i) => (
                     <div key={i} className="text-gray-600">
                       {i + 1}
@@ -576,7 +569,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
           </div>
         </div>
 
-        <div className="bg-linear-to-b absolute inset-x-0 bottom-0 -z-10 h-24 from-white/0 via-white/50 to-white"></div>
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-linear-to-b from-white/0 via-white/50 to-white"></div>
       </div>
     </>
   )
@@ -586,9 +579,9 @@ const About = () => {
   return (
     <div className="relative w-full overflow-x-hidden bg-white py-16 sm:py-24">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-y-0 right-1/2 -z-10 mr-8 w-[150%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-16 lg:mr-0 xl:mr-16 xl:origin-center"></div>
+        <div className="absolute inset-y-0 right-1/2 -z-10 mr-8 w-[150%] origin-bottom-left skew-x-[-30deg] bg-white ring-1 shadow-xl shadow-indigo-600/10 ring-indigo-50 sm:mr-16 lg:mr-0 xl:mr-16 xl:origin-center"></div>
         <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl">
-          <div className="aspect-1155/678 bg-linear-to-tr relative left-[calc(50%-11rem)] w-full max-w-[36.125rem] -translate-x-1/2 rotate-[30deg] from-[#ff80b5] to-[#9089fc] opacity-10"></div>
+          <div className="relative left-[calc(50%-11rem)] aspect-1155/678 w-full max-w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-10"></div>
         </div>
       </div>
 
@@ -596,7 +589,7 @@ const About = () => {
         <div className="mx-auto max-w-2xl lg:mx-0">
           <div className="flex items-center gap-x-3">
             <div className="h-px flex-auto bg-gray-100"></div>
-            <div className="whitespace-nowrap text-sm font-semibold leading-6 text-indigo-600">
+            <div className="text-sm leading-6 font-semibold whitespace-nowrap text-indigo-600">
               How it works
             </div>
             <div className="h-px flex-auto bg-gray-100"></div>
@@ -614,8 +607,8 @@ const About = () => {
 
         <div className="mx-auto mt-12 w-full max-w-2xl sm:mt-16 lg:mt-20 lg:max-w-none">
           <dl className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-x-8">
-            <div className="shadow-xs flex flex-col rounded-2xl bg-white p-6 ring-1 ring-gray-900/5 sm:p-8">
-              <dt className="text-base font-semibold leading-7 text-gray-900">
+            <div className="flex flex-col rounded-2xl bg-white p-6 ring-1 shadow-xs ring-gray-900/5 sm:p-8">
+              <dt className="text-base leading-7 font-semibold text-gray-900">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                   <svg
                     className="h-6 w-6 text-white"
@@ -642,7 +635,7 @@ const About = () => {
                 <ul className="mt-6 space-y-2 text-sm">
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
+                      className="mt-1 mr-2 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -658,7 +651,7 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
+                      className="mt-1 mr-2 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -672,7 +665,7 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
+                      className="mt-1 mr-2 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -688,8 +681,8 @@ const About = () => {
               </dd>
             </div>
 
-            <div className="shadow-xs flex flex-col rounded-2xl bg-white p-6 ring-1 ring-gray-900/5 sm:p-8">
-              <dt className="text-base font-semibold leading-7 text-gray-900">
+            <div className="flex flex-col rounded-2xl bg-white p-6 ring-1 shadow-xs ring-gray-900/5 sm:p-8">
+              <dt className="text-base leading-7 font-semibold text-gray-900">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                   <svg
                     className="h-6 w-6 text-white"
@@ -716,7 +709,7 @@ const About = () => {
                 <ul className="mt-6 space-y-2 text-sm">
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
+                      className="mt-1 mr-2 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -732,7 +725,7 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
+                      className="mt-1 mr-2 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -750,8 +743,8 @@ const About = () => {
               </dd>
             </div>
 
-            <div className="shadow-xs flex flex-col rounded-2xl bg-white p-6 ring-1 ring-gray-900/5 sm:p-8">
-              <dt className="text-base font-semibold leading-7 text-gray-900">
+            <div className="flex flex-col rounded-2xl bg-white p-6 ring-1 shadow-xs ring-gray-900/5 sm:p-8">
+              <dt className="text-base leading-7 font-semibold text-gray-900">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
                   <svg
                     className="h-6 w-6 text-white"
@@ -778,7 +771,7 @@ const About = () => {
                 <ul className="mt-6 space-y-2 text-sm">
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
+                      className="mt-1 mr-2 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -792,7 +785,7 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 mt-1 h-4 w-4 shrink-0 text-indigo-600"
+                      className="mt-1 mr-2 h-4 w-4 shrink-0 text-indigo-600"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -894,7 +887,7 @@ const CTA = () => {
             </div>
 
             <a href="#enroll">
-              <button className="bg-linear-to-r shadow-xs w-full rounded-xl from-indigo-500 to-violet-500 px-8 py-3 text-base font-semibold text-white opacity-50 transition-all hover:from-indigo-600 hover:to-violet-600 sm:px-12 sm:py-4">
+              <button className="w-full rounded-xl bg-linear-to-r from-indigo-500 to-violet-500 px-8 py-3 text-base font-semibold text-white opacity-50 shadow-xs transition-all hover:from-indigo-600 hover:to-violet-600 sm:px-12 sm:py-4">
                 Coming soon
               </button>
             </a>
@@ -916,13 +909,13 @@ const WhatYouGet = () => {
         className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
         aria-hidden="true"
       >
-        <div className="aspect-1155/678 bg-linear-to-tr relative left-[calc(50%-11rem)] w-[36.125rem] -translate-x-1/2 rotate-[30deg] from-[#ff80b5] to-[#9089fc] opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
+        <div className="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-10 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">
+          <h2 className="text-base leading-7 font-semibold text-indigo-600">
             Course Curriculum
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -944,7 +937,7 @@ const WhatYouGet = () => {
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-indigo-600 text-lg font-semibold text-white">
                     1
                   </span>
-                  <h3 className="text-xl font-semibold leading-7 tracking-tight text-gray-900">
+                  <h3 className="text-xl leading-7 font-semibold tracking-tight text-gray-900">
                     JavaScript Fundamentals for Bubble
                   </h3>
                 </div>
@@ -956,7 +949,7 @@ const WhatYouGet = () => {
                 <div className="mt-8 grid gap-8 lg:grid-cols-2">
                   {/* What You'll Learn */}
                   <div>
-                    <h4 className="text-sm font-semibold leading-6 text-indigo-600">
+                    <h4 className="text-sm leading-6 font-semibold text-indigo-600">
                       What You'll Learn
                     </h4>
                     <ul className="mt-4 space-y-3">
@@ -1013,7 +1006,7 @@ const WhatYouGet = () => {
 
                   {/* Practical Projects */}
                   <div>
-                    <h4 className="text-sm font-semibold leading-6 text-indigo-600">
+                    <h4 className="text-sm leading-6 font-semibold text-indigo-600">
                       Practical Skills
                     </h4>
                     <ul className="mt-4 space-y-3">
@@ -1057,7 +1050,7 @@ const WhatYouGet = () => {
                 <div className="mt-8">
                   <div className="relative overflow-hidden rounded-xl bg-gray-900 shadow-xl">
                     {/* VS Code-like header */}
-                    <div className="absolute left-0 right-0 top-0 h-8 bg-gray-800 px-4 py-1.5">
+                    <div className="absolute top-0 right-0 left-0 h-8 bg-gray-800 px-4 py-1.5">
                       <div className="flex items-center justify-between">
                         <div className="flex space-x-1.5">
                           <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
@@ -1075,7 +1068,7 @@ const WhatYouGet = () => {
                       <pre className="overflow-x-auto font-mono text-sm leading-6">
                         <code className="relative block text-gray-50">
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               1
                             </span>
                             <span className="flex-1">
@@ -1088,7 +1081,7 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               2
                             </span>
                             <span className="flex-1">
@@ -1098,7 +1091,7 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               3
                             </span>
                             <span className="flex-1">
@@ -1108,7 +1101,7 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               4
                             </span>
                             <span className="flex-1">
@@ -1121,7 +1114,7 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               5
                             </span>
                             <span className="flex-1">
@@ -1134,7 +1127,7 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               6
                             </span>
                             <span className="flex-1">
@@ -1152,7 +1145,7 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               7
                             </span>
                             <span className="flex-1">
@@ -1164,7 +1157,7 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               8
                             </span>
                             <span className="flex-1">
@@ -1172,13 +1165,13 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               9
                             </span>
                             <span className="flex-1"></span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               10
                             </span>
                             <span className="flex-1">
@@ -1188,7 +1181,7 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               11
                             </span>
                             <span className="flex-1">
@@ -1201,7 +1194,7 @@ const WhatYouGet = () => {
                             </span>
                           </div>
                           <div className="group flex">
-                            <span className="mr-4 select-none text-right text-xs text-gray-600">
+                            <span className="mr-4 text-right text-xs text-gray-600 select-none">
                               12
                             </span>
                             <span className="flex-1">
@@ -1223,7 +1216,7 @@ const WhatYouGet = () => {
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-indigo-600 text-lg font-semibold text-white">
                     2
                   </span>
-                  <h3 className="text-xl font-semibold leading-7 tracking-tight text-gray-900">
+                  <h3 className="text-xl leading-7 font-semibold tracking-tight text-gray-900">
                     Building & Monetizing Bubble Plugins
                   </h3>
                 </div>
@@ -1235,7 +1228,7 @@ const WhatYouGet = () => {
 
                 <div className="mt-8 grid gap-8 lg:grid-cols-2">
                   <div>
-                    <h4 className="text-sm font-semibold leading-6 text-indigo-600">
+                    <h4 className="text-sm leading-6 font-semibold text-indigo-600">
                       Plugin Development
                     </h4>
                     <ul className="mt-4 space-y-3">
@@ -1274,7 +1267,7 @@ const WhatYouGet = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold leading-6 text-indigo-600">
+                    <h4 className="text-sm leading-6 font-semibold text-indigo-600">
                       Business Skills
                     </h4>
                     <ul className="mt-4 space-y-3">
@@ -1359,7 +1352,7 @@ const WhatYouGet = () => {
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-indigo-600 text-lg font-semibold text-white">
                     3
                   </span>
-                  <h3 className="text-xl font-semibold leading-7 tracking-tight text-gray-900">
+                  <h3 className="text-xl leading-7 font-semibold tracking-tight text-gray-900">
                     Full-Stack Development with Next.js
                   </h3>
                 </div>
@@ -1370,7 +1363,7 @@ const WhatYouGet = () => {
 
                 <div className="mt-8 grid gap-8 lg:grid-cols-2">
                   <div>
-                    <h4 className="text-sm font-semibold leading-6 text-indigo-600">
+                    <h4 className="text-sm leading-6 font-semibold text-indigo-600">
                       Technical Skills
                     </h4>
                     <ul className="mt-4 space-y-3">
@@ -1409,7 +1402,7 @@ const WhatYouGet = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold leading-6 text-indigo-600">
+                    <h4 className="text-sm leading-6 font-semibold text-indigo-600">
                       Knowledge
                     </h4>
                     <ul className="mt-4 space-y-3">
@@ -1451,8 +1444,8 @@ const WhatYouGet = () => {
 
                 {/* Final Project Preview */}
                 <div className="mt-8">
-                  <div className="bg-linear-to-r rounded-xl from-indigo-500/5 via-purple-500/5 to-pink-500/5 p-6">
-                    <h4 className="text-sm font-semibold leading-6 text-indigo-600">
+                  <div className="rounded-xl bg-linear-to-r from-indigo-500/5 via-purple-500/5 to-pink-500/5 p-6">
+                    <h4 className="text-sm leading-6 font-semibold text-indigo-600">
                       Milestone Project
                     </h4>
                     <p className="mt-2 text-gray-600">
@@ -1469,7 +1462,7 @@ const WhatYouGet = () => {
           <div className="mt-16 flex justify-center">
             <a
               href="#enroll"
-              className="shadow-xs rounded-full bg-indigo-600 px-8 py-4 text-base font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-full bg-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Start Your Journey Today
             </a>
@@ -1485,12 +1478,12 @@ const Footer = () => {
     <footer className="relative isolate overflow-hidden border-t border-gray-200 bg-white">
       {/* Decorative blur effect */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white/90 shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
+        <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white/90 ring-1 shadow-xl shadow-indigo-600/10 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         {/* Bottom section */}
-        <div className=" border-gray-900/10 pt-8 ">
+        <div className="border-gray-900/10 pt-8">
           <div className="flex flex-col items-center justify-between gap-y-4 md:flex-row">
             <p className="text-xs leading-5 text-gray-500">
               © 2024 Artem Kirsanov. All rights reserved.
