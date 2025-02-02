@@ -159,7 +159,7 @@ const caseStudies = [
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col items-center gap-2 rounded-2xl bg-white p-6 shadow-xs ring-1 ring-zinc-100">
+    <div className="flex flex-col items-center gap-2 rounded-2xl bg-white p-6 ring-1 shadow-xs ring-zinc-100">
       <div className="font-display text-3xl font-medium text-indigo-600">
         {value}
       </div>
@@ -170,7 +170,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function Section({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="rounded-2xl bg-white p-8 shadow-xs ring-1 ring-zinc-100">
+    <div className="rounded-2xl bg-white p-8 ring-1 shadow-xs ring-zinc-100">
       <h3 className="font-display text-xl font-medium text-zinc-900">
         {title}
       </h3>
@@ -198,8 +198,13 @@ function Section({ title, items }: { title: string; items: string[] }) {
   )
 }
 
-export default function CaseStudy({ params }: { params: { slug: string } }) {
-  const study = caseStudies.find((s) => s.slug === params.slug)
+export default async function CaseStudy({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const study = caseStudies.find((s) => s.slug === slug)
 
   if (!study) {
     notFound()
@@ -212,7 +217,7 @@ export default function CaseStudy({ params }: { params: { slug: string } }) {
         <div className="absolute inset-0">
           <div className="bg-grid-zinc-900/[0.04] absolute inset-0 bg-[size:32px] [mask-image:linear-gradient(to_bottom,white,transparent,white)]" />
         </div>
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[60rem] w-[90rem] translate-y-1/4 rounded-full bg-linear-to-r from-indigo-100/80 via-indigo-300/30 to-zinc-100/50 opacity-20 blur-3xl" />
+        <div className="absolute top-0 right-0 left-0 -z-10 m-auto h-[60rem] w-[90rem] translate-y-1/4 rounded-full bg-linear-to-r from-indigo-100/80 via-indigo-300/30 to-zinc-100/50 opacity-20 blur-3xl" />
       </div>
 
       <Container>
@@ -252,7 +257,7 @@ export default function CaseStudy({ params }: { params: { slug: string } }) {
 
             {/* Title and Description */}
             <div className="mx-auto mb-12 flex max-w-xl flex-col items-center text-center">
-              <div className="inline-flex items-center rounded-full bg-indigo-500/10 px-3 py-1 text-sm text-indigo-600 ring-1 ring-inset ring-indigo-600/20">
+              <div className="inline-flex items-center rounded-full bg-indigo-500/10 px-3 py-1 text-sm text-indigo-600 ring-1 ring-indigo-600/20 ring-inset">
                 {study.timeline}
               </div>
               <h1 className="font-display mt-6 text-4xl font-medium tracking-tight text-zinc-900">
@@ -262,7 +267,7 @@ export default function CaseStudy({ params }: { params: { slug: string } }) {
             </div>
 
             {/* Main Content Card */}
-            <div className="rounded-3xl bg-white shadow-xs ring-1 ring-zinc-100">
+            <div className="rounded-3xl bg-white ring-1 shadow-xs ring-zinc-100">
               {/* Tech Stack */}
               <div className="border-b border-zinc-100 px-8 py-6 lg:px-12">
                 <h2 className="font-display text-sm font-medium text-zinc-900">
@@ -284,7 +289,7 @@ export default function CaseStudy({ params }: { params: { slug: string } }) {
               <div className="grid grid-cols-2 gap-px border-b border-zinc-100 bg-zinc-50 sm:grid-cols-4">
                 {study.metrics.map((metric) => (
                   <div key={metric.label} className="bg-white px-6 py-8">
-                    <p className="text-sm font-medium leading-6 text-zinc-600">
+                    <p className="text-sm leading-6 font-medium text-zinc-600">
                       {metric.label}
                     </p>
                     <p className="mt-2 flex items-baseline gap-x-2">
