@@ -2,8 +2,6 @@ import typographyPlugin from '@tailwindcss/typography'
 import animate from 'tailwindcss-animate'
 import { type Config } from 'tailwindcss'
 
-import typographyStyles from './typography'
-
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'selector',
@@ -24,7 +22,6 @@ export default {
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
     },
-    typography: typographyStyles,
     extend: {
       animation: {
         'float-slow': 'float 4s ease-in-out infinite',
