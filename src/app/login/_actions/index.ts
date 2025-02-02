@@ -21,7 +21,12 @@ async function signUpNewUser(formData: FormData) {
   const userData = await checkUserData()
   if (userData) {
     revalidatePath('/account', 'layout')
-    redirect('/account')
+    const checkout = formData.get('checkout') as string
+    if (checkout) {
+      redirect('/account?checkout=true')
+    } else {
+      redirect('/account')
+    }
   }
 }
 async function signInWithEmail(formData: FormData) {
@@ -37,7 +42,12 @@ async function signInWithEmail(formData: FormData) {
   const userData = await checkUserData()
   if (userData) {
     revalidatePath('/account', 'layout')
-    redirect('/account')
+    const checkout = formData.get('checkout') as string
+    if (checkout) {
+      redirect('/account?checkout=true')
+    } else {
+      redirect('/account')
+    }
   }
 }
 

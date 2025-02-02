@@ -101,7 +101,7 @@ const MobileMenu = ({
 
 function JsForBubblers() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const isWaitlist = true
+  const isWaitlist = false
   return (
     <div className="mx-auto h-screen w-full flex-auto">
       {/* Remove the script and style tags and add the CSS to globals.css instead */}
@@ -296,7 +296,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
             <div id="enroll" className="mx-auto max-w-2xl">
               <div className="max-w-lg">
                 <div className="mb-6 inline-flex rounded-full bg-indigo-500/10 px-4 py-1 text-sm font-medium text-indigo-600 ring-1 ring-indigo-500/20 ring-inset sm:mb-8">
-                  Coming Soon
+                  Enroll now
                 </div>
                 <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-6xl">
                   The JavaScript Blueprint for{' '}
@@ -413,7 +413,7 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                   ) : (
                     <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-x-6">
                       <a
-                        href="/enroll"
+                        href="/login?checkout=true"
                         className="w-full rounded-xl bg-linear-to-r from-indigo-600 to-violet-500 px-8 py-4 text-center text-base font-medium text-white transition-all hover:from-indigo-500 hover:to-violet-400 sm:w-auto"
                       >
                         Enroll Now - $99
@@ -429,60 +429,56 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                 </div>
 
                 <div className="mt-6 text-sm text-gray-500">
-                  {isWaitlist ? (
-                    <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-x-2">
-                      <div className="flex items-center space-x-2">
-                        <svg
-                          className="h-5 w-5 text-green-600"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <span className="text-sm font-medium text-gray-500">
-                          Early access
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <svg
-                          className="h-5 w-5 text-green-600"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <span className="text-sm font-medium text-gray-500">
-                          30% discount
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <svg
-                          className="h-5 w-5 text-green-600"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <span className="text-sm font-medium text-gray-500">
-                          Private Discord community
-                        </span>
-                      </div>
+                  <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-x-2">
+                    <div className="flex items-center space-x-2">
+                      <svg
+                        className="h-5 w-5 text-green-600"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span className="text-sm font-medium text-gray-500">
+                        Early access
+                      </span>
                     </div>
-                  ) : (
-                    'Join 1,000+ Bubble developers who&apos;ve transformed their development skills'
-                  )}
+                    <div className="flex items-center space-x-2">
+                      <svg
+                        className="h-5 w-5 text-green-600"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span className="text-sm font-medium text-gray-500">
+                        30% discount
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <svg
+                        className="h-5 w-5 text-green-600"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span className="text-sm font-medium text-gray-500">
+                        Private Discord community
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -886,9 +882,9 @@ const CTA = () => {
               </div>
             </div>
 
-            <a href="#enroll">
-              <button className="w-full rounded-xl bg-linear-to-r from-indigo-500 to-violet-500 px-8 py-3 text-base font-semibold text-white opacity-50 shadow-xs transition-all hover:from-indigo-600 hover:to-violet-600 sm:px-12 sm:py-4">
-                Coming soon
+            <a href="/login?checkout=true">
+              <button className="w-full rounded-xl bg-linear-to-r from-indigo-500 to-violet-500 px-8 py-3 text-base font-semibold text-white shadow-xs transition-all hover:from-indigo-600 hover:to-violet-600 sm:px-12 sm:py-4">
+                Enroll now
               </button>
             </a>
             <p className="mt-3 text-sm text-gray-300 sm:mt-4">
@@ -1461,7 +1457,7 @@ const WhatYouGet = () => {
           {/* Bottom CTA */}
           <div className="mt-16 flex justify-center">
             <a
-              href="#enroll"
+              href="/login?checkout=true"
               className="rounded-full bg-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Start Your Journey Today

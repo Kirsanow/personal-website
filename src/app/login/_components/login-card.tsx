@@ -5,12 +5,13 @@ import { signInWithEmail, signUpNewUser } from '../_actions'
 import { createClient } from '@/lib/supabase/client'
 import config from '@/config'
 
-export default function LoginCard() {
+export default function LoginCard({ checkout }: { checkout: string }) {
   const [isLogin, setIsLogin] = useState(true)
   const [state, formAction, isPending] = useActionState(
     async (_state: any, formData: FormData) => {
       try {
         const action = isLogin ? signInWithEmail : signUpNewUser
+        formData.set('checkout', checkout)
         const result = await action(formData)
         if (result?.error) {
           return { error: result.error }

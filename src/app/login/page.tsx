@@ -10,17 +10,27 @@ export const metadata: Metadata = {
   description: 'Login to access your courses and continue learning',
 }
 
-export default async function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
   const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
+  const checkout = (await searchParams).checkout
+
   if (user) {
-    redirect('/account')
+    if (checkout) {
+      redirect('/account?checkout=true')
+    } else {
+      redirect('/account')
+    }
   }
   return (
     <div className="bg-base-100 flex min-h-screen items-center justify-center p-4">
-      <LoginCard />
+      <LoginCard checkout={checkout as string} />
     </div>
   )
 }

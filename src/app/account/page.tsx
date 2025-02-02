@@ -21,14 +21,33 @@ const mockUserData = {
   memberSince: 'January 2024',
 }
 
-export default async function AccountPage() {
+export default async function AccountPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
   const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
   const userData = await getUserData()
-
-  console.log(userData)
+  const checkout = (await searchParams).checkout
+  if (
+    checkout &&
+    !userData?.courses_access.find(
+      (course: string) => course === 'javascript-for-bubble-developers',
+    )
+  ) {
+    const formData = new FormData()
+    formData.set('slug', courses['javascript-for-bubble-developers'].slug)
+    formData.set(
+      'priceId',
+      process.env.NODE_ENV === 'production'
+        ? courses['javascript-for-bubble-developers'].priceId
+        : courses['javascript-for-bubble-developers'].priceId_test,
+    )
+    await purchaseCourse(formData)
+  }
   return (
     <div className="min-h-screen p-4 md:p-8">
       {/* Hero section with user info */}
