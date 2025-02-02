@@ -10,14 +10,17 @@ import CompletionButton from '../_components/completion-button'
 import SettingsModal from '../../_components/settings-modal'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { hasCourseAccess } from '@/actions/user'
+import { checkUserData } from '@/app/login/_actions'
 const Header = ({
   course,
   currentChapter,
   progress,
+  userData,
 }: {
   course: any
   currentChapter: any
   progress: number
+  userData: any
 }) => {
   return (
     <div className="border-base-300 bg-base-100/80 sticky top-0 z-50 border-b backdrop-blur-xl">
@@ -65,7 +68,7 @@ const Header = ({
             <div className="bg-base-content/10 h-4 w-[1px]"></div>
           </div>
 
-          <SettingsModal />
+          <SettingsModal userData={userData} />
 
           <div className="dropdown dropdown-end">
             <div
@@ -75,7 +78,7 @@ const Header = ({
             >
               <div className="ring-base-300 ring-offset-base-100 w-8 rounded-full ring ring-offset-2">
                 <img
-                  src="https://api.dicebear.com/9.x/big-smile/svg"
+                  src={userData?.avatar_url || ''}
                   alt="User avatar"
                   width={32}
                   height={32}
@@ -267,6 +270,8 @@ export default async function CoursePage({
     redirect('/login')
   }
 
+  const userData = await checkUserData()
+
   const hasAccess = await hasCourseAccess(user.id, slug)
 
   if (!hasAccess) {
@@ -311,6 +316,7 @@ export default async function CoursePage({
         course={course}
         currentChapter={currentChapter}
         progress={progressPercentage}
+        userData={userData}
       />
       <div className="bg-base-200 min-h-screen p-4 lg:p-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">

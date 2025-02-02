@@ -1,5 +1,6 @@
 'use server'
 
+import config from '@/config'
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -11,7 +12,7 @@ async function signUpNewUser(formData: FormData) {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
     options: {
-      emailRedirectTo: 'http://localhost:3000/confirm',
+      emailRedirectTo: `${config.domainName}/confirm`,
     },
   })
   if (error) {
@@ -69,7 +70,10 @@ async function checkUserData() {
   if (!userData) {
     const { data: newUserData, error: newUserError } = await supabase
       .from('user_data')
-      .insert({ id: data.user?.id })
+      .insert({
+        id: data.user?.id,
+        avatar_url: `https://api.dicebear.com/9.x/big-smile/svg?seed=${data.user?.id}`,
+      })
       .select()
       .single()
     if (newUserError) {

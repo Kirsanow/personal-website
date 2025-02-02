@@ -1,15 +1,15 @@
 'use client'
 
 import { signOut } from '@/actions/supabase'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
 
 export default function SettingsModal({
   children,
-  avatarUrl,
+  userData,
 }: {
   children?: React.ReactNode
-  avatarUrl?: string
+  userData?: any
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -76,58 +76,16 @@ export default function SettingsModal({
             {/* Avatar Section */}
             <div className="text-center">
               <div className="relative inline-block">
-                <div
-                  className="bg-base-300 size-24 cursor-pointer overflow-hidden rounded-full"
-                  onClick={handleAvatarClick}
-                >
-                  {avatarUrl ? (
-                    <Image
-                      src={avatarUrl}
-                      alt="Profile"
-                      width={96}
-                      height={96}
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="size-12 opacity-50"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3s-3-1.34-3-3s1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22c.03-1.99 4-3.08 6-3.08c1.99 0 5.97 1.09 6 3.08c-1.29 1.94-3.5 3.22-6 3.22z"
-                        />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  className="hidden"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />
-                <div className="absolute right-0 bottom-0">
-                  <button className="btn btn-circle btn-sm btn-primary">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="size-4"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M21 6.5l-4 4V7c0-.55-.45-1-1-1H9.82L21 17.18V6.5zM3.27 2L2 3.27L4.73 6H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.21 0 .39-.08.54-.18L19.73 21L21 19.73L3.27 2z"
-                      />
-                    </svg>
-                  </button>
+                <div className="bg-base-300 size-24 cursor-pointer overflow-hidden rounded-full">
+                  <Image
+                    src={userData?.avatar_url}
+                    alt="Profile"
+                    width={96}
+                    height={96}
+                    className="object-cover"
+                  />
                 </div>
               </div>
-              <p className="text-base-content/70 mt-2 text-sm">
-                Click to change avatar
-              </p>
             </div>
 
             {/* Account Actions */}

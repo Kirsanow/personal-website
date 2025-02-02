@@ -58,7 +58,7 @@ export default async function AccountPage({
               <div className="avatar">
                 <div className="ring-neutral/20 ring-offset-base-100 w-18 rounded-full ring ring-offset-2">
                   <img
-                    src={mockUserData.avatar}
+                    src={userData?.avatar_url}
                     alt="User avatar"
                     width={96}
                     height={96}
