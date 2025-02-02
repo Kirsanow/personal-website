@@ -26,18 +26,15 @@ export const courses = {
         description: 'Introduction to the course',
         video: 'KlodYPk5lRg',
         number: 1,
-        resources: [
-          {
-            title: 'Resources mentioned in the chapter',
-            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-          },
-        ],
+        minutes: 3,
+        resources: [],
       },
       {
         title: 'Tools we need',
         description: 'Tools we need to succeed',
         video: 'w4iCxXJ-_zU',
         number: 2,
+        minutes: 1,
         resources: [
           {
             title: 'Resources mentioned in the chapter',
@@ -50,6 +47,7 @@ export const courses = {
         description: 'Get familiar with JavaScript in Bubble',
         video: 'W6NZfCO5SIk',
         number: 3,
+        minutes: 10,
         resources: [
           {
             title: 'Resources mentioned in the chapter',
@@ -62,6 +60,7 @@ export const courses = {
         description: 'More advanced JavaScript in Bubble',
         video: 'W6NZfCO5SIk',
         number: 4,
+        minutes: 10,
         resources: [
           {
             title: 'Functions',

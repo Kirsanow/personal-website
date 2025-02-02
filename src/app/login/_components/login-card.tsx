@@ -4,6 +4,7 @@ import { useActionState, useState } from 'react'
 import { signInWithEmail, signUpNewUser } from '../_actions'
 import { createClient } from '@/lib/supabase/client'
 import config from '@/config'
+import ForgotPasswordModal from './forgot-password-modal'
 
 export default function LoginCard({ checkout }: { checkout: string }) {
   const [isLogin, setIsLogin] = useState(true)
@@ -109,6 +110,7 @@ export default function LoginCard({ checkout }: { checkout: string }) {
                 minLength={6}
               />
 
+              {isLogin && <ForgotPasswordModal />}
               <button
                 className={`btn btn-primary mt-4 w-full`}
                 disabled={isPending}

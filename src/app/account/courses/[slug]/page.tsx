@@ -111,6 +111,7 @@ const ChapterList = ({
     description: string
     video: string
     number: number
+    minutes: number
   }[]
   chapterNumber: number
   slug: string
@@ -166,7 +167,7 @@ const ChapterList = ({
                 Chapter {chapter.number}: {chapter.title}
               </div>
               <div className="text-base-content/60 flex items-center gap-2 text-xs">
-                <span>20 min</span>
+                <span>{chapter.minutes} min</span>
                 <span className="bg-base-content/20 size-1 rounded-full"></span>
                 <span
                   className={
@@ -195,41 +196,47 @@ const Resources = ({
     <div className="bg-base-100 rounded-box p-6 shadow-md">
       <h3 className="mb-4 text-lg font-semibold">Resources</h3>
       <div className="space-y-3">
-        {resources.map((resource) => (
-          <div
-            key={resource.title}
-            className="bg-base-200 flex items-center justify-between rounded-lg p-3"
-          >
-            <div className="flex items-center gap-3">
-              <svg
-                className="text-primary size-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                  <polyline points="13 2 13 9 20 9"></polyline>
-                </g>
-              </svg>
-              <span>{resource.title}</span>
-            </div>
-            <Link
-              href={resource.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary btn-sm flex items-center gap-2"
+        {resources.length > 0 ? (
+          resources.map((resource) => (
+            <div
+              key={resource.title}
+              className="bg-base-200 flex items-center justify-between rounded-lg p-3"
             >
-              <ArrowTopRightOnSquareIcon className="size-4" />
-              Open
-            </Link>
+              <div className="flex items-center gap-3">
+                <svg
+                  className="text-primary size-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                    <polyline points="13 2 13 9 20 9"></polyline>
+                  </g>
+                </svg>
+                <span>{resource.title}</span>
+              </div>
+              <Link
+                href={resource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-sm flex items-center gap-2"
+              >
+                <ArrowTopRightOnSquareIcon className="size-4" />
+                Open
+              </Link>
+            </div>
+          ))
+        ) : (
+          <div className="text-base-content/60">
+            No resources in this chapter
           </div>
-        ))}
+        )}
       </div>
     </div>
   )
@@ -345,31 +352,12 @@ export default async function CoursePage({
                       fill="none"
                       stroke="currentColor"
                     >
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <polyline points="12 6 12 12 16 14"></polyline>
-                    </g>
-                  </svg>
-                  3 hours total
-                </span>
-                <span className="flex items-center gap-1">
-                  <svg
-                    className="size-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <g
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      strokeWidth="2"
-                      fill="none"
-                      stroke="currentColor"
-                    >
                       <path d="M12 20V10"></path>
                       <path d="M18 20V4"></path>
                       <path d="M6 20v-4"></path>
                     </g>
                   </svg>
-                  Intermediate
+                  Beginner
                 </span>
                 <span className="flex items-center gap-1">
                   <svg
