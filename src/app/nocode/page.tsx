@@ -26,6 +26,8 @@ import image5 from '@/images/photos/image-5.jpg'
 import CalcomReact from '@/components/calcom-react'
 import { usePathname } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
