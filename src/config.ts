@@ -30,8 +30,8 @@ export const courses = {
         resources: [],
       },
       {
-        title: 'Tools we need',
-        description: 'Tools we need to succeed',
+        title: 'Tools we will need',
+        description: 'Tools we will need to succeed',
         video: 'w4iCxXJ-_zU',
         number: 2,
         minutes: 1,
