@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  rewrites: async () => {
+    return [
+      {
+        source: '/api/webhook/stripe/',
+        destination: '/api/webhook/stripe',
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {

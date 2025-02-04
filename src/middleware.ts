@@ -3,6 +3,15 @@ import type { NextRequest } from 'next/server'
 import { updateSession } from '@/lib/supabase/middleware'
 
 export async function middleware(request: NextRequest) {
+  // Bypass middleware for Stripe webhook requests to avoid redirects
+  if (request.nextUrl.pathname.startsWith('/api/webhook/stripe')) {
+    console.log(
+      'Skipping middleware for Stripe webhook:',
+      request.nextUrl.pathname,
+    )
+    return NextResponse.next()
+  }
+
   // update user's auth session
   console.log('middleware triggered')
   await updateSession(request)
