@@ -142,4 +142,8 @@ export const config = {
   },
 }
 
-// export const runtime = 'edge'
+// Enable edge runtime for better performance and to avoid redirects
+export const runtime = 'edge'
+
+// Disable dynamic segments handling which can cause redirects
+export const dynamic = 'force-dynamic'
