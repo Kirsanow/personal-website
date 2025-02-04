@@ -36,6 +36,7 @@ export async function purchaseCourse(formData: FormData) {
       },
     ],
     mode: 'payment',
+    allow_promotion_codes: true,
     success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/account/courses/${course.slug}?success=true&chapter=1`,
     cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/account?canceled=true`,
     customer_email: user.email,
