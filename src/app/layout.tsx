@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/images/favicon.ico" sizes="any" />
+        {/* <link rel="icon" href="/images/favicon.ico" sizes="any" /> */}
       </head>
       <body className="flex h-full">
         <Providers>

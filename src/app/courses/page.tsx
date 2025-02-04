@@ -99,21 +99,81 @@ const MobileMenu = ({
   )
 }
 
+// Inserted VideoModal component
+const VideoModal = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean
+  onClose: () => void
+}) => {
+  if (!isOpen) return null
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-3xl bg-black p-4"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-2 right-2 text-white"
+        >
+          <span className="sr-only">Close video</span>
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <div className="aspect-video">
+          <iframe
+            className="h-full w-full"
+            src="https://www.youtube.com/embed/CSVwMb5APS0"
+            title="Video Preview"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function JsForBubblers() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
   const isWaitlist = false
   return (
     <div className="mx-auto h-screen w-full flex-auto">
-      {/* Remove the script and style tags and add the CSS to globals.css instead */}
       <Header onMobileMenuOpen={() => setIsMobileMenuOpen(true)} />
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
       />
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+      />
       <main className="flex-auto">
-        <Hero isWaitlist={isWaitlist} />
+        <Hero
+          isWaitlist={isWaitlist}
+          onVideoPreview={() => setIsVideoModalOpen(true)}
+        />
         <About />
-        <WhatYouGet />
+        <WhatYouGet onVideoPreview={() => setIsVideoModalOpen(true)} />
         <CTA />
       </main>
       <Footer />
@@ -221,7 +281,13 @@ const Header = ({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) => {
   )
 }
 
-const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
+const Hero = ({
+  isWaitlist,
+  onVideoPreview,
+}: {
+  isWaitlist: boolean
+  onVideoPreview: () => void
+}) => {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showToast, setShowToast] = useState(false)
@@ -427,59 +493,16 @@ const Hero = ({ isWaitlist }: { isWaitlist: boolean }) => {
                     </div>
                   )}
                 </div>
-
-                <div className="mt-6 text-sm text-gray-500">
-                  <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-x-2">
-                    <div className="flex items-center space-x-2">
-                      <svg
-                        className="h-5 w-5 text-green-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-sm font-medium text-gray-500">
-                        Early access
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <svg
-                        className="h-5 w-5 text-green-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-sm font-medium text-gray-500">
-                        30% discount
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <svg
-                        className="h-5 w-5 text-green-600"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-sm font-medium text-gray-500">
-                        Private Discord community
-                      </span>
-                    </div>
+                {!isWaitlist && (
+                  <div className="mt-4">
+                    <button
+                      onClick={onVideoPreview}
+                      className="ml-2 cursor-pointer text-sm text-indigo-600 hover:underline"
+                    >
+                      Watch Preview Video
+                    </button>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -883,7 +906,7 @@ const CTA = () => {
             </div>
 
             <a href="/login?checkout=true">
-              <button className="w-full rounded-xl bg-linear-to-r from-indigo-500 to-violet-500 px-8 py-3 text-base font-semibold text-white shadow-xs transition-all hover:from-indigo-600 hover:to-violet-600 sm:px-12 sm:py-4">
+              <button className="animate-pulse-subtle w-full rounded-xl bg-linear-to-r from-indigo-500 to-violet-500 px-8 py-3 text-base font-semibold text-white ring-2 shadow-lg ring-indigo-200 ring-offset-2 transition-all duration-300 hover:scale-[1.02] hover:from-indigo-600 hover:to-violet-600 hover:shadow-xl sm:px-12 sm:py-4">
                 Enroll now
               </button>
             </a>
@@ -897,7 +920,7 @@ const CTA = () => {
   )
 }
 
-const WhatYouGet = () => {
+const WhatYouGet = ({ onVideoPreview }: { onVideoPreview: () => void }) => {
   return (
     <div id="curriculum" className="relative isolate bg-white py-24 sm:py-32">
       {/* Decorative elements */}
@@ -1462,6 +1485,12 @@ const WhatYouGet = () => {
             >
               Start Your Journey Today
             </a>
+            <button
+              className="ml-4 cursor-pointer rounded-full bg-white px-8 py-4 text-base font-semibold text-indigo-600 ring-1 shadow-xs ring-indigo-200 ring-inset hover:bg-gray-50 hover:ring-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              onClick={onVideoPreview}
+            >
+              Watch Preview Video
+            </button>
           </div>
         </div>
       </div>

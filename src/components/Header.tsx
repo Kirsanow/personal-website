@@ -365,14 +365,14 @@ export function Header({ onMobileMenuOpen }: { onMobileMenuOpen: () => void }) {
                 >
                   Courses
                 </a>
-                {/* <a
+                <a
                   target="_blank"
                   href="https://cal.com/kirsanov/30min"
                   className="rounded-full bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500"
                 >
                   Book a call
-                </a> */}
-                <AccountButton />
+                </a>
+                {/* <AccountButton /> */}
               </div>
 
               <div className="ml-4 flex sm:hidden">

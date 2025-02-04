@@ -77,7 +77,7 @@ export default function SettingsModal({
             <div className="text-center">
               <div className="relative inline-block">
                 <div className="bg-base-300 size-24 cursor-pointer overflow-hidden rounded-full">
-                  <Image
+                  <img
                     src={userData?.avatar_url}
                     alt="Profile"
                     width={96}

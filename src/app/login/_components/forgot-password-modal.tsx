@@ -1,6 +1,5 @@
 'use client'
 
-import config from '@/config'
 import { createClient } from '@/lib/supabase/client'
 import { useState } from 'react'
 
@@ -11,9 +10,10 @@ export default function ForgotPasswordModal() {
   const handlePasswordReset = async (email: string) => {
     setIsPending(true)
     const supabase = createClient()
-    await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${config.domainName}/update-password`,
-    })
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email)
+    if (error) {
+      console.error(error)
+    }
     setIsPending(false)
     setIsSuccess(true)
   }
