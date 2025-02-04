@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       console.log('Body length:', body.length)
 
       // Construct the event
-      event = stripe.webhooks.constructEvent(
+      event = await stripe.webhooks.constructEventAsync(
         body,
         signature,
         webhookSecret.trim(), // Ensure no whitespace
