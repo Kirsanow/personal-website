@@ -8,7 +8,10 @@ import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import CompletionButton from '../_components/completion-button'
 import SettingsModal from '../../_components/settings-modal'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowTopRightOnSquareIcon,
+  QuestionMarkCircleIcon,
+} from '@heroicons/react/24/outline'
 import { hasCourseAccess } from '@/actions/user'
 import { checkUserData } from '@/app/login/_actions'
 const Header = ({
@@ -245,6 +248,52 @@ const Resources = ({
   )
 }
 
+const ComingSoonAlert = () => {
+  return (
+    <div className="alert bg-warning/10 text-warning-content mb-4 shadow-sm">
+      <div className="flex items-center gap-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="size-6 flex-shrink-0"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 9v4m0 4h.01M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Z"
+          />
+        </svg>
+        <div className="flex items-center gap-2">
+          <span className="font-semibold">Course in Progress</span>
+          <div className="dropdown dropdown-hover">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-circle btn-ghost btn-xs text-warning-content/70"
+            >
+              <QuestionMarkCircleIcon className="size-4" />
+            </div>
+            <div
+              tabIndex={0}
+              className="dropdown-content card card-compact bg-base-200 text-base-content z-[1] w-64 p-2 shadow"
+            >
+              <div className="card-body">
+                <p className="text-sm">
+                  This course is actively being developed. New chapters and
+                  content will be added regularly. Stay tuned for updates!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default async function CoursePage({
@@ -322,6 +371,7 @@ export default async function CoursePage({
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Sidebar */}
           <div className="lg:col-span-3">
+            <ComingSoonAlert />
             <ChapterList
               chapters={course.chapters}
               chapterNumber={Number(chapter)}

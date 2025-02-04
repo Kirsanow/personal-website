@@ -45,29 +45,24 @@ export const courses = {
       {
         title: 'JavaScript in Bubble basics',
         description: 'Get familiar with JavaScript in Bubble',
-        video: 'W6NZfCO5SIk',
+        video: 'CSVwMb5APS0',
         number: 3,
         minutes: 10,
-        resources: [
-          {
-            title: 'Resources mentioned in the chapter',
-            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-          },
-        ],
+        resources: [],
       },
-      {
-        title: 'JavaScript in Bubble part 2',
-        description: 'More advanced JavaScript in Bubble',
-        video: 'W6NZfCO5SIk',
-        number: 4,
-        minutes: 10,
-        resources: [
-          {
-            title: 'Functions',
-            url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-          },
-        ],
-      },
+      // {
+      //   title: 'JavaScript in Bubble part 2',
+      //   description: 'More advanced JavaScript in Bubble',
+      //   video: 'W6NZfCO5SIk',
+      //   number: 4,
+      //   minutes: 10,
+      //   resources: [
+      //     {
+      //       title: 'Functions',
+      //       url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      //     },
+      //   ],
+      // },
     ],
   },
 }

@@ -482,7 +482,9 @@ const Hero = ({
                         href="/login?checkout=true"
                         className="w-full rounded-xl bg-linear-to-r from-indigo-600 to-violet-500 px-8 py-4 text-center text-base font-medium text-white transition-all hover:from-indigo-500 hover:to-violet-400 sm:w-auto"
                       >
-                        Enroll Now - $99
+                        Enroll Now -{' '}
+                        <span className="text-gray-300 line-through">$199</span>{' '}
+                        <span className="ml-1">$99</span>
                       </a>
                       <a
                         href="#curriculum"
@@ -850,7 +852,8 @@ const CTA = () => {
                   </div>
                   <div className="mt-1 flex items-baseline justify-center gap-x-2 sm:justify-start">
                     <span className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                      $99
+                      <span className="text-gray-400 line-through">$199</span>{' '}
+                      <span className="text-white">$99</span>
                     </span>
                     <span className="text-sm text-gray-300">
                       /lifetime access
@@ -1478,15 +1481,15 @@ const WhatYouGet = ({ onVideoPreview }: { onVideoPreview: () => void }) => {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-16 flex justify-center">
+          <div className="mt-16 flex flex-col justify-center gap-4 sm:flex-row">
             <a
               href="/login?checkout=true"
-              className="rounded-full bg-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-full bg-indigo-600 px-8 py-4 text-center text-base font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Start Your Journey Today
             </a>
             <button
-              className="ml-4 cursor-pointer rounded-full bg-white px-8 py-4 text-base font-semibold text-indigo-600 ring-1 shadow-xs ring-indigo-200 ring-inset hover:bg-gray-50 hover:ring-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="cursor-pointer rounded-full bg-white px-8 py-4 text-base font-semibold text-indigo-600 ring-1 shadow-xs ring-indigo-200 ring-inset hover:bg-gray-50 hover:ring-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               onClick={onVideoPreview}
             >
               Watch Preview Video
