@@ -14,6 +14,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { hasCourseAccess } from '@/actions/user'
 import { checkUserData } from '@/app/login/_actions'
+import FeedbackSupport from '@/components/FeedbackSupport'
 const Header = ({
   course,
   currentChapter,
@@ -367,6 +368,7 @@ export default async function CoursePage({
         progress={progressPercentage}
         userData={userData}
       />
+      <FeedbackSupport />
       <div className="bg-base-200 min-h-screen p-4 lg:p-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Sidebar */}
