@@ -53,6 +53,14 @@ export const courses = {
         minutes: 15,
         resources: [],
       },
+      {
+        title: 'JavaScript in Bubble Practical Project',
+        description: 'Practical project to apply your knowledge',
+        video: 'kPw8WdtXvow',
+        number: 5,
+        minutes: 11,
+        resources: [],
+      },
     ],
   },
 }
