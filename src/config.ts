@@ -61,6 +61,14 @@ export const courses = {
         minutes: 11,
         resources: [],
       },
+      {
+        title: 'Cursor IDE Fundamentals',
+        description: 'Introduction to Cursor, an AI powered IDE',
+        video: 'WJ8JFMrLhn4',
+        number: 6,
+        minutes: 6,
+        resources: [],
+      },
     ],
   },
 }
