@@ -93,6 +93,14 @@ export const courses = {
         minutes: 3,
         resources: [],
       },
+      {
+        title: 'Building an Onboarding Plugin from scratch',
+        description: 'Building an Onboarding Plugin with Intro.js from scratch',
+        video: 'mV_6UT4PbyU',
+        number: 10,
+        minutes: 16,
+        resources: [],
+      },
     ],
   },
 }
