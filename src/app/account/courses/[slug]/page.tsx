@@ -125,12 +125,12 @@ const ChapterList = ({
   progress: { [key: number]: boolean }
 }) => {
   return (
-    <div className="bg-base-100 rounded-box border-base-300 border shadow-xs">
-      <div className="p-4 pb-2 text-xs font-semibold tracking-wide opacity-60">
+    <div className="bg-base-100 rounded-box border-base-300 flex h-full max-h-[80vh] flex-col border shadow-xs">
+      <div className="flex-shrink-0 p-4 pb-2 text-xs font-semibold tracking-wide opacity-60">
         Course Chapters
       </div>
 
-      <div className="divide-base-200 divide-y">
+      <div className="divide-base-200 flex-grow divide-y overflow-y-auto">
         {chapters.map((chapter) => (
           <Link
             key={chapter.number}
