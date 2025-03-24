@@ -1,13 +1,21 @@
 'use client'
 
 import React from 'react'
-import { Code, Clock, TrendingDown, Rocket, ChevronRight } from 'lucide-react'
+import {
+  Code,
+  Clock,
+  TrendingDown,
+  Rocket,
+  ChevronRight,
+  Zap,
+  Award,
+} from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const Stat = ({ number, text }: { number: string; text: string }) => {
   return (
-    <div className="inline-flex items-center px-3 py-2 mt-3 text-sm font-medium whitespace-nowrap rounded-full border border-base-content/10 bg-base-300/50">
-      <span className="mr-2 font-bold text-primary">{number}</span>
+    <div className="border-base-content/10 bg-base-300/50 mt-3 inline-flex items-center rounded-full border px-3 py-2 text-sm font-medium whitespace-nowrap">
+      <span className="text-primary mr-2 font-bold">{number}</span>
       <span className="opacity-90">{text}</span>
     </div>
   )
@@ -29,14 +37,14 @@ const StageCard = ({
   return (
     <div
       className={`relative h-full w-full rounded-xl ${
-        isPrimary ? 'shadow-lg shadow-primary/10' : 'shadow-md'
+        isPrimary ? 'shadow-primary/10 shadow-lg' : 'shadow-md'
       }`}
     >
       <div
         className={`absolute inset-0 rounded-xl ${
           isPrimary
-            ? 'bg-gradient-to-br from-primary/20 to-base-300/70'
-            : 'bg-gradient-to-br from-base-300 to-base-200'
+            ? 'from-primary/20 to-base-300/70 bg-gradient-to-br'
+            : 'from-base-300 to-base-200 bg-gradient-to-br'
         }`}
       />
       <div
@@ -45,8 +53,8 @@ const StageCard = ({
         }`}
       />
 
-      <div className="flex relative z-10 flex-col gap-4 p-4 h-full sm:p-6 md:p-8">
-        <div className="flex flex-wrap gap-4 items-center">
+      <div className="relative z-10 flex h-full flex-col gap-4 p-4 sm:p-6 md:p-8">
+        <div className="flex flex-wrap items-center gap-4">
           <div
             className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full sm:h-14 sm:w-14 ${
               isPrimary ? 'bg-primary/10' : 'bg-base-100'
@@ -57,7 +65,7 @@ const StageCard = ({
           <h3 className="text-lg font-bold sm:text-xl">{title}</h3>
         </div>
 
-        <p className="text-sm leading-relaxed text-base-content/80 sm:text-base">
+        <p className="text-base-content/80 text-sm leading-relaxed sm:text-base">
           {description}
         </p>
 
@@ -78,22 +86,32 @@ const StageCard = ({
 // - Features: "ShipFast has user auth, Stripe, emails all set up for you"
 export const Problem = () => {
   return (
-    <section className="overflow-hidden py-16 w-full bg-base-200 md:py-24">
+    <section className="bg-base-200 w-full overflow-hidden py-16 md:py-24">
       {/* Background pattern */}
       <div className="bg-[url('data:image/svg+xml,%3Csvg width=\\\\'6\\\\' height=\\\\'6\\\\' viewBox=\\\\'0 0 6 6\\\\' xmlns=\\\\'http://www.w3.org/2000/svg\\\\'%3E%3Cg fill=\\\\'%239C92AC\\\\' fill-opacity=\\\\'0.05\\\\' fill-rule=\\\\'evenodd\\\\'%3E%3Cpath d=\\\\'M5 0h1L0 5v1H0V0h5z\\\\' /%3E%3C/g%3E%3C/svg%3E')] absolute inset-0 opacity-50" />
 
-      <div className="container px-4 mx-auto max-w-7xl sm:px-6">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <div className="inline-block px-4 py-3 rounded-full bg-primary/10 sm:px-6">
-            <span className="flex items-center text-lg font-medium text-primary sm:text-2xl">
+          <div className="bg-primary/10 inline-block rounded-full px-4 py-3 sm:px-6">
+            <span className="text-primary flex items-center text-lg font-medium sm:text-2xl">
               <span className="mr-2 text-4xl font-bold">80%</span>
               <span>of founders abandon their MVP before launch</span>
             </span>
           </div>
         </div>
 
-        {/* Mobile Timeline - Vertical Stacked */}
-        <div className="flex flex-col space-y-10 md:hidden">
+        {/* Section Title - Problems */}
+        {/* <div className="mx-auto mb-8 max-w-3xl text-center">
+          <h2 className="text-base-content text-2xl font-bold md:text-3xl">
+            Common Obstacles
+          </h2>
+          <p className="text-base-content/70 mt-2">
+            Why most founders struggle to bring their ideas to life
+          </p>
+        </div> */}
+
+        {/* Mobile Timeline - Problems - Vertical Stacked */}
+        <div className="flex flex-col space-y-6 md:hidden">
           <StageCard
             icon={<Code size={22} className="text-primary" />}
             title="The Technical Quicksand"
@@ -104,8 +122,8 @@ export const Problem = () => {
             }}
           />
 
-          <div className="flex justify-center items-center w-full">
-            <ChevronRight size={24} className="rotate-90 text-primary" />
+          <div className="flex w-full items-center justify-center">
+            <ChevronRight size={24} className="text-primary/70 rotate-90" />
           </div>
 
           <StageCard
@@ -118,6 +136,10 @@ export const Problem = () => {
             }}
           />
 
+          <div className="flex w-full items-center justify-center">
+            <ChevronRight size={24} className="text-primary/70 rotate-90" />
+          </div>
+
           <StageCard
             icon={<TrendingDown size={22} className="text-primary" />}
             title="The Motivation Cliff"
@@ -128,39 +150,93 @@ export const Problem = () => {
             }}
           />
 
-          <div className="flex relative justify-center items-center my-10 w-full">
-            <div className="absolute inset-0 w-full h-px bg-base-content/10"></div>
-            <span className="relative px-4 text-sm font-medium tracking-wider uppercase bg-base-200 text-base-content/60">
-              OR
+          <div className="relative my-12 flex w-full items-center justify-center">
+            <div className="bg-base-content/10 absolute inset-0 h-px w-full"></div>
+            <span className="bg-base-200 text-primary relative flex items-center justify-center rounded-md px-6 py-2 text-center text-sm font-medium tracking-wider uppercase">
+              OUR SOLUTION
             </span>
+          </div>
+
+          {/* Mobile Solution Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
+            viewport={{ once: true }}
+          >
+            <StageCard
+              icon={<Rocket size={22} className="text-primary" />}
+              title="Expert Technical Execution"
+              description="We handle all the complex technical challenges, from authentication systems to payment processing, so you don't have to."
+              stat={{
+                number: '100%',
+                text: 'technical hurdles solved',
+              }}
+              isPrimary={true}
+            />
+          </motion.div>
+
+          <div className="flex w-full items-center justify-center">
+            <ChevronRight size={24} className="text-primary rotate-90" />
           </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
+            transition={{
+              duration: 0.5,
+              type: 'spring',
+              stiffness: 100,
+              delay: 0.1,
+            }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
           >
             <StageCard
-              icon={<Rocket size={22} className="text-primary" />}
-              title="The Alternative Path"
-              description="Hand off the technical complexity and launch your MVP in just 3 weeks, with all the critical features working perfectly."
+              icon={<Zap size={22} className="text-primary" />}
+              title="Rapid Development"
+              description="Launch your MVP in just 3 weeks with all critical features working perfectly, saving you months of development time."
               stat={{
-                number: '100%',
-                text: 'of our clients launch on time',
+                number: '3x',
+                text: 'faster time to market',
+              }}
+              isPrimary={true}
+            />
+          </motion.div>
+
+          <div className="flex w-full items-center justify-center">
+            <ChevronRight size={24} className="text-primary rotate-90" />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              type: 'spring',
+              stiffness: 100,
+              delay: 0.2,
+            }}
+            viewport={{ once: true }}
+          >
+            <StageCard
+              icon={<Award size={22} className="text-primary" />}
+              title="Sustained Momentum"
+              description="Maintain your enthusiasm and vision as you see tangible progress every step of the way, keeping your project on track to completion."
+              stat={{
+                number: '95%',
+                text: 'of our clients launch successfully',
               }}
               isPrimary={true}
             />
           </motion.div>
         </div>
 
-        {/* Desktop Timeline */}
+        {/* Desktop Layout */}
         <div className="hidden md:block">
-          <div className="relative mx-auto mt-10">
-            {/* Main Path */}
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
-              <div className="w-full h-full">
+          {/* Problems Row */}
+          <div className="relative mx-auto">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="h-full w-full">
                 <StageCard
                   icon={<Code size={22} className="text-primary" />}
                   title="The Technical Quicksand"
@@ -172,7 +248,7 @@ export const Problem = () => {
                 />
               </div>
 
-              <div className="relative w-full h-full">
+              <div className="relative h-full w-full">
                 <StageCard
                   icon={<Clock size={22} className="text-primary" />}
                   title="The Time Trap"
@@ -184,7 +260,7 @@ export const Problem = () => {
                 />
               </div>
 
-              <div className="w-full h-full">
+              <div className="h-full w-full">
                 <StageCard
                   icon={<TrendingDown size={22} className="text-primary" />}
                   title="The Motivation Cliff"
@@ -197,32 +273,81 @@ export const Problem = () => {
               </div>
             </div>
 
-            {/* Alternative Path - Branch */}
-            <div className="flex flex-col items-center mt-10 mb-10">
-              <div className="flex justify-center items-center mb-10 w-16 h-16 rounded-full bg-primary/10">
-                <span className="text-lg font-bold text-primary">OR</span>
-              </div>
+            {/* Divider */}
+            <div className="relative my-16 flex w-full items-center justify-center">
+              <div className="bg-base-content/10 absolute inset-0 h-px w-full"></div>
+              <span className="bg-base-200 text-primary relative flex items-center justify-center rounded-md px-10 py-3 text-center text-lg font-bold tracking-wider uppercase">
+                OUR SOLUTION
+              </span>
+            </div>
 
+            {/* Solution Cards */}
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               <motion.div
-                className="w-full max-w-lg"
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
+                className="h-full w-full"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, type: 'spring', stiffness: 100 }}
                 viewport={{ once: true }}
-                whileHover={{
-                  scale: 1.03,
-                  transition: { duration: 0.2 },
-                  boxShadow:
-                    '0 10px 25px -5px rgba(var(--color-primary-rgb), 0.3)',
-                }}
+                whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
               >
                 <StageCard
                   icon={<Rocket size={24} className="text-primary" />}
-                  title="The Alternative Path"
-                  description="Hand off the technical complexity and launch your MVP in just 3 weeks, with all the critical features working perfectly."
+                  title="Expert Technical Execution"
+                  description="We handle all the complex technical challenges, from authentication systems to payment processing, so you don't have to."
                   stat={{
                     number: '100%',
-                    text: 'of our clients launch on time',
+                    text: 'technical hurdles solved',
+                  }}
+                  isPrimary={true}
+                />
+              </motion.div>
+
+              <motion.div
+                className="h-full w-full"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.7,
+                  type: 'spring',
+                  stiffness: 100,
+                  delay: 0.1,
+                }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+              >
+                <StageCard
+                  icon={<Zap size={24} className="text-primary" />}
+                  title="Rapid Development"
+                  description="Launch your MVP in just 3 weeks with all critical features working perfectly, saving you months of development time."
+                  stat={{
+                    number: '3x',
+                    text: 'faster time to market',
+                  }}
+                  isPrimary={true}
+                />
+              </motion.div>
+
+              <motion.div
+                className="h-full w-full"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.7,
+                  type: 'spring',
+                  stiffness: 100,
+                  delay: 0.2,
+                }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+              >
+                <StageCard
+                  icon={<Award size={24} className="text-primary" />}
+                  title="Sustained Momentum"
+                  description="Maintain your enthusiasm and vision as you see tangible progress every step of the way, keeping your project on track to completion."
+                  stat={{
+                    number: '95%',
+                    text: 'of our clients launch successfully',
                   }}
                   isPrimary={true}
                 />

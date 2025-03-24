@@ -3,62 +3,68 @@
 // Try to match the lines from left to right, so the user can easily compare the two columns
 const WithWithout = () => {
   return (
-    <section className="bg-base-100">
-      <div className="px-8 py-16 mx-auto max-w-5xl md:py-32">
-        <h2 className="mb-12 text-3xl font-extrabold tracking-tight text-center md:mb-20 md:text-5xl">
-          Tired of managing Stripe invoices?
+    <section className="bg-base-200 relative overflow-hidden">
+      <div className="to-base-300/50 absolute inset-0 bg-gradient-to-b from-transparent"></div>
+      <div className="relative z-10 mx-auto max-w-5xl px-8 py-16 md:py-32">
+        <h2 className="mb-6 text-center text-3xl font-extrabold tracking-tight md:mb-10 md:text-5xl">
+          MVP Development <span className="text-primary">Transformed</span>
         </h2>
 
-        <div className="flex flex-col gap-8 justify-center items-center md:flex-row md:items-start md:gap-12">
-          <div className="p-8 w-full rounded-lg bg-error/20 text-error md:p-12">
-            <h3 className="mb-4 text-lg font-bold">
-              Stripe invoices without ZenVoice
+        <p className="mx-auto mb-12 max-w-2xl text-center text-lg opacity-80 md:mb-20">
+          Compare the traditional development approach with our streamlined
+          process that gets your product to market faster.
+        </p>
+
+        <div className="flex flex-col items-center justify-center gap-8 md:flex-row md:items-stretch md:gap-12">
+          <div className="bg-error/20 text-error flex w-full flex-col rounded-lg p-8 shadow-sm transition-all duration-300 hover:shadow-md md:p-12">
+            <h3 className="border-error/30 mb-4 border-b pb-2 text-xl font-bold">
+              DIY Approach
             </h3>
 
-            <ul className="list-inside list-disc space-y-1.5">
+            <ul className="flex-grow list-inside space-y-3">
               {/* Pains the user is experiencing by not using your product */}
               {[
-                'Manually create invoices',
-                'Or pay up to $2 per invoice',
-                'Waste hours in customer support',
-                'Can’t update details once sent (VAT, Tax ID)',
-                "Can't make invoices for previous purchases",
+                'Spend months learning tech stack before writing actual code',
+                'Waste weeks implementing basic auth, payments, and notifications',
+                'Accumulate technical debt with quick and dirty solutions',
+                'Struggle with scaling issues once users start coming in',
+                'Abandon project when motivation drops after months of slow progress',
               ].map((item, index) => (
-                <li key={index} className="flex gap-2 items-center">
+                <li key={index} className="flex items-start gap-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
                     fill="currentColor"
-                    className="w-4 h-4 opacity-75 shrink-0"
+                    className="mt-0.5 h-5 w-5 shrink-0 opacity-80"
                   >
                     <path d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
                   </svg>
-                  {item}
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="p-8 w-full rounded-lg bg-success/20 text-success md:p-12">
-            <h3 className="mb-4 text-lg font-bold">
-              Stripe invoices + ZenVoice
+          <div className="bg-success/20 text-success flex w-full flex-col rounded-lg p-8 shadow-sm transition-all duration-300 hover:shadow-md md:p-12">
+            <h3 className="border-success/30 mb-4 border-b pb-2 text-xl font-bold">
+              Our Fixed-Price MVP
             </h3>
 
-            <ul className="list-inside list-disc space-y-1.5">
+            <ul className="flex-grow list-inside space-y-3">
               {/* Features of your product fixing the pain (try to match each with/withot lines) */}
               {[
-                'Self-serve invoices',
-                `One-time payment for unlimited invoices`,
-                'No more customer support',
-                'Editable invoices to stay compliant',
-                'Invoices for any payment, even past ones',
+                'Launch in just 3 weeks with professionally built features',
+                'Get production-ready authentication, payments, and core systems',
+                'Benefit from clean, maintainable code that scales with your business',
+                'Handle increasing user loads with our future-proof architecture',
+                'Maintain momentum with regular updates and visible progress',
               ].map((item, index) => (
-                <li key={index} className="flex gap-2 items-center">
+                <li key={index} className="flex items-start gap-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 16 16"
                     fill="currentColor"
-                    className="w-4 h-4 opacity-75 shrink-0"
+                    className="mt-0.5 h-5 w-5 shrink-0 opacity-80"
                   >
                     <path
                       fillRule="evenodd"
@@ -66,8 +72,7 @@ const WithWithout = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-
-                  {item}
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>

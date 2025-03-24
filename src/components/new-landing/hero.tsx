@@ -402,7 +402,10 @@ const StepsAnimation = () => {
 
   return (
     <div className="overflow-hidden lg:w-full">
-      <svg className="w-full h-full" viewBox="-50 -50 600 640">
+      <svg
+        className="pointer-events-none h-full w-full"
+        viewBox="-50 -50 600 640"
+      >
         {steps.map((step, index) => {
           const { x, y, rotate } = getStepPosition(index)
           return (
@@ -466,15 +469,15 @@ const Hero = () => {
       <section className="mx-auto max-w-[1400px] px-8 py-8 lg:py-20">
         <div className="flex flex-col items-center lg:flex-row lg:items-center lg:justify-center">
           {/* Left side - Text and buttons */}
-          <div className="flex flex-col gap-6 mb-16 max-w-xl text-center lg:mb-0 lg:text-left">
+          <div className="mb-16 flex max-w-xl flex-col gap-6 text-center lg:mb-0 lg:text-left">
             <div className="flex flex-col gap-6">
               <h1 className="text-4xl font-bold tracking-tight md:-mb-3 lg:text-6xl">
                 Fixed{' '}
-                <span className="italic font-extrabold text-primary">
+                <span className="text-primary font-extrabold italic">
                   Price
                 </span>
                 <br />
-                <span className="relative italic font-extrabold text-secondary">
+                <span className="text-secondary relative font-extrabold italic">
                   MVP{' '}
                   <svg
                     className="fill-secondary absolute -top-0 -left-1 h-3.5 w-3.5 md:h-5 md:w-5"
@@ -505,7 +508,7 @@ const Hero = () => {
                 business
               </p>
             </div>
-            <div className="flex flex-col gap-4 items-center md:flex-row lg:justify-start">
+            <div className="relative z-10 flex flex-col items-center gap-4 md:flex-row lg:justify-start">
               <button
                 onClick={() => {}}
                 className="btn btn-primary btn-wide group"
@@ -520,7 +523,7 @@ const Hero = () => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="w-5 h-5 transition-transform duration-200 lucide lucide-rocket group-hover:scale-110 group-hover:-rotate-3"
+                  className="lucide lucide-rocket h-5 w-5 transition-transform duration-200 group-hover:scale-110 group-hover:-rotate-3"
                 >
                   <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
                   <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
@@ -529,9 +532,9 @@ const Hero = () => {
                 </svg>
                 Start for free
               </button>
-              <button className="flex justify-center items-center btn btn-wide">
+              <button className="btn btn-wide flex items-center justify-center">
                 <span className="flex gap-2">
-                  <PlayIcon className="w-4 h-4" /> Watch Demo
+                  <PlayIcon className="h-4 w-4" /> Watch Demo
                 </span>
               </button>
             </div>
@@ -540,7 +543,7 @@ const Hero = () => {
           </div>
 
           {/* Right side - Animation */}
-          <div className="w-full max-w-md lg:ml-12 lg:max-w-[480px] xl:max-w-[550px]">
+          <div className="relative z-0 w-full max-w-md lg:ml-12 lg:max-w-[480px] xl:max-w-[550px]">
             <StepsAnimation />
           </div>
         </div>
