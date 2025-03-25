@@ -150,11 +150,13 @@ export const Problem = () => {
             }}
           />
 
-          <div className="relative my-12 flex w-full items-center justify-center">
-            <div className="bg-base-content/10 absolute inset-0 h-px w-full"></div>
-            <span className="bg-base-200 text-primary relative flex items-center justify-center rounded-md px-6 py-2 text-center text-sm font-medium tracking-wider uppercase">
-              OUR SOLUTION
-            </span>
+          <div className="relative my-8 flex w-full items-center justify-center">
+            <div className="relative z-10 flex items-center justify-center">
+              <span className="bg-base-200 text-primary border-primary/20 relative flex items-center justify-center rounded-xl border px-10 py-3 text-center text-lg font-bold tracking-wider uppercase shadow-md">
+                <Zap size={18} className="text-primary mr-2" />
+                Our Solution
+              </span>
+            </div>
           </div>
 
           {/* Mobile Solution Cards */}
@@ -274,11 +276,19 @@ export const Problem = () => {
             </div>
 
             {/* Divider */}
-            <div className="relative my-16 flex w-full items-center justify-center">
-              <div className="bg-base-content/10 absolute inset-0 h-px w-full"></div>
-              <span className="bg-base-200 text-primary relative flex items-center justify-center rounded-md px-10 py-3 text-center text-lg font-bold tracking-wider uppercase">
-                OUR SOLUTION
-              </span>
+            <div className="relative my-12 flex w-full items-center justify-center">
+              <div className="relative z-10 flex items-center justify-center">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="bg-base-200 text-primary border-primary/20 relative flex items-center justify-center rounded-xl border px-12 py-4 text-center text-xl font-bold tracking-wider uppercase shadow-md"
+                >
+                  <Zap size={20} className="text-primary mr-3" />
+                  Our Solution
+                </motion.span>
+              </div>
             </div>
 
             {/* Solution Cards */}

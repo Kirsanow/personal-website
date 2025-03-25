@@ -1,4 +1,5 @@
 import '@/app/app.css'
+import CalcomReact from '@/components/calcom-react'
 import BookingCalendar from '@/components/new-landing/booking-calendar'
 import FAQ from '@/components/new-landing/FAQ'
 

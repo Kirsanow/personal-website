@@ -516,70 +516,173 @@ const features = [
     ),
   },
   {
-    title: 'Dedicated Support',
+    title: 'Dedicated Development Team',
     description:
-      'Our team is with you every step of the way to ensure success.',
+      'Expert developers, designers, and product managers collaborate with you throughout your MVP journey.',
     styles: 'bg-base-200/50 text-base-content',
     demo: (
-      <div className="text-neutral-content space-y-4 px-6">
+      <div className="space-y-4 px-6 py-2">
+        <div className="mb-2 flex items-center justify-between">
+          <div className="flex items-center">
+            <div className="avatar-group -space-x-4">
+              <div className="avatar border-base-100 border-2">
+                <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-full">
+                  <span className="text-primary-content text-xs font-bold">
+                    PM
+                  </span>
+                </div>
+              </div>
+              <div className="avatar border-base-100 border-2">
+                <div className="h-8 w-8 rounded-full">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Dev+Lead&background=6419E6&color=fff"
+                    alt="Dev Lead"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+              <div className="avatar border-base-100 border-2">
+                <div className="h-8 w-8 rounded-full">
+                  <img
+                    src="https://ui-avatars.com/api/?name=UX+Designer&background=0891B2&color=fff"
+                    alt="UX Designer"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+            <span className="ml-2 text-sm font-medium">Cursor MVP Team</span>
+          </div>
+          <div className="badge badge-success gap-1">
+            <div className="bg-base-100 h-2 w-2 animate-pulse rounded-full"></div>
+            Online
+          </div>
+        </div>
+
         {[
           {
             id: 1,
-            text: 'When can we schedule our next sprint planning meeting?',
+            text: 'We need to finalize the payment flow for our marketplace MVP. Can we get this implemented before our investor demo next week?',
             userImg:
-              'https://pbs.twimg.com/profile_images/1514863683574599681/9k7PqDTA_400x400.jpg',
+              'https://ui-avatars.com/api/?name=Your+Team&background=3B82F6&color=fff',
             userName: 'Your Team',
-            createdAt: '2024-06-01T00:00:00Z',
+            createdAt: '2024-06-01T10:30:00Z',
+            align: 'left',
             delay: 0.3,
           },
           {
             id: 2,
-            text: "I'm available this Thursday at 2PM. We'll review the authentication system and payment integration progress 👨‍💻",
+            text: "Absolutely! I've already prepared the Stripe integration plan. We can implement the full payment flow within 3 days, including testing. Let me share the technical specs:",
             userImg:
-              'https://pbs.twimg.com/profile_images/1778434561556320256/knBJT1OR_400x400.jpg',
-            userName: 'Cursor AI Dev',
-            createdAt: '2024-06-02T00:00:00Z',
-            transition:
-              'opacity-0 translate-x-6 group-hover:opacity-100 group-hover:translate-x-0',
+              'https://ui-avatars.com/api/?name=Dev+Lead&background=6419E6&color=fff',
+            userName: 'Lead Developer',
+            createdAt: '2024-06-01T10:35:00Z',
+            align: 'right',
             delay: 0.5,
           },
-        ]?.map((reply) => (
+          {
+            id: 3,
+            text: "I've attached the payment flow designs in Figma. We'll implement one-click checkout and saved payment methods for a better user experience.",
+            userImg:
+              'https://ui-avatars.com/api/?name=UX+Designer&background=0891B2&color=fff',
+            userName: 'UX Designer',
+            createdAt: '2024-06-01T10:40:00Z',
+            align: 'right',
+            delay: 0.7,
+            isTyping: true,
+          },
+        ].map((message) => (
           <motion.div
-            initial={{
-              opacity: 0,
-              x: reply.id === 2 ? 20 : 0,
-              y: reply.id === 1 ? 20 : 0,
-            }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            transition={{
-              duration: 0.5,
-              delay: reply.delay,
-              ease: [0.25, 1, 0.5, 1],
-            }}
-            key={reply.id}
-            className={`bg-neutral-content text-neutral rounded-box px-6 py-4 transition-all duration-500 ease-out ${reply.id === 2 ? reply.transition : ''}`}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: message.delay }}
+            key={message.id}
+            className={`flex ${message.align === 'right' ? 'justify-end' : ''}`}
           >
-            <div className="mb-2 whitespace-pre-wrap">{reply.text}</div>
-            <div className="text-neutral/80 flex items-center gap-2 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="avatar">
-                  <div className="w-7 rounded-full">
-                    <img src={reply.userImg} alt={reply.userName} />
-                  </div>
+            <div
+              className={`flex max-w-[85%] gap-3 ${message.align === 'right' ? 'flex-row-reverse' : ''}`}
+            >
+              <div className="avatar">
+                <div className="border-base-100 h-8 w-8 rounded-full border-2">
+                  <img
+                    src={message.userImg}
+                    alt={message.userName}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
-                <div className=""> {reply.userName} </div>
               </div>
-              •
-              <div>
-                {new Date(reply.createdAt).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
+              <div
+                className={`min-w-full rounded-lg px-4 py-3 ${
+                  message.align === 'right'
+                    ? 'bg-primary/10 text-primary-focus'
+                    : 'bg-base-100 text-base-content'
+                }`}
+              >
+                <div className="mb-1 text-sm whitespace-pre-wrap">
+                  {message.text}
+                  {message.isTyping && (
+                    <span className="ml-1 inline-flex">
+                      <span className="animate-pulse">.</span>
+                      <span className="animation-delay-200 animate-pulse">
+                        .
+                      </span>
+                      <span className="animation-delay-400 animate-pulse">
+                        .
+                      </span>
+                    </span>
+                  )}
+                </div>
+                <div
+                  className={`flex items-center gap-2 text-xs ${
+                    message.align === 'right'
+                      ? 'text-primary/70'
+                      : 'text-base-content/60'
+                  }`}
+                >
+                  <span className="font-medium">{message.userName}</span>
+                  <span>•</span>
+                  <span>
+                    {new Date(message.createdAt).toLocaleTimeString('en-US', {
+                      hour: 'numeric',
+                      minute: '2-digit',
+                      hour12: true,
+                    })}
+                  </span>
+                </div>
               </div>
             </div>
           </motion.div>
         ))}
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.3, delay: 0.9 }}
+          className="mt-4 flex"
+        >
+          <div className="flex w-full items-center gap-3">
+            <div className="avatar">
+              <div className="border-base-100 h-8 w-8 rounded-full border-2">
+                <img
+                  src="https://ui-avatars.com/api/?name=Your+Team&background=3B82F6&color=fff"
+                  alt="Your Team"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="relative w-full">
+              <input
+                type="text"
+                placeholder="Message your development team..."
+                className="input input-bordered bg-base-100 focus:border-primary w-full pr-24 text-sm"
+                disabled
+              />
+              <button className="btn btn-primary btn-sm absolute top-1/2 right-2 -translate-y-1/2">
+                Send
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </div>
     ),
   },

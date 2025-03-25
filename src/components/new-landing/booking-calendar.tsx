@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import Cal, { getCalApi } from '@calcom/embed-react'
 
 const BookingCalendar = () => {
-  const [calApi, setCalApi] = useState<any | null>(null)
+  const [calApiLoaded, setCalApiLoaded] = useState(false)
 
   useEffect(() => {
     ;(async function () {
@@ -16,6 +16,7 @@ const BookingCalendar = () => {
         hideEventTypeDetails: true,
         layout: 'month_view',
       })
+      setCalApiLoaded(true)
     })()
   }, [])
 
@@ -63,8 +64,12 @@ const BookingCalendar = () => {
             <Cal
               namespace="30min"
               calLink="kirsanov/30min"
-              style={{ width: '100%', height: '100%', overflow: 'scroll' }}
-              config={{ layout: 'month_view', theme: 'dark' }}
+              style={{ width: '100%', height: '600px', overflow: 'scroll' }}
+              config={{
+                layout: 'month_view',
+                theme: 'dark',
+                hideEventTypeDetails: 'true',
+              }}
             />
           </div>
         </motion.div>
