@@ -18,7 +18,7 @@ const Footer = () => {
               className="flex items-center justify-center gap-2 md:justify-start"
             >
               <Image
-                src={'/transform.svg'}
+                src={'/images/avatar.png'}
                 alt={`${config.appName} logo`}
                 priority={true}
                 className="h-6 w-6"

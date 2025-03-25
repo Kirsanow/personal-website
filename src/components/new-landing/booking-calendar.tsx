@@ -39,7 +39,7 @@ const BookingCalendar = () => {
               and get a personalized development plan.
             </p>
 
-            <div className="mt-2 mb-10 flex justify-center gap-4">
+            <div className="mt-2 mb-5 flex justify-center gap-4">
               <div className="bg-primary/10 text-primary flex items-center gap-2 rounded-full px-4 py-2">
                 <Clock size={18} />
                 <span className="text-sm font-medium">30 min consultation</span>
@@ -59,7 +59,7 @@ const BookingCalendar = () => {
           viewport={{ once: true }}
           className="mx-auto max-w-4xl"
         >
-          <div className="bg-base-200 overflow-hidden rounded-xl p-2 shadow-lg sm:p-4 md:p-6">
+          <div className="overflow-hidden rounded-xl">
             {/* Cal.com Embed */}
             <Cal
               namespace="30min"

@@ -539,6 +539,62 @@ const Hero = () => {
               </button>
             </div>
 
+            {/* Tech Stack Logos */}
+            <div className="mt-8 flex flex-col items-center lg:items-start">
+              <p className="mb-3 text-sm font-medium opacity-70">
+                Built with modern tech stack
+              </p>
+              <motion.div
+                className="flex flex-wrap items-center justify-center gap-5 lg:justify-start"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <div className="tech-logo-item">
+                  <img
+                    src="/tools/next-js.svg"
+                    alt="Next.js"
+                    className="h-8 w-auto opacity-80 transition-opacity hover:opacity-100"
+                  />
+                </div>
+                <div className="tech-logo-item">
+                  <img
+                    src="/tools/supabase.svg"
+                    alt="Supabase"
+                    className="h-7 w-auto opacity-80 transition-opacity hover:opacity-100"
+                  />
+                </div>
+                <div className="tech-logo-item">
+                  <img
+                    src="/tools/vercel.svg"
+                    alt="Vercel"
+                    className="h-6 w-auto opacity-80 transition-opacity hover:opacity-100"
+                  />
+                </div>
+                <div className="tech-logo-item">
+                  <img
+                    src="/tools/figma.png"
+                    alt="Figma"
+                    className="h-7 w-auto opacity-80 transition-opacity hover:opacity-100"
+                  />
+                </div>
+                <div className="tech-logo-item">
+                  <img
+                    src="/tools/GPT-4.png"
+                    alt="GPT-4"
+                    className="h-7 w-auto opacity-80 transition-opacity hover:opacity-100"
+                  />
+                </div>
+                <div className="tech-logo-item">
+                  <img
+                    src="/tools/claude-3.5.png"
+                    alt="Claude 3.5"
+                    className="h-7 w-auto opacity-80 transition-opacity hover:opacity-100"
+                  />
+                </div>
+              </motion.div>
+            </div>
+
             {/* <TestimonialsAvatars priority={true} /> */}
           </div>
 
