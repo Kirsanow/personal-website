@@ -16,10 +16,10 @@ const Quote: React.FC<QuoteProps> = ({
   return (
     <section
       id="quote"
-      className="bg-accent z-20 flex w-full flex-col items-center justify-center gap-8 p-14"
+      className="border-border dark:bg-background z-20 flex w-full flex-col items-center justify-center gap-8 border-t border-b bg-white p-14"
     >
       <blockquote className="max-w-3xl px-4 text-left">
-        <p className="text-primary mb-6 text-xl leading-relaxed font-medium tracking-tighter md:text-2xl">
+        <p className="text-foreground mb-6 text-xl leading-relaxed font-medium tracking-tighter md:text-2xl">
           {text}
         </p>
         <div className="flex gap-4">
@@ -31,10 +31,10 @@ const Quote: React.FC<QuoteProps> = ({
             />
           </div>
           <div className="text-left">
-            <cite className="text-primary text-lg font-medium not-italic">
+            <cite className="text-foreground text-lg font-medium not-italic">
               {authorName}
             </cite>
-            <p className="text-primary text-sm">{authorTitle}</p>
+            <p className="text-muted-foreground text-sm">{authorTitle}</p>
           </div>
         </div>
       </blockquote>

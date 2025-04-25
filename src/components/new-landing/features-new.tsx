@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 interface FeatureItem {
@@ -15,6 +15,10 @@ interface FeaturesNewProps {
 
 const FeaturesNew: React.FC<FeaturesNewProps> = () => {
   const [activeFeature, setActiveFeature] = useState<number>(0)
+  const ROTATION_INTERVAL = 5000 // 5 seconds per feature
+
+  // Add a ref to store the interval ID
+  const rotationTimerRef = React.useRef<NodeJS.Timeout | null>(null)
 
   const features: FeatureItem[] = [
     {
@@ -39,16 +43,44 @@ const FeaturesNew: React.FC<FeaturesNewProps> = () => {
     },
   ]
 
+  useEffect(() => {
+    // Clear any existing timer
+    if (rotationTimerRef.current) {
+      clearInterval(rotationTimerRef.current)
+    }
+
+    // Set up automatic rotation
+    rotationTimerRef.current = setInterval(() => {
+      setActiveFeature((prevFeature) => (prevFeature + 1) % features.length)
+    }, ROTATION_INTERVAL)
+
+    // Clean up interval on component unmount
+    return () => {
+      if (rotationTimerRef.current) {
+        clearInterval(rotationTimerRef.current)
+      }
+    }
+  }, [features.length])
+
   const handleFeatureClick = (index: number) => {
     setActiveFeature(index)
+
+    // Reset the timer when manually clicking
+    if (rotationTimerRef.current) {
+      clearInterval(rotationTimerRef.current)
+    }
+
+    rotationTimerRef.current = setInterval(() => {
+      setActiveFeature((prevFeature) => (prevFeature + 1) % features.length)
+    }, ROTATION_INTERVAL)
   }
 
   return (
     <section
-      id="features"
+      id="examples"
       className="relative flex w-full flex-col items-center justify-center gap-5"
     >
-      <div className="h-full w-full border-b p-10 md:p-14">
+      <div className="border-border h-full w-full border-b p-10 md:p-14">
         <div className="mx-auto flex max-w-xl flex-col items-center justify-center gap-2">
           <h2 className="text-center text-3xl font-medium tracking-tighter text-balance md:text-4xl">
             Simple. Seamless. Smart.
@@ -74,17 +106,19 @@ const FeaturesNew: React.FC<FeaturesNewProps> = () => {
                       key={index}
                       data-state={activeFeature === index ? 'open' : 'closed'}
                       data-orientation="vertical"
-                      className="relative mt-px overflow-hidden rounded-lg focus-within:relative focus-within:z-10 data-[state=closed]:rounded-none data-[state=closed]:border-0 data-[state=open]:bg-white data-[state=open]:shadow-[0px_0px_1px_0px_rgba(0,0,0,0.16),0px_1px_2px_-0.5px_rgba(0,0,0,0.16)] dark:data-[state=open]:bg-[#27272A] dark:data-[state=open]:shadow-[0px_0px_0px_1px_rgba(249,250,251,0.06),0px_0px_0px_1px_var(--color-zinc-800,#27272A),0px_1px_2px_-0.5px_rgba(0,0,0,0.24),0px_2px_4px_-1px_rgba(0,0,0,0.24)]"
+                      className="dark:data-[state=open]:bg-secondary relative mt-px overflow-hidden rounded-lg focus-within:relative focus-within:z-10 data-[state=closed]:rounded-none data-[state=closed]:border-0 data-[state=open]:bg-white data-[state=open]:shadow-[0px_0px_1px_0px_rgba(0,0,0,0.16),0px_1px_2px_-0.5px_rgba(0,0,0,0.16)] dark:data-[state=open]:shadow-[0px_0px_0px_1px_rgba(249,250,251,0.06),0px_0px_0px_1px_var(--color-zinc-800,#27272A),0px_1px_2px_-0.5px_rgba(0,0,0,0.24),0px_2px_4px_-1px_rgba(0,0,0,0.24)]"
                     >
                       <div
                         className="absolute right-0 bottom-0 left-0 h-0.5 w-full overflow-hidden rounded-lg bg-neutral-300/50 transition-opacity data-[state=closed]:opacity-0 data-[state=open]:opacity-100 dark:bg-neutral-300/30"
                         data-state={activeFeature === index ? 'open' : 'closed'}
                       >
                         <div
-                          className="bg-secondary absolute top-0 left-0 h-full w-full transition-all ease-linear"
+                          className="bg-primary absolute top-0 left-0 h-full w-full transition-all ease-linear"
                           style={{
                             transitionDuration:
-                              activeFeature === index ? '5000ms' : '0s',
+                              activeFeature === index
+                                ? `${ROTATION_INTERVAL}ms`
+                                : '0s',
                             width: activeFeature === index ? '100%' : '0',
                           }}
                         ></div>
@@ -167,7 +201,9 @@ const FeaturesNew: React.FC<FeaturesNewProps> = () => {
                         className="bg-secondary absolute top-0 left-0 h-full transition-all ease-linear"
                         style={{
                           transitionDuration:
-                            activeFeature === index ? '5000ms' : '0s',
+                            activeFeature === index
+                              ? `${ROTATION_INTERVAL}ms`
+                              : '0s',
                           width: activeFeature === index ? '100%' : '0',
                         }}
                       ></div>

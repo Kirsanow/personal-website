@@ -115,7 +115,7 @@ const FAQItem = ({
           data-state={isOpen ? 'open' : 'closed'}
           data-orientation="vertical"
           data-slot="accordion-trigger"
-          className="focus-visible:border-ring focus-visible:ring-ring/50 bg-accent border-border data-[state=open]:ring-primary/20 flex flex-1 cursor-pointer items-start justify-between gap-4 rounded-lg border px-4 py-3.5 text-left text-sm font-medium no-underline transition-all outline-none hover:no-underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 data-[state=open]:ring [&[data-state=open]>svg]:rotate-180"
+          className="focus-visible:border-ring focus-visible:ring-ring border-border data-[state=open]:ring-primary/20 dark:bg-background flex flex-1 cursor-pointer items-start justify-between gap-4 rounded-lg border bg-white px-4 py-3.5 text-left text-sm font-medium no-underline transition-all outline-none hover:no-underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 data-[state=open]:ring [&[data-state=open]>svg]:rotate-180"
           onClick={toggleOpen}
         >
           {item.question}

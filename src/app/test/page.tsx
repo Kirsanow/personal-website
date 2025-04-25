@@ -15,7 +15,7 @@ import Quote from '@/components/new-landing/quote'
 import FeaturesNew from '@/components/new-landing/features-new'
 import FAQNew from '@/components/new-landing/faq-new'
 
-export default function TestPage() {
+function TestPage() {
   return (
     <>
       <Header />
@@ -25,12 +25,14 @@ export default function TestPage() {
         <Quote />
         <FeaturesNew />
         <FAQNew />
-        <WithWithout />
-        <CommunityCTA />
+        {/* <WithWithout /> */}
+        {/* <CommunityCTA />
         <BookingCalendar />
-        <FAQ />
+        <FAQ /> */}
         <Footer />
       </div>
     </>
   )
 }
+
+export default TestPage

@@ -1,24 +1,100 @@
-import React from 'react'
+'use client'
+
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 
 interface HeaderProps {
   // You can add props here if needed
 }
 
 const Header: React.FC<HeaderProps> = () => {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero')
+  const { setTheme, theme } = useTheme()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  useEffect(() => {
+    const sections = ['hero', 'approach', 'examples']
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-100px 0px -300px 0px', // Adjust rootMargin to trigger earlier and end later
+      threshold: 0.2, // Lower threshold for easier detection
+    }
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        observer.observe(element)
+      }
+    })
+
+    return () => {
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          observer.unobserve(element)
+        }
+      })
+    }
+  }, [])
+
+  // Function to handle click on navigation links
+  const handleNavClick = (sectionId: string) => {
+    setActiveSection(sectionId)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <header className="sticky top-6 z-50 mx-4 flex justify-center transition-all duration-300 md:mx-0">
-      <div style={{ width: '800px' }}>
-        <div className="border-border bg-background/75 mx-auto max-w-7xl rounded-2xl border px-2 backdrop-blur-lg transition-all duration-300 xl:px-0">
-          <div className="flex h-[56px] items-center justify-between p-4">
+    <header
+      className={`sticky top-6 z-50 mx-4 flex justify-center transition-all duration-300 md:mx-0 ${isScrolled ? 'scale-90' : ''}`}
+    >
+      <div
+        style={{ width: isScrolled ? '700px' : '800px' }}
+        className="transition-all duration-300"
+      >
+        <div
+          className={`border-border bg-background/75 mx-auto max-w-7xl rounded-2xl border px-2 backdrop-blur-lg transition-all duration-300 xl:px-0 ${isScrolled ? 'py-1' : ''}`}
+        >
+          <div
+            className={`flex items-center justify-between p-4 transition-all ${isScrolled ? 'h-[48px]' : 'h-[56px]'}`}
+          >
             <Link className="flex items-center gap-3" href="/">
               <svg
-                width="42"
-                height="24"
+                width={isScrolled ? '36' : '42'}
+                height={isScrolled ? '20' : '24'}
                 viewBox="0 0 42 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="size-7 fill-[var(--secondary)] md:size-10"
+                className={`fill-[var(--primary)] transition-all duration-300 ${isScrolled ? 'size-6' : 'size-7'} md:${isScrolled ? 'size-8' : 'size-10'}`}
               >
                 <g clipPath="url(#clip0_322_9172)">
                   <path
@@ -36,40 +112,76 @@ const Header: React.FC<HeaderProps> = () => {
                   </clipPath>
                 </defs>
               </svg>
-              <p className="text-primary text-lg font-semibold">SkyAgent</p>
+              <p
+                className={`text-foreground font-semibold transition-all duration-300 ${isScrolled ? 'text-base' : 'text-lg'}`}
+              >
+                SkyCrew
+              </p>
             </Link>
             <div className="hidden w-full md:block">
               <ul className="relative mx-auto flex h-11 w-fit items-center justify-center rounded-full px-2">
-                <li className="text-primary z-10 flex h-full cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-200">
-                  <a href="#hero">Home</a>
+                <li
+                  className={`${activeSection === 'hero' ? 'text-foreground' : 'text-foreground/60 hover:text-foreground'} z-10 flex h-full cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-200`}
+                >
+                  <button onClick={() => handleNavClick('hero')}>Home</button>
                 </li>
-                <li className="text-primary/60 hover:text-primary z-10 flex h-full cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-200">
-                  <a href="#bento">How it Works</a>
-                </li>
-                <li className="text-primary/60 hover:text-primary z-10 flex h-full cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-200">
-                  <a href="#features">Features</a>
-                </li>
-                <li className="text-primary/60 hover:text-primary z-10 flex h-full cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-200">
-                  <a href="#pricing">Pricing</a>
+
+                <li
+                  className={`${activeSection === 'approach' ? 'text-foreground' : 'text-foreground/60 hover:text-foreground'} z-10 flex h-full cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-200`}
+                >
+                  <button onClick={() => handleNavClick('approach')}>
+                    Approach
+                  </button>
                 </li>
                 <li
-                  className="bg-accent/60 border-border absolute inset-0 my-1.5 rounded-full border"
-                  style={{ left: '8px', width: '68.8667px' }}
+                  className={`${activeSection === 'examples' ? 'text-foreground' : 'text-foreground/60 hover:text-foreground'} z-10 flex h-full cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-200`}
+                >
+                  <button onClick={() => handleNavClick('examples')}>
+                    Examples
+                  </button>
+                </li>
+                <li className="text-foreground/60 hover:text-foreground z-10 flex h-full cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-200">
+                  <a target="_blank" href="https://whop.com/thesignal">
+                    Community
+                  </a>
+                </li>
+                <li
+                  className="bg-background border-border absolute inset-0 my-1.5 rounded-full border transition-all duration-200"
+                  style={{
+                    left:
+                      activeSection === 'hero'
+                        ? '8px'
+                        : activeSection === 'approach'
+                          ? '76px'
+                          : activeSection === 'examples'
+                            ? '159px'
+                            : '8px',
+                    width:
+                      activeSection === 'hero'
+                        ? '68.8667px'
+                        : activeSection === 'approach'
+                          ? '85px'
+                          : activeSection === 'examples'
+                            ? '100px'
+                            : '68.8667px',
+                  }}
                 ></li>
               </ul>
             </div>
             <div className="flex shrink-0 flex-row items-center gap-1 md:gap-3">
               <div className="flex items-center space-x-6">
                 <a
-                  className="bg-secondary text-primary-foreground dark:text-secondary-foreground hidden h-8 w-fit items-center justify-center rounded-full border border-white/[0.12] px-4 text-sm font-normal tracking-wide shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] md:flex"
-                  href="#"
+                  className={`bg-primary text-primary-foreground dark:text-secondary-foreground hidden w-fit items-center justify-center rounded-full border border-white/[0.12] px-4 font-normal tracking-wide shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] transition-all duration-300 md:flex ${isScrolled ? 'h-7 text-xs' : 'h-8 text-sm'}`}
+                  href="https://cal.com/kirsanov/30min"
+                  target="_blank"
                 >
-                  Try for free
+                  Book a call
                 </a>
               </div>
               <button
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 data-slot="button"
-                className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex size-9 h-8 w-8 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full border text-sm font-medium whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+                className={`focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full border font-medium whitespace-nowrap shadow-xs transition-all duration-300 outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 ${isScrolled ? 'size-7 h-7 w-7' : 'size-9 h-8 w-8'} ${isScrolled ? 'text-xs' : 'text-sm'}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +193,7 @@ const Header: React.FC<HeaderProps> = () => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="lucide lucide-sun text-primary h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"
+                  className={`lucide lucide-sun text-primary scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90 ${isScrolled ? 'h-[1rem] w-[1rem]' : 'h-[1.2rem] w-[1.2rem]'}`}
                 >
                   <circle cx="12" cy="12" r="4"></circle>
                   <path d="M12 2v2"></path>
@@ -103,13 +215,15 @@ const Header: React.FC<HeaderProps> = () => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="lucide lucide-moon text-primary absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"
+                  className={`lucide lucide-moon text-primary absolute scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0 ${isScrolled ? 'h-[1rem] w-[1rem]' : 'h-[1.2rem] w-[1.2rem]'}`}
                 >
                   <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                 </svg>
                 <span className="sr-only">Toggle theme</span>
               </button>
-              <button className="border-border flex size-8 cursor-pointer items-center justify-center rounded-md border md:hidden">
+              <button
+                className={`border-border flex cursor-pointer items-center justify-center rounded-md border transition-all duration-300 md:hidden ${isScrolled ? 'size-7' : 'size-8'}`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -120,7 +234,7 @@ const Header: React.FC<HeaderProps> = () => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="lucide lucide-menu size-5"
+                  className={`lucide lucide-menu transition-all duration-300 ${isScrolled ? 'size-4' : 'size-5'}`}
                 >
                   <line x1="4" x2="20" y1="12" y2="12"></line>
                   <line x1="4" x2="20" y1="6" y2="6"></line>
