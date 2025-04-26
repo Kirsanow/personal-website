@@ -47,7 +47,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <AppContext.Provider value={{ previousPathname }}>
       <ThemeProvider
-        // forcedTheme="light"
+        forcedTheme="light"
         attribute="class"
         disableTransitionOnChange
       >
