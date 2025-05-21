@@ -8,10 +8,16 @@ interface QuoteProps {
 }
 
 const Quote: React.FC<QuoteProps> = ({
-  text = 'SkyAgent has transformed our daily operations. Tasks that once consumed hours now complete in moments, freeing our team to focus on creativity and strategic growth.',
-  authorName = 'Alex Johnson',
-  authorTitle = 'CTO, Innovatech',
-  authorImageUrl = 'https://randomuser.me/api/portraits/men/91.jpg',
+  text = `Working with Artem on our Homeezy MVP was an exceptional experience. 
+    His 'yes to everything' attitude coupled with his relentless work ethic made 
+    obstacles vanish. He's not just fast and efficient—he's reliably excellent, 
+    delivering high-quality work within tight deadlines. What sets Artem apart is 
+    his willingness to take on any challenge, making him not just a developer, but 
+    a crucial asset to our team. I couldn't recommend him more highly for any 
+    tech-centric project.`,
+  authorName = 'Gabriel Francoeur',
+  authorTitle = 'CEO, Homeezy',
+  authorImageUrl = 'https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/testimonials%2F8b721a83-cf61-4642-907e-c240a910bdd1%2Favatar?alt=media&token=31cd2c26-a9e2-4bb3-af61-7b84725d68f2',
 }) => {
   return (
     <section
@@ -27,7 +33,7 @@ const Quote: React.FC<QuoteProps> = ({
             <img
               src={authorImageUrl}
               alt={authorName}
-              className="size-full rounded-full object-contain"
+              className="size-full rounded-full object-cover"
             />
           </div>
           <div className="text-left">

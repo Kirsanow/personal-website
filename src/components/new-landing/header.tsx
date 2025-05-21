@@ -113,9 +113,9 @@ const Header: React.FC<HeaderProps> = () => {
                 </defs>
               </svg>
               <p
-                className={`text-foreground font-semibold transition-all duration-300 ${isScrolled ? 'text-base' : 'text-lg'}`}
+                className={`text-foreground font-semibold tracking-tight transition-all duration-300 ${isScrolled ? 'text-base' : 'text-lg'}`}
               >
-                SkyCrew
+                Kirsanov
               </p>
             </Link>
             <div className="hidden w-full md:block">
@@ -141,8 +141,11 @@ const Header: React.FC<HeaderProps> = () => {
                   </button>
                 </li>
                 <li className="text-foreground/60 hover:text-foreground z-10 flex h-full cursor-pointer items-center justify-center px-4 py-2 text-sm font-medium tracking-tight transition-colors duration-200">
-                  <a target="_blank" href="https://whop.com/thesignal">
-                    Community
+                  <a
+                    target="_blank"
+                    href="https://youtube.com/@kirsnv?si=wyySko1V4-VyKks6"
+                  >
+                    YouTube
                   </a>
                 </li>
                 <li
@@ -150,11 +153,11 @@ const Header: React.FC<HeaderProps> = () => {
                   style={{
                     left:
                       activeSection === 'hero'
-                        ? '8px'
+                        ? '7px'
                         : activeSection === 'approach'
-                          ? '76px'
+                          ? '78px'
                           : activeSection === 'examples'
-                            ? '159px'
+                            ? '160px'
                             : '8px',
                     width:
                       activeSection === 'hero'
@@ -178,7 +181,7 @@ const Header: React.FC<HeaderProps> = () => {
                   Book a call
                 </a>
               </div>
-              <button
+              {/* <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 data-slot="button"
                 className={`focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full border font-medium whitespace-nowrap shadow-xs transition-all duration-300 outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 ${isScrolled ? 'size-7 h-7 w-7' : 'size-9 h-8 w-8'} ${isScrolled ? 'text-xs' : 'text-sm'}`}
@@ -220,7 +223,7 @@ const Header: React.FC<HeaderProps> = () => {
                   <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                 </svg>
                 <span className="sr-only">Toggle theme</span>
-              </button>
+              </button> */}
               <button
                 className={`border-border flex cursor-pointer items-center justify-center rounded-md border transition-all duration-300 md:hidden ${isScrolled ? 'size-7' : 'size-8'}`}
               >

@@ -104,3 +104,38 @@ export const courses = {
     ],
   },
 }
+
+export const caseStudies = {
+  'modern-saas-platform': {
+    title: 'Modern SaaS Platform',
+    description:
+      'A full-stack SaaS application with authentication, payments, and real-time features built with Next.js and Supabase.',
+    image: '/images/case-studies/saas-platform.jpg',
+    tags: ['Next.js', 'React', 'Supabase', 'Stripe'],
+    slug: 'modern-saas-platform',
+  },
+  'e-commerce-solution': {
+    title: 'E-commerce Solution',
+    description:
+      'Custom e-commerce platform with advanced product management and analytics dashboard.',
+    image: '/images/case-studies/ecommerce.jpg',
+    tags: ['Next.js', 'TypeScript', 'Tailwind', 'PostgreSQL'],
+    slug: 'e-commerce-solution',
+  },
+  'ai-powered-assistant': {
+    title: 'AI-Powered Assistant',
+    description:
+      "Intelligent assistant application leveraging OpenAI's GPT for natural language processing and task automation.",
+    image: '/images/case-studies/ai-assistant.jpg',
+    tags: ['React', 'Node.js', 'OpenAI', 'WebSocket'],
+    slug: 'ai-powered-assistant',
+  },
+  'real-time-analytics': {
+    title: 'Real-time Analytics Dashboard',
+    description:
+      'Real-time data visualization and analytics platform for business intelligence.',
+    image: '/images/case-studies/analytics.jpg',
+    tags: ['React', 'D3.js', 'WebSocket', 'Redis'],
+    slug: 'real-time-analytics',
+  },
+}

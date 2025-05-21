@@ -12,7 +12,7 @@ import Header from '@/components/new-landing/header'
 import HeroNew from '@/components/new-landing/hero-new'
 import BentoFeatures from '@/components/new-landing/bento-new'
 import Quote from '@/components/new-landing/quote'
-import FeaturesNew from '@/components/new-landing/features-new'
+import CaseStudies from '@/components/new-landing/case-studies'
 import FAQNew from '@/components/new-landing/faq-new'
 
 function TestPage() {
@@ -23,7 +23,7 @@ function TestPage() {
         <HeroNew />
         <BentoFeatures />
         <Quote />
-        <FeaturesNew />
+        <CaseStudies />
         <FAQNew />
         {/* <WithWithout /> */}
         {/* <CommunityCTA />

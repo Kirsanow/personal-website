@@ -13,14 +13,14 @@ export const discoveryMessages: ChatMessage[] = [
   {
     id: 'user-1',
     content:
-      'Hey, I need help scheduling a team meeting that works well for everyone. Any suggestions for finding an optimal time slot?',
+      "I have this idea for a SaaS platform, but I'm not sure where to start. How do we turn this into a real product?",
     sender: 'user',
     avatar: 'https://randomuser.me/api/portraits/women/79.jpg',
   },
   {
     id: 'assistant-1',
     content:
-      'Based on your calendar patterns and preferences, I recommend scheduling the team meeting for Tuesday at 2pm. This time slot has historically had the highest attendance rate, and it avoids conflicts with other recurring meetings.',
+      "Let's break this down step by step. First, we'll map out your core features and user journey. Then we can create a detailed development roadmap with clear milestones. Would you like to schedule a discovery call to dive deeper?",
     sender: 'assistant',
   },
 ]
