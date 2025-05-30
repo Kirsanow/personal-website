@@ -1,5 +1,7 @@
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import { ArrowLeftIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 export default function NotFound() {
   return (
@@ -14,9 +16,13 @@ export default function NotFound() {
         <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
           Sorry, we couldn’t find the page you’re looking for.
         </p>
-        <Button href="/" variant="secondary" className="mt-4">
+        <Link
+          href="/"
+          className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-zinc-600 ring-1 shadow-xs ring-zinc-200 transition hover:bg-zinc-50 hover:text-indigo-600 hover:ring-indigo-300"
+        >
+          <ArrowLeftIcon className="h-4 w-4" />
           Go back home
-        </Button>
+        </Link>
       </div>
     </Container>
   )
