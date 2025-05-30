@@ -1,0 +1,6 @@
+# Exclude new-landing folder from deployment
+src/components/new-landing/
+
+# Optional: You can also exclude other development/work-in-progress folders
+# *.local
+# *.temp 
