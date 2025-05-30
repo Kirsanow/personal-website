@@ -46,7 +46,7 @@
 }
 
 :root {
-  --background: oklch(0.98 0 247.86);
+  --background: oklch(1 0 0);
   --foreground: oklch(0.28 0.04 260.03);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.28 0.04 260.03);
@@ -209,5 +209,8 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+  .input {
+    @apply !border-border !outline-ring/50 !border;
   }
 }

@@ -81,6 +81,7 @@ export default function Footer() {
               <FooterLink target="_blank" href="https://cal.com/kirsanov/30min">
                 Contact
               </FooterLink>
+              <FooterLink href="/privacy-policy">Privacy Policy</FooterLink>
             </div>
 
             <div className="flex items-center gap-4">
